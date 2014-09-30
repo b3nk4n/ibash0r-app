@@ -90,7 +90,7 @@ namespace Bash.App.ViewModels
 
             _ratePositiveCommand = new DelegateCommand(async () =>
             {
-                await _bashClient.RateAsync(CurrentBashData.Id, BashClient.TYPE_VALUE_POS);
+                await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_POS);
             },
             () =>
             {
@@ -99,7 +99,7 @@ namespace Bash.App.ViewModels
 
             _rateNegativeCommand = new DelegateCommand(async () =>
             {
-                await _bashClient.RateAsync(CurrentBashData.Id, BashClient.TYPE_VALUE_NEG);
+                await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_NEG);
             },
             () =>
             {
@@ -108,7 +108,7 @@ namespace Bash.App.ViewModels
 
             _showCommentsCommand = new DelegateCommand(() =>
             {
-                var uriString = string.Format("/Pages/CommentsPage.xaml?{0}={1}", BashClient.PARAM_ID, CurrentBashData.Id);
+                var uriString = string.Format("/Pages/CommentsPage.xaml?{0}={1}", AppConstants.PARAM_ID, CurrentBashData.Id);
                 NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
             },
             () =>

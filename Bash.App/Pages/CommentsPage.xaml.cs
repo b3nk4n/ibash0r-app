@@ -25,9 +25,9 @@ namespace Bash.App.Pages
             DataContext = _commentsViewModel;
 
             bool success = false;
-            if (NavigationContext.QueryString.ContainsKey(BashClient.PARAM_ID))
+            if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_ID))
             {
-                var id = NavigationContext.QueryString[BashClient.PARAM_ID];
+                var id = NavigationContext.QueryString[AppConstants.PARAM_ID];
                 await _commentsViewModel.LoadCommentsAsync(id);
             }
             else

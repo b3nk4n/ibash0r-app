@@ -10,8 +10,6 @@ namespace Bash.App.Pages
 {
     public partial class CategoryPage : PhoneApplicationPage
     {
-        public const string PARAM_FAVORITES = "favorites";
-
         private ICategoryViewModel _categoryViewModel;
 
         public CategoryPage()
@@ -29,17 +27,17 @@ namespace Bash.App.Pages
             DataContext = _categoryViewModel;
 
             bool success = false;
-            if (NavigationContext.QueryString.ContainsKey(BashClient.PARAM_ORDER))
+            if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_ORDER))
             {
-                var order = NavigationContext.QueryString[BashClient.PARAM_ORDER];
+                var order = NavigationContext.QueryString[AppConstants.PARAM_ORDER];
                 success = await _categoryViewModel.LoadQuotesAsync(order);
             }
-            else if (NavigationContext.QueryString.ContainsKey(BashClient.PARAM_TERM))
+            else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_TERM))
             {
-                var term = NavigationContext.QueryString[BashClient.PARAM_TERM];
+                var term = NavigationContext.QueryString[AppConstants.PARAM_TERM];
                 success = await _categoryViewModel.SearchQuotesAsync(term);
             }
-            else if (NavigationContext.QueryString.ContainsKey(PARAM_FAVORITES))
+            else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FAVORITES))
             {
                 // load data from favorites list.
             }

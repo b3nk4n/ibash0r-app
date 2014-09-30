@@ -11,6 +11,8 @@ namespace Bash.App.Data
 {
     public class BashClient : IBashClient
     {
+        #region Members
+
         private const string BASE_URI = "http://www.ibash.de/iphone";
 
         private const string PATH_QUOTE = "/quote.php";
@@ -19,42 +21,33 @@ namespace Bash.App.Data
         private const string PATH_COMMENTS = "/comments.php";
         private const string PATH_RATE = "/rate.php";
 
-        public const string PARAM_TERM = "term";
-        public const string PARAM_TYPE = "type";
-        public const string PARAM_ID = "id";
-        public const string PARAM_ORDER = "order";
-        public const string PARAM_NUMBER = "number";
-        public const string PARAM_PAGE = "page";
-
-        public const string ORDER_VALUE_NEW = "new";
-        public const string ORDER_VALUE_BEST = "best";
-        public const string ORDER_VALUE_RANDOM = "random";
-
-        public const string TYPE_VALUE_POS = "pos";
-        public const string TYPE_VALUE_NEG = "neg";
-
         private HttpClient _httpClient = new HttpClient();
+
+        #endregion
+
+        #region Constructors
 
         public BashClient()
         {  
         }
 
+        #endregion
+
+        #region Public Methods
+
         public async Task<BashCollection> GetQuotesAsync(string order, int number, int page)
         {
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}&{6}={7}",
                 BASE_URI, PATH_QUOTES,
-                PARAM_ORDER, order,
-                PARAM_NUMBER, number,
-                PARAM_PAGE, page);
+                AppConstants.PARAM_ORDER, order,
+                AppConstants.PARAM_NUMBER, number,
+                AppConstants.PARAM_PAGE, page);
             var response = await _httpClient.GetAsync(uriString);
             
             if (response.IsSuccessStatusCode)
             {
-                var data = await response.Content.ReadAsByteArrayAsync();
-
-                string encodedString = Encoding.GetEncoding("iso-8859-1").GetString(data, 0, data.Length);
-
-                return JsonConvert.DeserializeObject<BashCollection>(encodedString);
+                var encodedData = await ReadEncodedContentAsync(response);
+                return JsonConvert.DeserializeObject<BashCollection>(encodedData);
             }
 
             return null;
@@ -66,15 +59,15 @@ namespace Bash.App.Data
 
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}&{6}={7}",
                 BASE_URI, PATH_QUOTES,
-                PARAM_TERM, term,
-                PARAM_NUMBER, number,
-                PARAM_PAGE, page);
+                AppConstants.PARAM_TERM, term,
+                AppConstants.PARAM_NUMBER, number,
+                AppConstants.PARAM_PAGE, page);
             var response = await _httpClient.GetAsync(uriString);
 
             if (response.IsSuccessStatusCode)
             {
-                string data = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<BashCollection>(data);
+                var encodedData = await ReadEncodedContentAsync(response);
+                return JsonConvert.DeserializeObject<BashCollection>(encodedData);
             }
 
             return null;
@@ -85,13 +78,13 @@ namespace Bash.App.Data
         {
             string uriString = String.Format("{0}{1}?{2}={3}",
                 BASE_URI, PATH_COMMENTS,
-                PARAM_ID, id);
+                AppConstants.PARAM_ID, id);
             var response = await _httpClient.GetAsync(uriString);
 
             if (response.IsSuccessStatusCode)
             {
-                string data = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<BashComments>(data);
+                var encodedData = await ReadEncodedContentAsync(response);
+                return JsonConvert.DeserializeObject<BashComments>(encodedData);
             }
 
             return null;
@@ -101,17 +94,30 @@ namespace Bash.App.Data
         {
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}",
                 BASE_URI, PATH_RATE,
-                PARAM_ID, id,
-                PARAM_TYPE, type);
+                AppConstants.PARAM_ID, id,
+                AppConstants.PARAM_TYPE, type);
             var response = await _httpClient.GetAsync(uriString);
 
             if (response.IsSuccessStatusCode)
             {
-                string data = await response.Content.ReadAsStringAsync();
-                return data;
+                var encodedData = await ReadEncodedContentAsync(response);
+                return encodedData;
             }
 
             return null;
         }
+
+        #endregion
+
+        #region Private Methods
+
+        private static async Task<string> ReadEncodedContentAsync(HttpResponseMessage response)
+        {
+            var data = await response.Content.ReadAsByteArrayAsync();
+            string encodedString = Encoding.GetEncoding("iso-8859-1").GetString(data, 0, data.Length);
+            return encodedString;
+        }
+
+        #endregion
     }
 }
