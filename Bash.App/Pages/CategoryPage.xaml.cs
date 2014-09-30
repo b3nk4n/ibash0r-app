@@ -28,15 +28,16 @@ namespace Bash.App.Pages
             _categoryViewModel.NavigationService = NavigationService;
             DataContext = _categoryViewModel;
 
+            bool success = false;
             if (NavigationContext.QueryString.ContainsKey(BashClient.PARAM_ORDER))
             {
                 var order = NavigationContext.QueryString[BashClient.PARAM_ORDER];
-                await _categoryViewModel.LoadQuotesAsync(order);
+                success = await _categoryViewModel.LoadQuotesAsync(order);
             }
             else if (NavigationContext.QueryString.ContainsKey(BashClient.PARAM_TERM))
             {
                 var term = NavigationContext.QueryString[BashClient.PARAM_TERM];
-                await _categoryViewModel.SearchQuotesAsync(term);
+                success = await _categoryViewModel.SearchQuotesAsync(term);
             }
             else if (NavigationContext.QueryString.ContainsKey(PARAM_FAVORITES))
             {
@@ -45,6 +46,11 @@ namespace Bash.App.Pages
             else
             {
                 throw new ArgumentException("Paremeters required.");
+            }
+
+            if (!success)
+            {
+                // TODO: handle error?
             }
         }
     }

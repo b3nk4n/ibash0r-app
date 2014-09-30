@@ -15,6 +15,7 @@ namespace Bash.App.Modules
         {
             this.Bind<ISearchViewModel>().To<SearchViewModel>().InSingletonScope();
             this.Bind<ICategoryViewModel>().To<CategoryViewModel>().InSingletonScope();
+            this.Bind<ICommentsViewModel>().To<CommentsViewModel>().InSingletonScope();
 
             this.Bind<IBashClient>().To<BashClient>().InSingletonScope();
         }

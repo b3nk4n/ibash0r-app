@@ -26,6 +26,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _previousCommand;
         private DelegateCommand _ratePositiveCommand;
         private DelegateCommand _rateNegativeCommand;
+        private DelegateCommand _showCommentsCommand;
 
         #endregion
 
@@ -93,7 +94,7 @@ namespace Bash.App.ViewModels
             },
             () =>
             {
-                return true;
+                return CurrentBashData != null;
             });
 
             _rateNegativeCommand = new DelegateCommand(async () =>
@@ -102,14 +103,18 @@ namespace Bash.App.ViewModels
             },
             () =>
             {
-                return true;
+                return CurrentBashData != null;
             });
-        }
 
-        private void UpateBashNavigationCommands()
-        {
-            _nextCommand.RaiseCanExecuteChanged();
-            _previousCommand.RaiseCanExecuteChanged();
+            _showCommentsCommand = new DelegateCommand(() =>
+            {
+                var uriString = string.Format("/Pages/CommentsPage.xaml?{0}={1}", BashClient.PARAM_ID, CurrentBashData.Id);
+                NavigationService.Navigate(new Uri(uriString, UriKind.Relative));
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
         }
 
         #endregion
@@ -123,7 +128,9 @@ namespace Bash.App.ViewModels
             {
                 _currentBashDataIndex = value;
                 NotifyPropertyChanged("CurrentBashData");
-                UpateBashNavigationCommands();
+                _nextCommand.RaiseCanExecuteChanged();
+                _previousCommand.RaiseCanExecuteChanged();
+                _showCommentsCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -182,6 +189,11 @@ namespace Bash.App.ViewModels
         public ICommand RateNegativeCommand
         {
             get { return _rateNegativeCommand; }
+        }
+
+        public ICommand ShowCommentsCommand
+        {
+            get { return _showCommentsCommand; }
         }
 
         #endregion

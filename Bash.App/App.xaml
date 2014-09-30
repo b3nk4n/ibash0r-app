@@ -5,9 +5,20 @@
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
 
-    <!--Anwendungsressourcen-->
+    <!-- Resources -->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:Bash.App" x:Key="LocalizedStrings"/>
+        
+        <!-- Colors -->
+        <Color x:Key="ThemeColorGray">#e5e5e5</Color>
+        <Color x:Key="ThemeColorBlue">#1556ad</Color>
+        <Color x:Key="ThemeColorRed">#e52416</Color>
+        
+        <!-- Brushes -->
+        <SolidColorBrush x:Key="ThemeBrushGray" Color="{StaticResource ThemeColorGray}" />
+        <SolidColorBrush x:Key="ThemeBrushBlue" Color="{StaticResource ThemeColorBlue}" />
+        <SolidColorBrush x:Key="ThemeBrushRed" Color="{StaticResource ThemeColorRed}" />
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

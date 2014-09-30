@@ -51,7 +51,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="hilfe"/>
+                <shell:ApplicationBarMenuItem Text="id_comments"/>
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/back.png" Text="id_prev"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="id_neg"/>
@@ -63,10 +63,7 @@
 
     <i:Interaction.Behaviors>
         <abu:AppBarItemCommand Type="Button" Id="id_prev" Text="zurück" Command="{Binding PreviousCommand}"/>
-        <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
-        <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
-        <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
-        <abu:AppBarToggleItemCommand Id="lock"
+        <abu:AppBarToggleItemCommand Id="id_fav"
                                IsChecked="{Binding IsCurrentBashFavorite}"
                                Text="zu favoriten hinzufügen"
                                CheckedText="aus favoriten entfernen"
@@ -74,6 +71,10 @@
                                CheckedIconUri="/Assets/AppBar/minus.png"
                                Command="{Binding AddToFavoritesCommand}"
                                CheckedCommand="{Binding RemoveFromFavoritesCommand}" />
+        <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
+        <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
+        <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
     </i:Interaction.Behaviors>
 
     <!--<i:Interaction.Triggers>

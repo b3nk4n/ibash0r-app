@@ -26,5 +26,7 @@ namespace Bash.App.ViewModels
         ICommand RatePositiveCommand { get; }
 
         ICommand RateNegativeCommand { get; }
+
+        ICommand ShowCommentsCommand { get; }
     }
 }
