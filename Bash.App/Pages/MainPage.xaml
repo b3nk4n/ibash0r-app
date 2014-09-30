@@ -9,6 +9,7 @@
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:local="clr-namespace:Bash.App.Controls"
     xmlns:abu="clr-namespace:AppBarUtils;assembly=AppBarUtils"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="Bash.App.Pages.MainPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -33,43 +34,48 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-			<StackPanel>
-				<Button Content="BEST">
-					<i:Interaction.Triggers>
-						<i:EventTrigger EventName="Click">
-							<ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=best"/>
-						</i:EventTrigger>
-					</i:Interaction.Triggers>
-				</Button>
-                <Button Content="NEW">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=new"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-                <Button Content="RANDOM">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=random"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-                <Button Content="SEARCH">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/Pages/SearchPage.xaml"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-                <Button Content="FAVORITES">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="Click">
-                            <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?favorites=true"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                </Button>
-            </StackPanel>
+            <phone:Pivot>
+                <phone:PivotItem Header="Zitate">
+                    <StackPanel>
+                        <Button Content="BEST">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=best"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="NEW">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=new"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="RANDOM">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=random"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="FAVORITES">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?favorites=true"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </StackPanel>
+                </phone:PivotItem>
+                <phone:PivotItem Header="Suche">
+                    <StackPanel>
+                        <toolkit:PhoneTextBox Hint="Suchbegriff" Text="{Binding SearchTerm, Mode=TwoWay}" />
+                        <Button Content="Suchen" Command="{Binding SearchCommand}" />
+                    </StackPanel>
+                    <!-- TODO: list of the search history -->
+                </phone:PivotItem>
+            </phone:Pivot>
+			
 		</Grid>
 
         <!-- Feedback dialog -->
@@ -77,7 +83,7 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar>
+        <shell:ApplicationBar Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_about"/>
             </shell:ApplicationBar.MenuItems>

@@ -13,7 +13,7 @@ namespace Bash.App.Modules
     {
         public override void Load()
         {
-            this.Bind<ISearchViewModel>().To<SearchViewModel>().InSingletonScope();
+            this.Bind<IMainViewModel>().To<MainViewModel>().InSingletonScope();
             this.Bind<ICategoryViewModel>().To<CategoryViewModel>().InSingletonScope();
             this.Bind<ICommentsViewModel>().To<CommentsViewModel>().InSingletonScope();
 

@@ -8,7 +8,7 @@ using System.Windows.Navigation;
 
 namespace Bash.App.ViewModels
 {
-    public interface ISearchViewModel
+    public interface IMainViewModel
     {
         string SearchTerm { get; set; }
 
