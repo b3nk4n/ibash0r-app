@@ -17,6 +17,7 @@ namespace Bash.App.Modules
             this.Bind<ICategoryViewModel>().To<CategoryViewModel>().InSingletonScope();
             this.Bind<ICommentsViewModel>().To<CommentsViewModel>().InSingletonScope();
 
+            this.Bind<ICachedBashClient>().To<CachedBashClient>().InSingletonScope();
             this.Bind<IBashClient>().To<BashClient>().InSingletonScope();
         }
     }

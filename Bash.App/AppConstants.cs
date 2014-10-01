@@ -25,5 +25,7 @@ namespace Bash.App
 
         public const string TYPE_VALUE_POS = "pos";
         public const string TYPE_VALUE_NEG = "neg";
+
+        public const int QUOTES_COUNT = 250;
     }
 }

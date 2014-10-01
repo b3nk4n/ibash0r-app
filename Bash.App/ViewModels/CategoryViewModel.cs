@@ -32,7 +32,7 @@ namespace Bash.App.ViewModels
 
         #region Constructors
 
-        public CategoryViewModel(IBashClient bashClient)
+        public CategoryViewModel(ICachedBashClient bashClient)
         {
             InitializeCommands();
             _bashClient = bashClient;
@@ -44,7 +44,7 @@ namespace Bash.App.ViewModels
 
         public async Task<bool> LoadQuotesAsync(string order)
         {
-            var result = await _bashClient.GetQuotesAsync(order, 100, 0);
+            var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
                 return false;
@@ -55,7 +55,7 @@ namespace Bash.App.ViewModels
 
         public async Task<bool> SearchQuotesAsync(string term)
         {
-            var result = await _bashClient.GetQueryAsync(term, 100, 0);
+            var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
                 return false;

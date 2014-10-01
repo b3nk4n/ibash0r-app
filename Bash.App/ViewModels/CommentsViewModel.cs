@@ -20,7 +20,7 @@ namespace Bash.App.ViewModels
         #endregion
 
         #region Constructors
-        public CommentsViewModel(IBashClient bashClient)
+        public CommentsViewModel(ICachedBashClient bashClient)
         {
             _bashClient = bashClient;
         }

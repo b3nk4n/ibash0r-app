@@ -1,0 +1,86 @@
+﻿using Bash.App.Models;
+using PhoneKit.Framework.Core.Storage;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Bash.App.Data
+{
+    class CachedBashClient : ICachedBashClient
+    {
+        private IBashClient _bashClient;
+
+        private const string BASH_CACHE_FORMAT = "cache_{0}.data";
+
+        private Dictionary<string, BashComments> _commentsMemoryCache = new Dictionary<string, BashComments>();
+
+        public CachedBashClient(IBashClient bashClient)
+        {
+            _bashClient = bashClient;
+        }
+
+        public Task<BashCollection> GetQuotesAsync(string order, int number, int page)
+        {
+            return GetQuotesAsync(order, number, page, false);
+        }
+
+        public async Task<BashCollection> GetQuotesAsync(string order, int number, int page, bool forceReload)
+        {
+            BashCollection result;
+            string cacheFileName = string.Format(BASH_CACHE_FORMAT, order);
+
+            if (forceReload || !StorageHelper.FileExists(cacheFileName))
+            {
+                result = await _bashClient.GetQuotesAsync(order, number, page);
+                if (result != null)
+                {
+                    StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, result);
+                }
+            }
+            else
+            {
+                result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
+            }
+
+            return result;
+        }
+
+        public Task<BashCollection> GetQueryAsync(string term, int number, int page)
+        {
+            return _bashClient.GetQueryAsync(term, number, page);
+        }
+
+        public Task<BashComments> GetCommentsAsync(string id)
+        {
+            return GetCommentsAsync(id, false);
+        }
+
+        public async Task<BashComments> GetCommentsAsync(string id, bool forceReload)
+        {
+            BashComments result;
+
+            if (forceReload || !_commentsMemoryCache.ContainsKey(id))
+            {
+                result = await _bashClient.GetCommentsAsync(id);
+
+                if (result != null)
+                {
+                    _commentsMemoryCache.Add(id, result);
+                }
+            }
+            else
+            {
+                result = _commentsMemoryCache[id];
+            }
+
+            return result;
+        }
+
+        public Task<string> RateAsync(string id, string type)
+        {
+            return _bashClient.RateAsync(id, type);
+        }
+    }
+}
