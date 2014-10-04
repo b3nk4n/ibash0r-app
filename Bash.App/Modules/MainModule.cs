@@ -19,6 +19,8 @@ namespace Bash.App.Modules
 
             this.Bind<ICachedBashClient>().To<CachedBashClient>().InSingletonScope();
             this.Bind<IBashClient>().To<BashClient>().InSingletonScope();
+
+            this.Bind<IFavoriteManager>().To<FavoriteManager>().InSingletonScope();
         }
     }
 }

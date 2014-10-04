@@ -10,6 +10,11 @@ namespace Bash.App.Models
     [DataContract]
     public class BashDatas
     {
+        public BashDatas()
+        {
+            Data = new List<BashData>();
+        }
+
         [DataMember(Name = "last_page")]
         public int LastPage { get; set; }
 

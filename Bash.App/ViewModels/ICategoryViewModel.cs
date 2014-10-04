@@ -13,11 +13,15 @@ namespace Bash.App.ViewModels
     {
         Task<bool> LoadQuotesAsync(string order);
 
+        bool LoadFavorites();
+
         Task<bool> SearchQuotesAsync(string term);
 
         BashData CurrentBashData { get; }
 
         NavigationService NavigationService { set; }
+
+        bool IsCurrentBashFavorite { get; }
 
         ICommand NextCommand { get; }
 
@@ -28,5 +32,9 @@ namespace Bash.App.ViewModels
         ICommand RateNegativeCommand { get; }
 
         ICommand ShowCommentsCommand { get; }
+
+        ICommand AddToFavoritesCommand { get; }
+
+        ICommand RemoveFromFavoritesCommand { get; }
     }
 }

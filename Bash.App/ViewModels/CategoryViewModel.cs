@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using PhoneKit.Framework.Core.Collections;
 
 namespace Bash.App.ViewModels
 {
@@ -18,6 +19,7 @@ namespace Bash.App.ViewModels
         NavigationService _navigationService;
 
         private IBashClient _bashClient;
+        private IFavoriteManager _favoriteManager;
 
         private BashCollection _bashCollection;
         private int _currentBashDataIndex;
@@ -27,15 +29,18 @@ namespace Bash.App.ViewModels
         private DelegateCommand _ratePositiveCommand;
         private DelegateCommand _rateNegativeCommand;
         private DelegateCommand _showCommentsCommand;
+        private DelegateCommand _addToFavoritesCommand;
+        private DelegateCommand _removeFromFavoritesCommand;
 
         #endregion
 
         #region Constructors
 
-        public CategoryViewModel(ICachedBashClient bashClient)
+        public CategoryViewModel(ICachedBashClient bashClient, IFavoriteManager favoriteManager)
         {
             InitializeCommands();
             _bashClient = bashClient;
+            _favoriteManager = favoriteManager;
         }
 
         #endregion
@@ -49,7 +54,18 @@ namespace Bash.App.ViewModels
             if (result == null)
                 return false;
 
+            if (order == AppConstants.ORDER_VALUE_RANDOM)
+            {
+                result.Contents.Data.ShuffleList(); // TODO make sure after a tombstone, the same item is selected?
+            }
+
             BashCollection = result;
+            return true;
+        }
+
+        public bool LoadFavorites()
+        {
+            BashCollection = _favoriteManager.GetData();
             return true;
         }
 
@@ -115,6 +131,24 @@ namespace Bash.App.ViewModels
             {
                 return CurrentBashData != null;
             });
+
+            _addToFavoritesCommand = new DelegateCommand(() =>
+            {
+                _favoriteManager.AddToFavorites(CurrentBashData);
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _removeFromFavoritesCommand = new DelegateCommand(() =>
+            {
+                _favoriteManager.RemoveFromFavorites(CurrentBashData);
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
         }
 
         #endregion
@@ -149,7 +183,7 @@ namespace Bash.App.ViewModels
         {
             get
             {
-                if (BashCollection == null)
+                if (BashCollection == null || BashCollection.Contents.Data.Count <= CurrentBashDataIndex)
                     return null;
                 return BashCollection.Contents.Data[CurrentBashDataIndex];
             }
@@ -169,6 +203,11 @@ namespace Bash.App.ViewModels
         {
             set { _navigationService = value; }
             private get { return _navigationService; }
+        }
+
+        public bool IsCurrentBashFavorite
+        {
+            get { return _favoriteManager.IsFavorite(CurrentBashData); }
         }
 
         public ICommand NextCommand
@@ -194,6 +233,16 @@ namespace Bash.App.ViewModels
         public ICommand ShowCommentsCommand
         {
             get { return _showCommentsCommand; }
+        }
+
+        public ICommand AddToFavoritesCommand
+        {
+            get { return _addToFavoritesCommand; }
+        }
+
+        public ICommand RemoveFromFavoritesCommand
+        {
+            get { return _removeFromFavoritesCommand; }
         }
 
         #endregion

@@ -13,6 +13,11 @@ namespace Bash.App.Models
         private const string NEWLINE_DELEMITER = "[newline]<";
         private const string NEWLINE = "[newline]";
 
+        public BashData()
+        {
+            Id = string.Empty;
+        }
+
         [DataMember(Name="ident")]
         public string Id { get; set; }
 
@@ -62,6 +67,24 @@ namespace Bash.App.Models
 
                 return result;
             }
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (this == obj)
+                return true;
+            if (obj == null)
+                return false;
+            if (this.GetType() != obj.GetType())
+                return false;
+            var data = obj as BashData;
+
+            return data.Id == this.Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
         }
     }
 }

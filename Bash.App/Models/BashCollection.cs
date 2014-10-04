@@ -10,6 +10,12 @@ namespace Bash.App.Models
     [DataContract]
     public class BashCollection
     {
+        public BashCollection()
+        {
+            Contents = new BashDatas();
+            Statistic = new BashStatistic();
+        }
+
         [DataMember(Name = "Inhalte")]
         public BashDatas Contents { get; set; }
 

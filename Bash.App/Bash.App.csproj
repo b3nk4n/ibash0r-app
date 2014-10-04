@@ -98,8 +98,10 @@
     <Compile Include="Controls\LocalizedFeedbackDialogControl.cs" />
     <Compile Include="Data\BashClient.cs" />
     <Compile Include="Data\CachedBashClient.cs" />
+    <Compile Include="Data\FavoriteManager.cs" />
     <Compile Include="Data\IBashClient.cs" />
     <Compile Include="Data\ICachedBashClient.cs" />
+    <Compile Include="Data\IFavoriteManager.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Models\BashComment.cs" />
     <Compile Include="Models\BashComments.cs" />

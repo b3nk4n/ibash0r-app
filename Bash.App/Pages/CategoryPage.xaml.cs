@@ -40,6 +40,7 @@ namespace Bash.App.Pages
             else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FAVORITES))
             {
                 // load data from favorites list.
+                success = _categoryViewModel.LoadFavorites();
             }
             else
             {
