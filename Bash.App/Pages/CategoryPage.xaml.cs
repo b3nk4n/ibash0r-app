@@ -10,7 +10,7 @@ namespace Bash.App.Pages
 {
     public partial class CategoryPage : PhoneApplicationPage
     {
-        private const int SWIPE_LIMIT = 1750;
+        private const int SWIPE_LIMIT = 1500;
 
         private ICategoryViewModel _categoryViewModel;
 

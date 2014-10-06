@@ -22,7 +22,7 @@
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ThemeBrushGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -42,20 +42,31 @@
                 <ListBox x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Height="514">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}">
-                                <StackPanel>
-                                    <Border Margin="6" Width="360" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
-                                        <StackPanel Margin="6">
-                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource ThemeBrushGray}" />
-                                            <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrushGrayDark}" />
-                                        </StackPanel>
-                                    </Border>
-                                    <Grid Margin="0,-8,0,0">
-                                        <Path Margin="-250,0,0,0" Width="20" Height="20" Data="M 0,0 0,20, 20,0 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}" />
-                                        <Path Margin="250,0,0,0" Width="20" Height="20" Data="M 20,0 0,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=inverted}" />
-                                    </Grid>
-                                </StackPanel>
-                            </Border>
+                            <Grid>
+                                <!-- normal -->
+                                <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}"
+                                        Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not-server-only}">
+                                    <StackPanel>
+                                        <Border Margin="6" Width="360" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
+                                            <StackPanel Margin="6">
+                                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource ThemeBrushGray}" />
+                                                <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrushGrayDark}" />
+                                            </StackPanel>
+                                        </Border>
+                                        <Grid Margin="0,-8,0,0">
+                                            <Path Margin="-250,0,0,0" Width="20" Height="20" Data="M 0,0 0,20, 20,0 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}" />
+                                            <Path Margin="250,0,0,0" Width="20" Height="20" Data="M 20,0 0,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not}" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                                <!-- server -->
+                                <Border Margin="6" Width="440" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}"
+                                        Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=server-only}">
+                                    <StackPanel Margin="6">
+                                        <TextBlock Text="{Binding Text}" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ThemeBrushGray}" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

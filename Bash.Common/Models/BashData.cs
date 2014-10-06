@@ -20,7 +20,7 @@ namespace Bash.App.Models
             Id = string.Empty;
         }
 
-        [DataMember(Name="ident")]
+        [DataMember(Name = "ident")]
         public string Id { get; set; }
 
         [DataMember(Name = "ts")]

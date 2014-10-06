@@ -13,34 +13,58 @@ namespace Bash.App.Conversion
     /// </summary>
     public class IndexToVisibilityConverter : IValueConverter
     {
+        private const string SERVER_ONLY = "server-only";
+        private const string INVERTED = "not";
+
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             int index = -1;
             bool isInverted = false;
             bool isVisible = true;
+            bool isServerOnly = false;
             if (value is int)
             {
                 index = (int)value;
             }
             if (parameter is string)
             {
-                isInverted = true;
+                string param = parameter as string;
+
+                if (param.StartsWith(INVERTED))
+                    isInverted = true;
+                if (param.Contains(SERVER_ONLY))
+                    isServerOnly = true;
             }
 
-            if (index < 0)
+            // server-only
+            if (isServerOnly)
             {
-                // server
-                isVisible = false;
+                isVisible = index < 0;
             }
             else
             {
-                if (index % 2 == 0)
+                // server
+                if (index < 0)
                 {
-                    isVisible = true;
+                    if (isServerOnly)
+                        isVisible = true;
+                    else
+                        isVisible = false;
                 }
                 else
                 {
-                    isVisible = false;
+                    if (isServerOnly)
+                    {
+                        isVisible = false;
+                    }
+                    else if (index % 2 == 0)
+                    {
+                        isVisible = true;
+                    }
+                    else
+                    {
+                        isVisible = false;
+                    }
                 }
             }
 
