@@ -10,11 +10,13 @@
         <local:LocalizedStrings xmlns:local="clr-namespace:Bash.App" x:Key="LocalizedStrings"/>
         
         <!-- Colors -->
+        <Color x:Key="ThemeColorGrayDark">#a5a5a5</Color>
         <Color x:Key="ThemeColorGray">#e5e5e5</Color>
         <Color x:Key="ThemeColorBlue">#1556ad</Color>
         <Color x:Key="ThemeColorRed">#e52416</Color>
         
         <!-- Brushes -->
+        <SolidColorBrush x:Key="ThemeBrushGrayDark" Color="{StaticResource ThemeColorGrayDark}" />
         <SolidColorBrush x:Key="ThemeBrushGray" Color="{StaticResource ThemeColorGray}" />
         <SolidColorBrush x:Key="ThemeBrushBlue" Color="{StaticResource ThemeColorBlue}" />
         <SolidColorBrush x:Key="ThemeBrushRed" Color="{StaticResource ThemeColorRed}" />

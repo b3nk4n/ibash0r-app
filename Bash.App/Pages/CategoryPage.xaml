@@ -8,11 +8,18 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:abu="clr-namespace:AppBarUtils;assembly=AppBarUtils"
+    xmlns:lconv="clr-namespace:Bash.App.Conversion"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d">
+
+    <phone:PhoneApplicationPage.Resources>
+        <lconv:IntToColorConverter x:Key="IntToColorConverter" />
+        <lconv:IndexToVisibilityConverter x:Key="IndexToVisbilityConverter" />
+        <lconv:IndexToThicknessConverter x:Key="IndexToThicknessConverter" />
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -32,19 +39,27 @@
                 <TextBlock Text="{Binding Id}" />
                 <TextBlock Text="{Binding Timestamp}" />
                 <TextBlock Text="{Binding Rating}" />
-                <ListBox ItemsSource="{Binding QuoteItems}" Height="514">
+                <ListBox x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Height="514">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Background="{StaticResource PhoneAccentBrush}" Margin="3">
-                                <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" />
-                                <TextBlock Text="{Binding PersonIndex}" />
-                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
-                            </StackPanel>
+                            <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}">
+                                <StackPanel>
+                                    <Border Margin="6" Width="360" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
+                                        <StackPanel Margin="6">
+                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource ThemeBrushGray}" />
+                                            <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrushGrayDark}" />
+                                        </StackPanel>
+                                    </Border>
+                                    <Grid Margin="0,-8,0,0">
+                                        <Path Margin="-250,0,0,0" Width="20" Height="20" Data="M 0,0 0,20, 20,0 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}" />
+                                        <Path Margin="250,0,0,0" Width="20" Height="20" Data="M 20,0 0,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=inverted}" />
+                                    </Grid>
+                                </StackPanel>
+                            </Border>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
-            
         </Grid>
     </Grid>
 

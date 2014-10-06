@@ -10,8 +10,10 @@ namespace Bash.App.Models
     [DataContract]
     public class BashData
     {
-        private const string NEWLINE_DELEMITER = "[newline]<";
+        private static readonly string[] NEWLINE_DELEMITERS = { "[newline]<", "[newline] <" };
         private const string NEWLINE = "[newline]";
+
+        private static readonly string[] CUTSOM_SEPERATORS = { "---- 1 Stunde später ----" };
 
         public BashData()
         {
@@ -37,7 +39,7 @@ namespace Bash.App.Models
                 var result = new List<BashQuoteItem>();
                 var persons = new Dictionary<string, int>();
 
-                string[] splittedConversation = Content.Split(new string[] {NEWLINE_DELEMITER}, StringSplitOptions.RemoveEmptyEntries);
+                string[] splittedConversation = Content.Split(NEWLINE_DELEMITERS, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach(var conversationPart in splittedConversation)
                 {
@@ -51,7 +53,7 @@ namespace Bash.App.Models
                     var quoteText = conversationPart.Substring(nicEndIndex + 1, conversationPart.Length - nicEndIndex - 1);
                     item.Text = quoteText.Replace(NEWLINE, "\n").Trim(); // TODO: parsing-probleme bei quotes, die "[newline]<" enthalten !!!
 
-                    // person index
+                    // person index (-1 == SEVER!!!)
                     if (persons.ContainsKey(item.Nick))
                     {
                         item.PersonIndex = persons[item.Nick];

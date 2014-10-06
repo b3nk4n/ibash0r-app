@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using PhoneKit.Framework.Core.Collections;
+using System.ComponentModel;
 
 namespace Bash.App.ViewModels
 {

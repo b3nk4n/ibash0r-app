@@ -96,6 +96,9 @@
     <Compile Include="AppConstants.cs" />
     <Compile Include="Controls\LocalizedAboutControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackDialogControl.cs" />
+    <Compile Include="Conversion\IndexToThicknessConverter.cs" />
+    <Compile Include="Conversion\IndexToVisibilityConverter.cs" />
+    <Compile Include="Conversion\IntToColorConverter.cs" />
     <Compile Include="Data\BashClient.cs" />
     <Compile Include="Data\CachedBashClient.cs" />
     <Compile Include="Data\FavoriteManager.cs" />
@@ -103,13 +106,6 @@
     <Compile Include="Data\ICachedBashClient.cs" />
     <Compile Include="Data\IFavoriteManager.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="Models\BashComment.cs" />
-    <Compile Include="Models\BashComments.cs" />
-    <Compile Include="Models\BashData.cs" />
-    <Compile Include="Models\BashCollection.cs" />
-    <Compile Include="Models\BashDatas.cs" />
-    <Compile Include="Models\BashQuoteItem.cs" />
-    <Compile Include="Models\BashStatistic.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
@@ -230,6 +226,10 @@
     <ProjectReference Include="..\..\PhoneKit.Framework\PhoneKit.Framework\PhoneKit.Framework.csproj">
       <Project>{9274ed00-223e-41d1-a1bc-e7cdd8c8d34d}</Project>
       <Name>PhoneKit.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Bash.Common\Bash.Common.csproj">
+      <Project>{87467d9d-8f9d-43bc-9e46-dbafa8fc9886}</Project>
+      <Name>Bash.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

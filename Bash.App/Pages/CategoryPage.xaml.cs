@@ -10,12 +10,33 @@ namespace Bash.App.Pages
 {
     public partial class CategoryPage : PhoneApplicationPage
     {
+        private const int SWIPE_LIMIT = 1750;
+
         private ICategoryViewModel _categoryViewModel;
 
         public CategoryPage()
         {
             InitializeComponent();
             _categoryViewModel = App.Injector.Get<ICategoryViewModel>();
+
+            QuoteList.ManipulationCompleted += (s, e) =>
+            {
+                var velocity = e.FinalVelocities.LinearVelocity;
+
+                if (velocity.Y != 0)
+                    return;
+
+                if (velocity.X < -SWIPE_LIMIT)
+                {
+                    if (_categoryViewModel.PreviousCommand.CanExecute(null))
+                        _categoryViewModel.PreviousCommand.Execute(null);
+                }
+                else if (velocity.X > SWIPE_LIMIT)
+                {
+                    if (_categoryViewModel.NextCommand.CanExecute(null))
+                        _categoryViewModel.NextCommand.Execute(null);
+                }
+            };
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
