@@ -1,0 +1,13 @@
+﻿<ViewModels:CategoryViewModel xmlns:ViewModels="clr-namespace:Bash.App.ViewModels" xmlns:Models="clr-namespace:Bash.App.Models;assembly=Bash.Common" IsCurrentBashFavorite="True">
+	<ViewModels:CategoryViewModel.CurrentBashData>
+		<Models:BashData Id="123456" Rating="1500" Timestamp="12.06.2014 12:36">
+			<Models:BashData.QuoteItems>
+                <Models:BashQuoteItem Nick="Aaaaaa" PersonIndex="0" Text="This is a sample quote"/>
+                <Models:BashQuoteItem Nick="Bbbbbb" PersonIndex="1" Text="Are you kidding me? is this a quoke?"/>
+                <Models:BashQuoteItem Nick="Aaaaaa" PersonIndex="0" Text="Good bye"/>
+                <Models:BashQuoteItem Nick="Server" PersonIndex="-1" Text="Aaaaaa has Left the server."/>
+                <Models:BashQuoteItem Nick="Ccccc" PersonIndex="2" Text="This is a long non sense quote because I want to see a line brake here. Or at least two of them^^ Muhhaaahaha!!!"/>
+            </Models:BashData.QuoteItems>
+		</Models:BashData>
+	</ViewModels:CategoryViewModel.CurrentBashData>
+</ViewModels:CategoryViewModel>

@@ -37,6 +37,12 @@ namespace Bash.App.ViewModels
 
         #region Constructors
 
+        public CategoryViewModel() {
+            InitializeCommands();
+            _bashClient = new BashClient();
+            _favoriteManager = new FavoriteManager();
+        } // for sample data
+
         public CategoryViewModel(ICachedBashClient bashClient, IFavoriteManager favoriteManager)
         {
             InitializeCommands();
@@ -156,10 +162,10 @@ namespace Bash.App.ViewModels
 
         #region Properties
 
-        private int CurrentBashDataIndex
+        public int CurrentBashDataIndex
         {
-            get { return _currentBashDataIndex; }
-            set
+            private get { return _currentBashDataIndex; }
+            set // sample data only
             {
                 _currentBashDataIndex = value;
                 NotifyPropertyChanged("CurrentBashData");
@@ -169,9 +175,9 @@ namespace Bash.App.ViewModels
             }
         }
 
-        private BashCollection BashCollection {
-            get { return _bashCollection; }
-            set
+        public BashCollection BashCollection {
+            private get { return _bashCollection; }
+            set // sample data only
             {
                 _bashCollection = value;
                 
