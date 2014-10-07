@@ -80,7 +80,14 @@ namespace Bash.App.Data
             if (_favData == null || bashData == null)
                 return false;
 
-            return _favData.Contents.Data.Contains(bashData);
+            var result = _favData.Contents.Data.Contains(bashData);
+
+            if (_markToRemoveList.Contains(bashData.Id))
+            {
+                result = false;
+            }
+
+            return result;
         }
 
         #endregion

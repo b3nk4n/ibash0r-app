@@ -142,6 +142,7 @@ namespace Bash.App.ViewModels
             _addToFavoritesCommand = new DelegateCommand(() =>
             {
                 _favoriteManager.AddToFavorites(CurrentBashData);
+                NotifyPropertyChanged("IsCurrentBashFavorite");
             },
             () =>
             {
@@ -151,6 +152,7 @@ namespace Bash.App.ViewModels
             _removeFromFavoritesCommand = new DelegateCommand(() =>
             {
                 _favoriteManager.RemoveFromFavorites(CurrentBashData);
+                NotifyPropertyChanged("IsCurrentBashFavorite");
             },
             () =>
             {
@@ -172,6 +174,7 @@ namespace Bash.App.ViewModels
                 _nextCommand.RaiseCanExecuteChanged();
                 _previousCommand.RaiseCanExecuteChanged();
                 _showCommentsCommand.RaiseCanExecuteChanged();
+                NotifyPropertyChanged("IsCurrentBashFavorite");
             }
         }
 

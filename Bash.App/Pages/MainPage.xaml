@@ -17,7 +17,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait">
 
-	<Grid x:Name="LayoutRoot" Background="Transparent">
+	<Grid x:Name="LayoutRoot" Background="{StaticResource ThemeBrushGray}">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="*"/>
@@ -83,7 +83,8 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar Mode="Minimized">
+        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}" 
+            Mode="Minimized">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_about"/>
             </shell:ApplicationBar.MenuItems>
