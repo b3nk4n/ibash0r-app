@@ -13,7 +13,8 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData SampleData/CategoryViewModelSampleData.xaml}">
 
     <phone:PhoneApplicationPage.Resources>
         <lconv:IntToColorConverter x:Key="IntToColorConverter" />
@@ -34,7 +35,7 @@
         </StackPanel>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
             <StackPanel DataContext="{Binding CurrentBashData}">
                 <TextBlock Text="{Binding Id}" />
                 <TextBlock Text="{Binding Timestamp}" />
@@ -46,21 +47,21 @@
                                 <!-- normal -->
                                 <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}"
                                         Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not-server-only}">
-                                    <StackPanel>
-                                        <Border Margin="6" Width="360" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Path Margin="6,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}"
+                                              VerticalAlignment="Bottom"/>
+                                        <Border Margin="6" Width="364" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
                                             <StackPanel Margin="6">
                                                 <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource ThemeBrushGray}" />
                                                 <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrushGrayDark}" />
                                             </StackPanel>
                                         </Border>
-                                        <Grid Margin="0,-8,0,0">
-                                            <Path Margin="-250,0,0,0" Width="20" Height="20" Data="M 0,0 0,20, 20,0 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}" />
-                                            <Path Margin="250,0,0,0" Width="20" Height="20" Data="M 20,0 0,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not}" />
-                                        </Grid>
+                                        <Path Margin="-8,0,0,12" Width="20" Height="20" Data="M 20,20 0,0, 0,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not}"
+                                              VerticalAlignment="Bottom"/>
                                     </StackPanel>
                                 </Border>
                                 <!-- server -->
-                                <Border Margin="6" Width="440" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}"
+                                <Border Margin="6" Width="460" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}"
                                         Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=server-only}">
                                     <StackPanel Margin="6">
                                         <TextBlock Text="{Binding Text}" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ThemeBrushGray}" />
