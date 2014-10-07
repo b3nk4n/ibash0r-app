@@ -10,7 +10,7 @@
         <local:LocalizedStrings xmlns:local="clr-namespace:Bash.App" x:Key="LocalizedStrings"/>
         
         <!-- Colors -->
-        <Color x:Key="ThemeColorGrayDark">#a5a5a5</Color>
+        <Color x:Key="ThemeColorGrayDark">#959595</Color>
         <Color x:Key="ThemeColorGray">#e5e5e5</Color>
         <Color x:Key="ThemeColorBlue">#1556ad</Color>
         <Color x:Key="ThemeColorRed">#e52416</Color>
@@ -21,6 +21,18 @@
         <SolidColorBrush x:Key="ThemeBrushBlue" Color="{StaticResource ThemeColorBlue}" />
         <SolidColorBrush x:Key="ThemeBrushRed" Color="{StaticResource ThemeColorRed}" />
         
+        <Style x:Key="ThemeTextTitleStyle" BasedOn="{StaticResource PhoneTextExtraLargeStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ThemeBrushGray}" />
+        </Style>
+
+        <Style x:Key="ThemeTextNormalStyle" BasedOn="{StaticResource PhoneTextNormalStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ThemeBrushGray}" />
+        </Style>
+
+        <Style x:Key="ThemeTextSubtleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ThemeBrushGrayDark}" />
+        </Style>
+
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

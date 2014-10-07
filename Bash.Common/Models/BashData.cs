@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Bash.App.Models
 {
@@ -17,11 +18,10 @@ namespace Bash.App.Models
 
         public BashData()
         {
-            Id = string.Empty;
         }
 
         [DataMember(Name = "ident")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [DataMember(Name = "ts")]
         public string Timestamp { get; set; }
@@ -30,7 +30,7 @@ namespace Bash.App.Models
         public string Content { get; set; }
 
         [DataMember(Name = "rating")]
-        public string Rating { get; set; }
+        public int Rating { get; set; }
 
         public List<BashQuoteItem> QuoteItems
         {
@@ -39,36 +39,80 @@ namespace Bash.App.Models
                 var result = new List<BashQuoteItem>();
                 var persons = new Dictionary<string, int>();
 
-                string[] splittedConversation = Content.Split(NEWLINE_DELEMITERS, StringSplitOptions.RemoveEmptyEntries);
+                string[] splittedConversation = Content.Split(new string[]{ NEWLINE }, StringSplitOptions.RemoveEmptyEntries);
 
-                foreach(var conversationPart in splittedConversation)
+                foreach (var conversationPart in splittedConversation)
                 {
-                    BashQuoteItem item = new BashQuoteItem();
+                    string nick;
+                    int personIndex;
+                    string text;
+                    int nameOpen = conversationPart.IndexOf('<');
+                    int nameClose = conversationPart.IndexOf('>');
 
-                    // nick
-                    int nicEndIndex = conversationPart.IndexOf('>');
-                    item.Nick = conversationPart.Substring(0, nicEndIndex).Replace("<", "");
-
-                    // text
-                    var quoteText = conversationPart.Substring(nicEndIndex + 1, conversationPart.Length - nicEndIndex - 1);
-                    item.Text = quoteText.Replace(NEWLINE, "\n").Trim(); // TODO: parsing-probleme bei quotes, die "[newline]<" enthalten !!!
-
-                    // person index (-1 == SEVER!!!)
-                    if (persons.ContainsKey(item.Nick))
+                    if (nameOpen != -1 && nameClose != -1)
                     {
-                        item.PersonIndex = persons[item.Nick];
+                        nick = conversationPart.Substring(nameOpen + 1, nameClose - nameOpen - 1);
+                        text = conversationPart.Substring(nameClose + 1, conversationPart.Length - nameClose - 1).Trim();
+
+                        // person index (-1 == SEVER!!!)
+                        if (persons.ContainsKey(nick))
+                        {
+                            personIndex = persons[nick];
+                        }
+                        else
+                        {
+                            personIndex = persons.Count;
+                            persons.Add(nick, personIndex);
+                        }
                     }
-                    else
+                    else if (IsServerText(conversationPart))
                     {
-                        item.PersonIndex = persons.Count;
-                        persons.Add(item.Nick, item.PersonIndex);
+                        nick = "server";
+                        personIndex = -1;
+                        text = TrimServerText(conversationPart);
+                        
+                    }
+                    else // belongs to the quote before
+                    {
+                        if (result.Count > 0)
+                        {
+                            result[result.Count - 1].Text += '\n' + conversationPart;
+                        }
+                        continue;
                     }
 
-                    result.Add(item);
+                    result.Add(new BashQuoteItem
+                    {
+                        Nick = nick,
+                        PersonIndex = personIndex,
+                        Text = text
+                    });
                 }
 
                 return result;
             }
+        }
+
+        private string TrimServerText(string text)
+        {
+            if (text.StartsWith("*** ") || text.StartsWith("<-- ") || text.StartsWith("--> "))
+            {
+                return text.Substring(4, text.Length - 4);
+            }
+            else if (text.StartsWith("* "))
+            {
+                return text.Substring(2, text.Length - 2);
+            }
+
+            return text;
+        }
+
+        private bool IsServerText(string text)
+        {
+            return (text.StartsWith("*") && (text.Contains("was banned from the server") || text.Contains("is back from") || text.Contains("was kicked by") || text.Contains("Quits: ") || text.Contains("Joins: ") || text.Contains("has joined") || text.Contains("has quit (") || text.Contains("changed nick to")) ||
+                (text.StartsWith("<--") || (text.StartsWith("-->")) && (text.Contains("has quit (") || text.Contains(") has joined"))) ||
+                text.Contains("has quit IRC") ||
+                text.Equals("---- 1 Stunde später ----"));
         }
 
         public override bool Equals(object obj)

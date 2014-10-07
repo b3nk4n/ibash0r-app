@@ -6,12 +6,35 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="Red"
+    Foreground="{StaticResource ThemeBrushGray}"
     SupportedOrientations="Portrait" Orientation="Portrait"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    d:DataContext="{d:DesignData SampleData/CommentsViewModelSampleData.xaml}">
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
     <Grid x:Name="LayoutRoot" Background="{StaticResource ThemeBrushGray}">
         <Grid.RowDefinitions>
@@ -20,20 +43,34 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Kommentare" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="{StaticResource ThemeBrushRed}"/>
+        <StackPanel Orientation="Horizontal" Background="{StaticResource ThemeBrushBlue}">
+            <Image Source="/Assets/iBash0r_white.png" HorizontalAlignment="Center" Height="50" Margin="12,0,0,0" />
+            <TextBlock Text="Kommentare" Margin="9,-3,0,2" Style="{StaticResource ThemeTextTitleStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox ItemsSource="{Binding Path=BashComments.Comments}">
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <ListBox ItemsSource="{Binding Path=BashComments.Comments}" Padding="0,12,0,12">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Background="{StaticResource ThemeBrushBlue}" Margin="3" Width="440">
-                            <TextBlock Text="{Binding Nick}" />
-                            <TextBlock Text="{Binding Timestamp}" />
-                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" />
-                        </StackPanel>
+                        <Grid>
+                            <!-- normal -->
+                            <Border HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal">
+                                    <Path Margin="12,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{StaticResource ThemeBrushBlue}"
+                                            VerticalAlignment="Bottom"/>
+                                    <Border Margin="6" Width="436" Background="{StaticResource ThemeBrushBlue}">
+                                        <StackPanel Margin="0,6,0,6">
+                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Style="{StaticResource ThemeTextNormalStyle}" />
+                                            <Grid>
+                                                <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Style="{StaticResource ThemeTextSubtleStyle}" />
+                                                <TextBlock Text="{Binding Timestamp}" TextTrimming="WordEllipsis" HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}" />
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

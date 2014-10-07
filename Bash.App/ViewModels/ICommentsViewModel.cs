@@ -9,7 +9,7 @@ namespace Bash.App.ViewModels
 {
     public interface ICommentsViewModel
     {
-        Task<bool> LoadCommentsAsync(string id);
+        Task<bool> LoadCommentsAsync(int id);
 
         BashComments BashComments { get; }
     }

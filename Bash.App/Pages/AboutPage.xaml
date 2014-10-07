@@ -36,15 +36,16 @@
     </toolkit:TransitionService.NavigationOutTransition>
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="{StaticResource ThemeBrushGray}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="hilfe" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+        <StackPanel Orientation="Horizontal" Background="{StaticResource ThemeBrushBlue}">
+            <Image Source="/Assets/iBash0r_white.png" HorizontalAlignment="Center" Height="50" Margin="12,0,0,0" />
+            <TextBlock Text="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" Margin="9,-3,0,2" Style="{StaticResource ThemeTextTitleStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->

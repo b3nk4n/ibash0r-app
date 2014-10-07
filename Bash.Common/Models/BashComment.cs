@@ -16,7 +16,19 @@ namespace Bash.App.Models
         [DataMember(Name = "ts")]
         public string Timestamp { get; set; }
 
+        private string _text;
+
         [DataMember(Name = "text")]
-        public string Text { get; set; }
+        public string Text
+        {
+            get
+            {
+                return _text.Replace("[newline]", "\n");
+            } 
+            set
+            {
+                _text = value;
+            }
+        }
     }
 }

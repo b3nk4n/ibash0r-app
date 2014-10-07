@@ -96,9 +96,13 @@
     <Compile Include="AppConstants.cs" />
     <Compile Include="Controls\LocalizedAboutControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackDialogControl.cs" />
+    <Compile Include="Controls\ThemedAboutControlBase.xaml.cs">
+      <DependentUpon>ThemedAboutControlBase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Conversion\IndexToThicknessConverter.cs" />
     <Compile Include="Conversion\IndexToVisibilityConverter.cs" />
     <Compile Include="Conversion\IntToColorConverter.cs" />
+    <Compile Include="Conversion\PositivePlusConverter.cs" />
     <Compile Include="Data\BashClient.cs" />
     <Compile Include="Data\CachedBashClient.cs" />
     <Compile Include="Data\FavoriteManager.cs" />
@@ -137,6 +141,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\ThemedAboutControlBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\AboutPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,6 +179,8 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\ibash.png" />
+    <Content Include="Assets\iBash0r_white.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -235,6 +245,9 @@
     <DesignData Include="SampleData\CategoryViewModelSampleData.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </DesignData>
+    <DesignData Include="SampleData\CommentsViewModelSampleData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </DesignData>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

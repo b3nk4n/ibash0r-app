@@ -4,7 +4,7 @@ using System;
 
 namespace Bash.App.Controls
 {
-    public class LocalizedAboutControl : AboutControlBase
+    public class LocalizedAboutControl : ThemedAboutControlBase
     {
         /// <summary>
         /// Localizes the user controls contents and texts.
@@ -28,7 +28,8 @@ namespace Bash.App.Controls
             MoreAppsSearchTerms = "Benjamin Sautermeister";
 
             // contributors
-            ContributorsListVisibility = System.Windows.Visibility.Collapsed;
+            ContributorsListVisibility = System.Windows.Visibility.Visible;
+            ContributorsList.Items.Add(new ContributorModel("/Assets/ibash.png", AppResources.ContributorsDescriptionBash));
         }
     }
 }

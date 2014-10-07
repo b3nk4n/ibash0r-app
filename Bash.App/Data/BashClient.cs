@@ -74,7 +74,7 @@ namespace Bash.App.Data
         }
 
 
-        public async Task<BashComments> GetCommentsAsync(string id)
+        public async Task<BashComments> GetCommentsAsync(int id)
         {
             string uriString = String.Format("{0}{1}?{2}={3}",
                 BASE_URI, PATH_COMMENTS,
@@ -90,7 +90,7 @@ namespace Bash.App.Data
             return null;
         }
 
-        public async Task<string> RateAsync(string id, string type)
+        public async Task<string> RateAsync(int id, string type)
         {
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}",
                 BASE_URI, PATH_RATE,

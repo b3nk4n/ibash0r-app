@@ -14,7 +14,7 @@ namespace Bash.App.Data
 
         private const string BASH_CACHE_FORMAT = "cache_{0}.data";
 
-        private Dictionary<string, BashComments> _commentsMemoryCache = new Dictionary<string, BashComments>();
+        private Dictionary<int, BashComments> _commentsMemoryCache = new Dictionary<int, BashComments>();
 
         public CachedBashClient(IBashClient bashClient)
         {
@@ -52,12 +52,12 @@ namespace Bash.App.Data
             return _bashClient.GetQueryAsync(term, number, page);
         }
 
-        public Task<BashComments> GetCommentsAsync(string id)
+        public Task<BashComments> GetCommentsAsync(int id)
         {
             return GetCommentsAsync(id, false);
         }
 
-        public async Task<BashComments> GetCommentsAsync(string id, bool forceReload)
+        public async Task<BashComments> GetCommentsAsync(int id, bool forceReload)
         {
             BashComments result;
 
@@ -78,7 +78,7 @@ namespace Bash.App.Data
             return result;
         }
 
-        public Task<string> RateAsync(string id, string type)
+        public Task<string> RateAsync(int id, string type)
         {
             return _bashClient.RateAsync(id, type);
         }

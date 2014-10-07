@@ -228,4 +228,8 @@ Showing us some love on the store helps us to continue to work on the app and ma
     <value>support and feedback</value>
     <comment>About Page</comment>
   </data>
+  <data name="ContributorsDescriptionBash" xml:space="preserve">
+    <value>ibash.de Team for API access</value>
+    <comment>AboutPage</comment>
+  </data>
 </root>

@@ -17,7 +17,7 @@ namespace Bash.App.Data
         private BashCollection _favData;
         private bool _hasDataChanged;
 
-        private List<string> _markToRemoveList = new List<string>();
+        private List<int> _markToRemoveList = new List<int>();
 
         #endregion
 

@@ -29,7 +29,7 @@ namespace Bash.App.ViewModels
 
         #region Public Methods
 
-        public async Task<bool> LoadCommentsAsync(string id)
+        public async Task<bool> LoadCommentsAsync(int id)
         {
             var result = await _bashClient.GetCommentsAsync(id);
 

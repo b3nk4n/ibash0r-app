@@ -228,4 +228,8 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
     <value>hilfe und feedback</value>
     <comment>About Page</comment>
   </data>
+  <data name="ContributorsDescriptionBash" xml:space="preserve">
+    <value>ibash.de Team für den API Zugriff</value>
+    <comment>AboutPage</comment>
+  </data>
 </root>

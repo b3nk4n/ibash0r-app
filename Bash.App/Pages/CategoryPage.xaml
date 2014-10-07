@@ -19,10 +19,32 @@
     d:DataContext="{d:DesignData SampleData/CategoryViewModelSampleData.xaml}"
     x:Name="RootElement">
 
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
     <phone:PhoneApplicationPage.Resources>
         <lconv:IntToColorConverter x:Key="IntToColorConverter" />
         <lconv:IndexToVisibilityConverter x:Key="IndexToVisbilityConverter" />
         <lconv:IndexToThicknessConverter x:Key="IndexToThicknessConverter" />
+        <lconv:PositivePlusConverter x:Key="PositivePlusConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
         <ControlTemplate x:Key="RoundButtonTemplate" TargetType="ButtonBase">
@@ -55,48 +77,46 @@
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <StackPanel>
             <Grid Grid.Row="0" Background="{StaticResource ThemeBrushBlue}">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <!-- row0 -->
-                <Image Grid.Column="0" Source="/Assets/ApplicationIcon.png" Height="50" Margin="6" />
-                <TextBlock Grid.Column="1" Text="Beliebteste" Margin="9,-7,0,0" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="{StaticResource ThemeBrushGray}"
-                           VerticalAlignment="Center"/>
-                <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                    <TextBlock HorizontalAlignment="Right">
-                    <Run Text="#" />
-                    <Run Text="{Binding Id}" />
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Assets/iBash0r_white.png" Height="50" Margin="12,0,0,0" />
+                    <TextBlock Text="Beliebteste" Margin="9,-3,0,2" Style="{StaticResource ThemeTextTitleStyle}"/>
+                </StackPanel>
+                
+                <StackPanel VerticalAlignment="Center">
+                    
+                    <TextBlock Text="{Binding Timestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextNormalStyle}" />
+                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource ThemeTextNormalStyle}">
+                        <Run Text="#" />
+                        <Run Text="{Binding Id}" />
                     </TextBlock>
-                    <TextBlock Text="{Binding Timestamp}" HorizontalAlignment="Right" />
                 </StackPanel>
                 <!-- row1 -->
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Template="{StaticResource RoundButtonTemplate}" Width="42" Height="42">
-                        <Path Width="20" Height="4" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 19,38L 57,38L 57,44L 19,44L 19,38 Z "/>
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Template="{StaticResource RoundButtonTemplate}" Width="48" Height="48">
+                        <Path Width="22" Height="4" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 19,38L 57,38L 57,44L 19,44L 19,38 Z "/>
                     </Button>
-                    <TextBlock Text="{Binding Rating}" VerticalAlignment="Center" MinWidth="80" TextAlignment="Center" />
-                    <Button Template="{StaticResource RoundButtonTemplate}" Width="42" Height="42">
-                        <Path Width="20" Height="20" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "/>
+                    <TextBlock Text="{Binding Rating, Converter={StaticResource PositivePlusConverter}}" VerticalAlignment="Center" MinWidth="86" TextAlignment="Center" Style="{StaticResource ThemeTextNormalStyle}" Margin="0" />
+                    <Button Template="{StaticResource RoundButtonTemplate}" Width="48" Height="48">
+                        <Path Width="22" Height="22" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 35,19L 41,19L 41,35L 57,35L 57,41L 41,41L 41,57L 35,57L 35,41L 19,41L 19,35L 35,35L 35,19 Z "/>
                     </Button>
                 </StackPanel>
-                <Button Grid.Column="0" Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="42" Height="42"
+                <Button Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="48" Height="48" Margin="6,0,0,0"
                         Command="{Binding ShowCommentsCommand}" HorizontalAlignment="Left">
-                    <Path Width="18" Height="18" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 19.0027,21.0029L 19.0027,25.0034L 44.0061,25.0034L 44.0061,21.0029L 19.0027,21.0029 Z M 19.0027,27.0038L 19.0027,31.0042L 49.0068,31.0042L 49.0068,27.0038L 19.0027,27.0038 Z M 19.0027,33.0046L 19.0027,37.005L 43.006,37.005L 43.006,33.0046L 19.0027,33.0046 Z M 19.0027,39.0054L 19.0027,43.0059L 52.0073,43.0059L 52.0073,39.0054L 19.0027,39.0054 Z M 19.0027,45.0064L 19.0027,49.0068L 46.0064,49.0068L 46.0064,45.0064L 19.0027,45.0064 Z M 19.0027,51.0073L 19.0027,55.0077L 51.0071,55.0077L 51.0071,51.0073L 19.0027,51.0073 Z "/>
+                    <Path Width="20" Height="20" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 19.0027,21.0029L 19.0027,25.0034L 44.0061,25.0034L 44.0061,21.0029L 19.0027,21.0029 Z M 19.0027,27.0038L 19.0027,31.0042L 49.0068,31.0042L 49.0068,27.0038L 19.0027,27.0038 Z M 19.0027,33.0046L 19.0027,37.005L 43.006,37.005L 43.006,33.0046L 19.0027,33.0046 Z M 19.0027,39.0054L 19.0027,43.0059L 52.0073,43.0059L 52.0073,39.0054L 19.0027,39.0054 Z M 19.0027,45.0064L 19.0027,49.0068L 46.0064,49.0068L 46.0064,45.0064L 19.0027,45.0064 Z M 19.0027,51.0073L 19.0027,55.0077L 51.0071,55.0077L 51.0071,51.0073L 19.0027,51.0073 Z "/>
                 </Button>
-                <Button Grid.Column="2" Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="42" Height="42" HorizontalAlignment="Right"
+                <Button Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="48" Height="48" HorizontalAlignment="Right"
                         Command="{Binding AddToFavoritesCommand}" Visibility="{Binding IsCurrentBashFavorite, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=!}">
                     <Path Width="20" Height="18" Margin="0,1,0,0" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 18.2084,32.5903C 16.3611,25.7292 21.6389,20.4514 26.125,19.6598C 30.6111,18.8681 34.3056,22.5625 38,26.2569C 41.6945,22.5625 45.3889,18.8681 49.875,19.6598C 54.3611,20.4514 59.6389,25.7292 57.7916,32.5903C 55.9444,39.4514 46.9722,47.8958 38.0001,56.3402C 29.0278,47.8958 20.0556,39.4514 18.2084,32.5903 Z M 21.8307,32.6093C 23.2659,37.9402 31.0288,45.0286 38.0001,51.5898C 44.9713,45.0286 52.7342,37.9402 54.1694,32.6093C 55.6046,27.2784 52.2956,23.5735 48.81,22.9584C 45.3244,22.3433 40.8705,28.3805 38,31.251C 35.1295,28.3805 30.6757,22.3432 27.1901,22.9584C 23.7045,23.5735 20.3954,27.2784 21.8307,32.6093 Z "/>
                 </Button>
 
-                <Button Grid.Column="2" Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="42" Height="42" HorizontalAlignment="Right"
+                <Button Grid.Column="2" Grid.Row="1" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Template="{StaticResource RoundButtonTemplate}" Width="48" Height="48" HorizontalAlignment="Right" Margin="0,0,6,0"
                         Command="{Binding RemoveFromFavoritesCommand}" Visibility="{Binding IsCurrentBashFavorite, Converter={StaticResource BoolToVisibilityConverter}}">
-                    <Path Width="20" Height="18" Margin="0,1,0,0" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 18.2084,32.5903C 16.3611,25.7292 21.6389,20.4514 26.125,19.6598C 30.6111,18.8681 34.3056,22.5625 38,26.2569C 41.6945,22.5625 45.3889,18.8681 49.875,19.6598C 54.3611,20.4514 59.6389,25.7292 57.7916,32.5903C 55.9444,39.4514 46.9722,47.8958 38.0001,56.3402C 29.0278,47.8958 20.0556,39.4514 18.2084,32.5903 Z "/>
+                    <Path Width="24" Height="22" Margin="0,1,0,0" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 18.2084,32.5903C 16.3611,25.7292 21.6389,20.4514 26.125,19.6598C 30.6111,18.8681 34.3056,22.5625 38,26.2569C 41.6945,22.5625 45.3889,18.8681 49.875,19.6598C 54.3611,20.4514 59.6389,25.7292 57.7916,32.5903C 55.9444,39.4514 46.9722,47.8958 38.0001,56.3402C 29.0278,47.8958 20.0556,39.4514 18.2084,32.5903 Z "/>
                 </Button>
             </Grid>
 
@@ -104,7 +124,7 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1">
-            <ListBox x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Padding="0,6,0,6">
+            <ListBox x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Padding="0,12,0,12">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -112,12 +132,12 @@
                             <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}"
                                     Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not-server-only}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Path Margin="6,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}"
+                                    <Path Margin="12,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}}"
                                             VerticalAlignment="Bottom"/>
                                     <Border Margin="6" Width="364" Background="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}">
-                                        <StackPanel Margin="6">
-                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource ThemeBrushGray}" />
-                                            <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrushGrayDark}" />
+                                        <StackPanel Margin="0,6,0,6">
+                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Style="{StaticResource ThemeTextNormalStyle}" />
+                                            <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Style="{StaticResource ThemeTextSubtleStyle}" />
                                         </StackPanel>
                                     </Border>
                                     <Path Margin="-8,0,0,12" Width="20" Height="20" Data="M 20,20 0,0, 0,20 Z" Fill="{Binding PersonIndex, Converter={StaticResource IntToColorConverter}}" Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not}"
@@ -125,7 +145,7 @@
                                 </StackPanel>
                             </Border>
                             <!-- server -->
-                            <Border Margin="6" Width="460" Background="{StaticResource ThemeBrushRed}"
+                            <Border Margin="10,6,10,6" Width="460" Background="{StaticResource ThemeBrushGrayDark}"
                                     Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=server-only}">
                                 <StackPanel Margin="6">
                                     <TextBlock Text="{Binding Text}" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" Foreground="{StaticResource ThemeBrushGray}" />
@@ -140,9 +160,9 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
-            <shell:ApplicationBar.MenuItems>
+            <!--<shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_comments"/>
-            </shell:ApplicationBar.MenuItems>
+            </shell:ApplicationBar.MenuItems>-->
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/back.png" Text="id_prev"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="id_neg"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/new.png" Text="id_pos"/>-->
@@ -164,7 +184,7 @@
         <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
         <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
         <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
-        <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
+        <!--<abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />-->
     </i:Interaction.Behaviors>
 
     <!--<i:Interaction.Triggers>

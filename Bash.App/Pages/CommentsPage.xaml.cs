@@ -27,7 +27,7 @@ namespace Bash.App.Pages
             bool success = false;
             if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_ID))
             {
-                var id = NavigationContext.QueryString[AppConstants.PARAM_ID];
+                var id = int.Parse(NavigationContext.QueryString[AppConstants.PARAM_ID]);
                 await _commentsViewModel.LoadCommentsAsync(id);
             }
             else

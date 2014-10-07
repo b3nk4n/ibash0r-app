@@ -115,6 +115,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die ibash.de Team for API access ähnelt.
+        /// </summary>
+        public static string ContributorsDescriptionBash {
+            get {
+                return ResourceManager.GetString("ContributorsDescriptionBash", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die [Your feedback here]
         ///
         ///

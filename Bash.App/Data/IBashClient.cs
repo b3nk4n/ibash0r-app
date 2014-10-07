@@ -13,8 +13,8 @@ namespace Bash.App.Data
 
         Task<BashCollection> GetQueryAsync(string term, int number, int page);
 
-        Task<BashComments> GetCommentsAsync(string id);
+        Task<BashComments> GetCommentsAsync(int id);
 
-        Task<string> RateAsync(string id, string type);
+        Task<string> RateAsync(int id, string type);
     }
 }
