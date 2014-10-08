@@ -3,7 +3,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit">
 
     <!-- Resources -->
     <Application.Resources>
@@ -32,6 +33,24 @@
         <Style x:Key="ThemeTextSubtleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource ThemeBrushGrayDark}" />
         </Style>
+
+        <ControlTemplate x:Key="RoundButtonTemplate" TargetType="ButtonBase">
+            <Grid Margin="6">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+                        <VisualState x:Name="Disabled">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" Storyboard.TargetName="Circle" Storyboard.TargetProperty="Opacity" To=".55"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+
+                <Ellipse x:Name="Circle" Fill="{TemplateBinding Background}" toolkit:TiltEffect.IsTiltEnabled="True"/>
+                <ContentPresenter />
+            </Grid>
+        </ControlTemplate>
 
     </Application.Resources>
 

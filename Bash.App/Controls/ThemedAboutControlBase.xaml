@@ -32,7 +32,7 @@
 												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneButtonBasePressedForegroundBrush}"/>
 											</ObjectAnimationUsingKeyFrames>
 											<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="ButtonBackground">
-												<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PhoneAccentBrush}"/>
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ThemeBrushGrayDark}"/>
 											</ObjectAnimationUsingKeyFrames>
 										</Storyboard>
 									</VisualState>

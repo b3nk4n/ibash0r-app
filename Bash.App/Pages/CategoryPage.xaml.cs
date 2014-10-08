@@ -5,6 +5,7 @@ using Ninject;
 using Bash.App.Data;
 using System;
 using Microsoft.Phone.Shell;
+using Bash.App.Resources;
 
 namespace Bash.App.Pages
 {
@@ -51,15 +52,31 @@ namespace Bash.App.Pages
             if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_ORDER))
             {
                 var order = NavigationContext.QueryString[AppConstants.PARAM_ORDER];
+
+                switch (order)
+                {
+                    case AppConstants.ORDER_VALUE_BEST:
+                        PageTitle.Text = AppResources.CategoryBestQuotes;
+                        break;
+                    case AppConstants.ORDER_VALUE_NEW:
+                        PageTitle.Text = AppResources.CategoryNewQuotes;
+                        break;
+                    case AppConstants.ORDER_VALUE_RANDOM:
+                        PageTitle.Text = AppResources.CategoryRandomQuotes;
+                        break;
+                }
+
                 success = await _categoryViewModel.LoadQuotesAsync(order);
             }
             else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_TERM))
             {
+                PageTitle.Text = AppResources.CategorySearchQuotes;
                 var term = NavigationContext.QueryString[AppConstants.PARAM_TERM];
                 success = await _categoryViewModel.SearchQuotesAsync(term);
             }
             else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_FAVORITES))
             {
+                PageTitle.Text = AppResources.CategoryFavoriteQuotes;
                 // load data from favorites list.
                 success = _categoryViewModel.LoadFavorites();
             }

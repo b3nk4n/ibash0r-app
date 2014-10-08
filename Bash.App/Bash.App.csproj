@@ -170,17 +170,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\AppBar\appbar.heart.outline.png" />
+    <Content Include="Assets\AppBar\appbar.heart.png" />
     <Content Include="Assets\AppBar\back.png" />
-    <Content Include="Assets\AppBar\favs.addto.png" />
-    <Content Include="Assets\AppBar\minus.png" />
     <Content Include="Assets\AppBar\new.png" />
     <Content Include="Assets\AppBar\next.png" />
+    <Content Include="Assets\AppBar\questionmark.png" />
     <Content Include="Assets\AppBar\refresh.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\ibash.png" />
-    <Content Include="Assets\iBash0r_white.png" />
+    <Content Include="Assets\icon.png" />
+    <Content Include="Assets\love.png" />
+    <Content Include="Assets\new.png" />
+    <Content Include="Assets\random.png" />
+    <Content Include="Assets\star.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

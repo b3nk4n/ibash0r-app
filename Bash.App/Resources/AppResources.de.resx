@@ -126,7 +126,7 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>hilfe</value>
+    <value>Hilfe</value>
     <comment>AboutPage</comment>
   </data>
   <data name="ApplicationAuthor" xml:space="preserve">
@@ -231,5 +231,53 @@ Das würde uns sehr motivieren um die App noch besser zu machen!</value>
   <data name="ContributorsDescriptionBash" xml:space="preserve">
     <value>ibash.de Team für den API Zugriff</value>
     <comment>AboutPage</comment>
+  </data>
+  <data name="AppBarAddToFavorites" xml:space="preserve">
+    <value>zu favoriten hinzufügen</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="AppBarRemoveFromFavorites" xml:space="preserve">
+    <value>favorit entfernen</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="CategoryBestQuotes" xml:space="preserve">
+    <value>Beste Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryBestQuotesNL" xml:space="preserve">
+    <value>Beste
+Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryFavoriteQuotes" xml:space="preserve">
+    <value>Meine Favoriten</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryFavoriteQuotesNL" xml:space="preserve">
+    <value>Meine
+Favoriten</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryNewQuotes" xml:space="preserve">
+    <value>Neue Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryNewQuotesNL" xml:space="preserve">
+    <value>Neue
+Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryRandomQuotes" xml:space="preserve">
+    <value>Zufällige Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryRandomQuotesNL" xml:space="preserve">
+    <value>Zufällige
+Zitate</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategorySearchQuotes" xml:space="preserve">
+    <value>Gefundene Zitate</value>
+    <comment>Misc</comment>
   </data>
 </root>

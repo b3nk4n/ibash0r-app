@@ -171,10 +171,11 @@ namespace Bash.App.ViewModels
             {
                 _currentBashDataIndex = value;
                 NotifyPropertyChanged("CurrentBashData");
+                NotifyPropertyChanged("IsCurrentBashFavorite");
                 _nextCommand.RaiseCanExecuteChanged();
                 _previousCommand.RaiseCanExecuteChanged();
                 _showCommentsCommand.RaiseCanExecuteChanged();
-                NotifyPropertyChanged("IsCurrentBashFavorite");
+                _addToFavoritesCommand.RaiseCanExecuteChanged();
             }
         }
 

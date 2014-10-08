@@ -40,11 +40,15 @@ namespace Bash.App.ViewModels
         {
             _searchCommand = new DelegateCommand(() =>
             {
-                var uriString = "/Pages/CategoryPage.xaml?term=" + SearchTerm;
-                _navigationService.Navigate(new Uri(uriString, UriKind.Relative));
+                if (CanSearch)
+                {
+                    var uriString = "/Pages/CategoryPage.xaml?term=" + SearchTerm;
+                    _navigationService.Navigate(new Uri(uriString, UriKind.Relative));
+                }
+                
             }, () =>
             {
-                return CanSearch;
+                return true;
             });
         }
 

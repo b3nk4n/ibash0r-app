@@ -43,10 +43,9 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel Orientation="Horizontal" Background="{StaticResource ThemeBrushBlue}">
-            <Image Source="/Assets/iBash0r_white.png" HorizontalAlignment="Center" Height="50" Margin="12,0,0,0" />
-            <TextBlock Text="Kommentare" Margin="9,-3,0,2" Style="{StaticResource ThemeTextTitleStyle}"/>
-        </StackPanel>
+        <Grid Background="{StaticResource ThemeBrushBlue}">
+            <TextBlock Text="Kommentare" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
+        </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1">

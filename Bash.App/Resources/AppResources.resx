@@ -125,10 +125,6 @@
     <value>en</value>
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
-  <data name="AboutTitle" xml:space="preserve">
-    <value>about</value>
-    <comment>AboutPage</comment>
-  </data>
   <data name="ApplicationAuthor" xml:space="preserve">
     <value>by Benjamin Sautermeister</value>
     <comment>AboutPage</comment>
@@ -231,5 +227,56 @@ Showing us some love on the store helps us to continue to work on the app and ma
   <data name="ContributorsDescriptionBash" xml:space="preserve">
     <value>ibash.de Team for API access</value>
     <comment>AboutPage</comment>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>about</value>
+  </data>
+  <data name="AppBarAddToFavorites" xml:space="preserve">
+    <value>add to favorites</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="AppBarRemoveFromFavorites" xml:space="preserve">
+    <value>remove from favorites</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="CategoryBestQuotes" xml:space="preserve">
+    <value>Best quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryBestQuotesNL" xml:space="preserve">
+    <value>Best
+quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryFavoriteQuotes" xml:space="preserve">
+    <value>My favorites</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryFavoriteQuotesNL" xml:space="preserve">
+    <value>My
+favorites</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryNewQuotes" xml:space="preserve">
+    <value>New quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryNewQuotesNL" xml:space="preserve">
+    <value>New
+quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryRandomQuotes" xml:space="preserve">
+    <value>Random quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryRandomQuotesNL" xml:space="preserve">
+    <value>Random
+quotes</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategorySearchQuotes" xml:space="preserve">
+    <value>Searched quotes</value>
+    <comment>Misc</comment>
   </data>
 </root>

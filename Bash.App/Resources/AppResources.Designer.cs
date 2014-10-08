@@ -70,6 +70,24 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die add to favorites ähnelt.
+        /// </summary>
+        public static string AppBarAddToFavorites {
+            get {
+                return ResourceManager.GetString("AppBarAddToFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die remove from favorites ähnelt.
+        /// </summary>
+        public static string AppBarRemoveFromFavorites {
+            get {
+                return ResourceManager.GetString("AppBarRemoveFromFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die by Benjamin Sautermeister ähnelt.
         /// </summary>
         public static string ApplicationAuthor {
@@ -102,6 +120,91 @@ namespace Bash.App.Resources {
         public static string ApplicationVersion {
             get {
                 return ResourceManager.GetString("ApplicationVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Best quotes ähnelt.
+        /// </summary>
+        public static string CategoryBestQuotes {
+            get {
+                return ResourceManager.GetString("CategoryBestQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Best
+        ///quotes ähnelt.
+        /// </summary>
+        public static string CategoryBestQuotesNL {
+            get {
+                return ResourceManager.GetString("CategoryBestQuotesNL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die My favorites ähnelt.
+        /// </summary>
+        public static string CategoryFavoriteQuotes {
+            get {
+                return ResourceManager.GetString("CategoryFavoriteQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die My
+        ///favorites ähnelt.
+        /// </summary>
+        public static string CategoryFavoriteQuotesNL {
+            get {
+                return ResourceManager.GetString("CategoryFavoriteQuotesNL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New quotes ähnelt.
+        /// </summary>
+        public static string CategoryNewQuotes {
+            get {
+                return ResourceManager.GetString("CategoryNewQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die New
+        ///quotes ähnelt.
+        /// </summary>
+        public static string CategoryNewQuotesNL {
+            get {
+                return ResourceManager.GetString("CategoryNewQuotesNL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Random quotes ähnelt.
+        /// </summary>
+        public static string CategoryRandomQuotes {
+            get {
+                return ResourceManager.GetString("CategoryRandomQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Random
+        ///quotes ähnelt.
+        /// </summary>
+        public static string CategoryRandomQuotesNL {
+            get {
+                return ResourceManager.GetString("CategoryRandomQuotesNL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Searched quotes ähnelt.
+        /// </summary>
+        public static string CategorySearchQuotes {
+            get {
+                return ResourceManager.GetString("CategorySearchQuotes", resourceCulture);
             }
         }
         
