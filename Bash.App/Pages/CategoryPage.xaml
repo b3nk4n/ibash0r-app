@@ -174,13 +174,21 @@
             </Grid.RowDefinitions>
             <Grid>
                 <TextBlock Text="{Binding Timestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}" />
+
+                <TextBlock DataContext="{Binding ElementName=RootElement, Path=DataContext}"
+                    HorizontalAlignment="Center" Style="{StaticResource ThemeTextSubtleStyle}">
+                        <Run Text="{Binding BashNumber}" />    
+                        <Run Text="/" />
+                        <Run Text="{Binding BashCount}" />
+                </TextBlock>
+
                 <TextBlock HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}">
                         <Run Text="#" />
                         <Run Text="{Binding Id}" />
                 </TextBlock>
             </Grid>
             <ScrollViewer x:Name="QuotesScroller" Grid.Row="1" Padding="0,8,0,12" toolkit:TurnstileFeatherEffect.FeatheringIndex="2" >
-                <ItemsControl x:Name="QuoteList" ItemsSource="{Binding QuoteItems}">
+                <ItemsControl ItemsSource="{Binding QuoteItems}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Grid x:Name="ContainerGrid" Opacity="0" Loaded="QuoteItemLoaded" Tag="{Binding IndexPosition}">

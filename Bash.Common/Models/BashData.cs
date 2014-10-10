@@ -26,6 +26,14 @@ namespace Bash.App.Models
         [DataMember(Name = "ts")]
         public string Timestamp { get; set; }
 
+        public string ShortTimestamp
+        {
+            get
+            {
+                return Timestamp.Split(' ')[0];
+            }
+        }
+
         [DataMember(Name = "content")]
         public string Content { get; set; }
 

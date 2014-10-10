@@ -28,6 +28,10 @@ namespace Bash.App.ViewModels
 
         bool IsBusy { get; }
 
+        int BashNumber { get; }
+
+        int BashCount { get; }
+
         ICommand NextCommand { get; }
 
         ICommand PreviousCommand { get; }

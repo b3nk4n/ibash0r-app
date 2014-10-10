@@ -103,7 +103,8 @@ namespace Bash.App.ViewModels
         
         public void Reset()
         {
-            CurrentBashDataIndex = -1;
+            CurrentBashDataIndex = 0;
+            BashCollection = null;
         }
 
         #endregion
@@ -264,6 +265,7 @@ namespace Bash.App.ViewModels
                 _currentBashDataIndex = value;
                 NotifyPropertyChanged("CurrentBashData");
                 NotifyPropertyChanged("IsCurrentBashFavorite");
+                NotifyPropertyChanged("BashNumber");
                 _nextCommand.RaiseCanExecuteChanged();
                 _previousCommand.RaiseCanExecuteChanged();
                 _showCommentsCommand.RaiseCanExecuteChanged();
@@ -280,6 +282,7 @@ namespace Bash.App.ViewModels
                 
                 // select the first one
                 CurrentBashDataIndex = 0;
+                NotifyPropertyChanged("BashCount");
             }
         }
 
@@ -303,6 +306,22 @@ namespace Bash.App.ViewModels
                     _isBusy = value;
                     NotifyPropertyChanged("IsBusy");
                 }
+            }
+        }
+
+        public int BashNumber
+        {
+            get
+            {
+                return _currentBashDataIndex + 1;
+            }
+        }
+
+        public int BashCount
+        {
+            get
+            {
+                return BashCollection == null ? 0 : BashCollection.Contents.Data.Count;
             }
         }
 

@@ -23,7 +23,7 @@ namespace Bash.App.Pages
             InitializeComponent();
             _categoryViewModel = App.Injector.Get<ICategoryViewModel>();
 
-            QuoteList.ManipulationCompleted += (s, e) =>
+            QuotesScroller.ManipulationCompleted += (s, e) =>
             {
                 var velocity = e.FinalVelocities.LinearVelocity;
 
