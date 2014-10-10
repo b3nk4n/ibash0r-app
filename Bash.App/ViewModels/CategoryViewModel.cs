@@ -33,6 +33,8 @@ namespace Bash.App.ViewModels
         private DelegateCommand _addToFavoritesCommand;
         private DelegateCommand _removeFromFavoritesCommand;
 
+        public static bool WasLastNavigationNext { get; set; }
+
         #endregion
 
         #region Constructors
@@ -95,6 +97,7 @@ namespace Bash.App.ViewModels
         {
             _nextCommand = new DelegateCommand(() =>
             {
+                WasLastNavigationNext = true;
                 CurrentBashDataIndex++;
             },
             () =>
@@ -104,6 +107,7 @@ namespace Bash.App.ViewModels
 
             _previousCommand = new DelegateCommand(() =>
             {
+                WasLastNavigationNext = false;
                 CurrentBashDataIndex--;
             },
             () =>

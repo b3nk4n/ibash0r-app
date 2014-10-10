@@ -325,25 +325,58 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Storyboard x:Name="StartupAnimation">
+            <DoubleAnimation Duration="0:0:0.66"  BeginTime="0:0:0.45" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="phoneTextBox" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.40" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="button" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut"  Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.55" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+        			<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        		</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.50" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile1" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+            		<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+            	</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.65" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile2" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+            		<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+            	</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.60" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile3" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
     </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
             <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardIn"/>
             </toolkit:NavigationInTransition.Backward>
             <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardIn"/>
             </toolkit:NavigationInTransition.Forward>
         </toolkit:NavigationInTransition>
     </toolkit:TransitionService.NavigationInTransition>
     <toolkit:TransitionService.NavigationOutTransition>
         <toolkit:NavigationOutTransition>
             <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+                <toolkit:TurnstileFeatherTransition Mode="BackwardOut"/>
             </toolkit:NavigationOutTransition.Backward>
             <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+                <toolkit:TurnstileFeatherTransition Mode="ForwardOut"/>
             </toolkit:NavigationOutTransition.Forward>
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
@@ -355,7 +388,7 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <Grid Background="{StaticResource ThemeBrushBlue}">
+        <Grid Background="{StaticResource ThemeBrushBlue}" toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
             <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
         </Grid>
 
@@ -363,15 +396,22 @@
 		<Grid x:Name="ContentPanel" Grid.Row="1">
             <StackPanel>
                 <!-- search -->
-                <StackPanel Orientation="Horizontal" Margin="2,40,2,28">
-                    <toolkit:PhoneTextBox Hint="Suchbegriff" Text="{Binding SearchTerm, Mode=TwoWay}" Width="398" Style="{StaticResource CustomPhoneTextBoxStyle}" />
-                    <Button Command="{Binding SearchCommand}" Template="{StaticResource RoundButtonTemplate}" Background="{StaticResource ThemeBrushBlue}" Width="72" Height="72">
+                <StackPanel Orientation="Horizontal" Margin="16,40,16,28" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                    <toolkit:PhoneTextBox x:Name="phoneTextBox" Hint="Suchbegriff" Text="{Binding SearchTerm, Mode=TwoWay}" Width="386" Style="{StaticResource CustomPhoneTextBoxStyle}" RenderTransformOrigin="0.5,0.5" >
+                    	<toolkit:PhoneTextBox.RenderTransform>
+                    		<CompositeTransform TranslateX="-480"/>
+                    	</toolkit:PhoneTextBox.RenderTransform>
+                    </toolkit:PhoneTextBox>
+                    <Button x:Name="button" Command="{Binding SearchCommand}" Template="{StaticResource RoundButtonTemplate}" Background="{StaticResource ThemeBrushBlue}" Width="72" Height="72" Margin="-8" RenderTransformOrigin="0.5,0.5">
+                    	<Button.RenderTransform>
+                    		<CompositeTransform TranslateX="-480"/>
+                    	</Button.RenderTransform>
                         <Path Width="30" Height="30" Stretch="Fill" Fill="White" Data="F1 M 42.5,22C 49.4036,22 55,27.5964 55,34.5C 55,41.4036 49.4036,47 42.5,47C 40.1356,47 37.9245,46.3435 36,45.2426L 26.9749,54.2678C 25.8033,55.4393 23.9038,55.4393 22.7322,54.2678C 21.5607,53.0962 21.5607,51.1967 22.7322,50.0251L 31.7971,40.961C 30.6565,39.0755 30,36.8644 30,34.5C 30,27.5964 35.5964,22 42.5,22 Z M 42.5,26C 37.8056,26 34,29.8056 34,34.5C 34,39.1944 37.8056,43 42.5,43C 47.1944,43 51,39.1944 51,34.5C 51,29.8056 47.1944,26 42.5,26 Z "/>
                     </Button>
                 </StackPanel>
                 
                 <!-- tiles -->
-                <Grid Height="480">
+                <Grid Height="380" Margin="28,8,74,8">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -381,43 +421,36 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}">
-                        <toolkit:HubTile  Size="Medium" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryNewQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/new.png">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Tap">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=new"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="2;/Pages/CategoryPage.xaml?order=new" Tap="TileTapped">
+                        <toolkit:HubTile x:Name="hubTile" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryNewQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/new.png" Margin="0,0,7,0" RenderTransformOrigin="0.5,0.5">
+                        	<toolkit:HubTile.RenderTransform>
+                        		<CompositeTransform TranslateX="-480"/>
+                        	</toolkit:HubTile.RenderTransform>
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}">
-                        <toolkit:HubTile Size="Medium" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryBestQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/star.png">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Tap">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=best"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="3;/Pages/CategoryPage.xaml?order=best" Tap="TileTapped">
+                        <toolkit:HubTile x:Name="hubTile1" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryBestQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/star.png" RenderTransformOrigin="0.5,0.5">
+                        	<toolkit:HubTile.RenderTransform>
+                        		<CompositeTransform TranslateX="-480"/>
+                        	</toolkit:HubTile.RenderTransform>
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}">
-                        <toolkit:HubTile Size="Medium" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryRandomQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/random.png">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Tap">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=random"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="4;/Pages/CategoryPage.xaml?order=random" Tap="TileTapped">
+                        <toolkit:HubTile x:Name="hubTile2" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryRandomQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/random.png" RenderTransformOrigin="0.5,0.5">
+                        	<toolkit:HubTile.RenderTransform>
+                        		<CompositeTransform TranslateX="-480"/>
+                        	</toolkit:HubTile.RenderTransform>
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}">
-                        <toolkit:HubTile Size="Medium" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryFavoriteQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/love.png">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Tap">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?favorites=true"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
+                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left"
+                                      Loaded="TileLoaded"  Tag="5;/Pages/CategoryPage.xaml?favorites=true" Tap="TileTapped">
+                        <toolkit:HubTile x:Name="hubTile3" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryFavoriteQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/love.png" RenderTransformOrigin="0.5,0.5">
+                        	<toolkit:HubTile.RenderTransform>
+                        		<CompositeTransform TranslateX="-480"/>
+                        	</toolkit:HubTile.RenderTransform>
                         </toolkit:HubTile>
                     </HyperlinkButton>
                 </Grid>

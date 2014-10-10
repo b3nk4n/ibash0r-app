@@ -50,6 +50,36 @@ namespace Bash.App.Pages
             DataContext = _mainViewModel;
 
             StartupActionManager.Instance.Fire(e);
+
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                StartupAnimation.Begin();
+            }
+        }
+
+        private void TileTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var tile = sender as HyperlinkButton;
+
+            if (tile != null)
+            {
+                var tag = (string)tile.Tag;
+                var link = tag.Split(';')[1];
+                TurnstileFeatherEffect.SetFeatheringIndex(tile, -1);
+                NavigationService.Navigate(new Uri(link, UriKind.Relative));
+            }
+        }
+
+        private void TileLoaded(object sender, RoutedEventArgs e)
+        {
+            var tile = sender as HyperlinkButton;
+
+            if (tile != null)
+            {
+                var tag = (string)tile.Tag;
+                var animationId = int.Parse(tag.Split(';')[0]);
+                TurnstileFeatherEffect.SetFeatheringIndex(tile,animationId);
+            }
         }
     }
 }
