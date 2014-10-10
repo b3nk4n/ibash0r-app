@@ -291,8 +291,32 @@ quotes</value>
     <value>Do you want to open WhatsApp? The content will be copied to the clipboard.</value>
     <comment>MessageBox</comment>
   </data>
+  <data name="AppBarAddFav" xml:space="preserve">
+    <value>add to favorites</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>reload</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarRemoveFav" xml:space="preserve">
+    <value>remove from favorites</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarShare" xml:space="preserve">
+    <value>share...</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarShowComments" xml:space="preserve">
+    <value>show comments</value>
+    <comment>AppBar</comment>
+  </data>
   <data name="ShareLinkTitle" xml:space="preserve">
     <value>Check out this awesome bash:</value>
     <comment>Share</comment>
+  </data>
+  <data name="CommentsTitle" xml:space="preserve">
+    <value>Comments</value>
+    <comment>CommentsPage</comment>
   </data>
 </root>

@@ -72,9 +72,36 @@ namespace Bash.App.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die add to favorites ähnelt.
         /// </summary>
+        public static string AppBarAddFav {
+            get {
+                return ResourceManager.GetString("AppBarAddFav", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die add to favorites ähnelt.
+        /// </summary>
         public static string AppBarAddToFavorites {
             get {
                 return ResourceManager.GetString("AppBarAddToFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die reload ähnelt.
+        /// </summary>
+        public static string AppBarRefresh {
+            get {
+                return ResourceManager.GetString("AppBarRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die remove from favorites ähnelt.
+        /// </summary>
+        public static string AppBarRemoveFav {
+            get {
+                return ResourceManager.GetString("AppBarRemoveFav", resourceCulture);
             }
         }
         
@@ -84,6 +111,24 @@ namespace Bash.App.Resources {
         public static string AppBarRemoveFromFavorites {
             get {
                 return ResourceManager.GetString("AppBarRemoveFromFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die share... ähnelt.
+        /// </summary>
+        public static string AppBarShare {
+            get {
+                return ResourceManager.GetString("AppBarShare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die show comments ähnelt.
+        /// </summary>
+        public static string AppBarShowComments {
+            get {
+                return ResourceManager.GetString("AppBarShowComments", resourceCulture);
             }
         }
         
@@ -205,6 +250,15 @@ namespace Bash.App.Resources {
         public static string CategorySearchQuotes {
             get {
                 return ResourceManager.GetString("CategorySearchQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Comments ähnelt.
+        /// </summary>
+        public static string CommentsTitle {
+            get {
+                return ResourceManager.GetString("CommentsTitle", resourceCulture);
             }
         }
         

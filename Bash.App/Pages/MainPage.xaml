@@ -440,54 +440,7 @@
                         </toolkit:HubTile>
                     </HyperlinkButton>
                 </Grid>
-            </StackPanel>
-            
-            
-
-
-
-            <!--<phone:Pivot>
-                <phone:PivotItem Header="Zitate">
-                    <StackPanel>
-                        <Button Content="BEST">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=best"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                        <Button Content="NEW">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=new"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                        <Button Content="RANDOM">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?order=random"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                        <Button Content="FAVORITES">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="Click">
-                                    <ec:NavigateToPageAction TargetPage="/Pages/CategoryPage.xaml?favorites=true"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </Button>
-                    </StackPanel>
-                </phone:PivotItem>
-                <phone:PivotItem Header="Suche">
-                    <StackPanel>
-                        <toolkit:PhoneTextBox Hint="Suchbegriff" Text="{Binding SearchTerm, Mode=TwoWay}" />
-                        <Button Content="Suchen" Command="{Binding SearchCommand}" />
-                    </StackPanel>
-                    --><!-- TODO: list of the search history --><!--
-                </phone:PivotItem>
-            </phone:Pivot>-->
-			
+            </StackPanel>	
 		</Grid>
 
         <!-- Feedback dialog -->

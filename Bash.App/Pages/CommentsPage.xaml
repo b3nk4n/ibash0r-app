@@ -49,7 +49,7 @@
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <Grid Background="{StaticResource ThemeBrushBlue}">
-            <TextBlock Text="Kommentare" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=LocalizedResources.CommentsTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
         </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->

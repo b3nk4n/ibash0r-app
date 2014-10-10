@@ -292,6 +292,30 @@ Zitate</value>
     <value>Soll WhatsApp jetzt gestartet werden? Der Inhalt wird in die Zwischenablage kopiert.</value>
     <comment>MessageBox</comment>
   </data>
+  <data name="AppBarAddFav" xml:space="preserve">
+    <value>zu favoriten hinzufügen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarRefresh" xml:space="preserve">
+    <value>aktualisieren</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarRemoveFav" xml:space="preserve">
+    <value>favorit entfernen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarShare" xml:space="preserve">
+    <value>teilen...</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarShowComments" xml:space="preserve">
+    <value>kommentare anzeigen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="CommentsTitle" xml:space="preserve">
+    <value>Kommentare</value>
+    <comment>CommentsPage</comment>
+  </data>
   <data name="ShareLinkTitle" xml:space="preserve">
     <value>Schau mal diesen genialen Bash an:</value>
     <comment>Share</comment>

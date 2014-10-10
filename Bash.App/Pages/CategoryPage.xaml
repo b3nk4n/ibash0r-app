@@ -307,8 +307,8 @@
         <abu:AppBarItemCommand Type="Button" Id="id_prev" Text="zurück" Command="{Binding PreviousCommand}"/>
         <abu:AppBarToggleItemCommand Id="id_fav"
                                IsChecked="{Binding IsCurrentBashFavorite}"
-                               Text="zu favoriten hinzufügen"
-                               CheckedText="favorit entfernen"
+                               Text="{Binding Path=LocalizedResources.AppBarAddFav, Source={StaticResource LocalizedStrings}}"
+                               CheckedText="{Binding Path=LocalizedResources.AppBarRemoveFav, Source={StaticResource LocalizedStrings}}"
                                IconUri="/Assets/AppBar/appbar.heart.outline.png"
                                CheckedIconUri="/Assets/AppBar/appbar.heart.png"
                                Command="{Binding AddToFavoritesCommand}"
@@ -316,9 +316,9 @@
         <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
         <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
         <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
-        <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
-        <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
-        <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="kommentare anzeigen" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="{Binding Path=LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="{Binding Path=LocalizedResources.AppBarShowComments, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="{Binding Path=LocalizedResources.AppBarShare, Source={StaticResource LocalizedStrings}}" />
     </i:Interaction.Behaviors>
 
     <!--<i:Interaction.Triggers>
