@@ -15,6 +15,6 @@ namespace Bash.App.Data
 
         Task<BashComments> GetCommentsAsync(int id);
 
-        Task<string> RateAsync(int id, string type);
+        Task<bool> RateAsync(int id, string type);
     }
 }

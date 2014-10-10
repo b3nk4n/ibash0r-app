@@ -17,6 +17,8 @@ namespace Bash.App.ViewModels
 
         private BashComments _bashComments;
 
+        private bool _isBusy;
+
         #endregion
 
         #region Constructors
@@ -31,13 +33,20 @@ namespace Bash.App.ViewModels
 
         public async Task<bool> LoadCommentsAsync(int id)
         {
+            IsBusy = true;
             var result = await _bashClient.GetCommentsAsync(id);
 
             if (result == null)
                 return false;
 
             BashComments = result;
+            IsBusy = false;
             return true;
+        }
+
+        public void Reset()
+        {
+            BashComments = null;
         }
 
         #endregion
@@ -57,6 +66,19 @@ namespace Bash.App.ViewModels
                 {
                     _bashComments = value;
                     NotifyPropertyChanged("BashComments");
+                }
+            }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    NotifyPropertyChanged("IsBusy");
                 }
             }
         }

@@ -7,12 +7,17 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:conv="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource ThemeBrushGray}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/CommentsViewModelSampleData.xaml}">
+    
+    <phone:PhoneApplicationPage.Resources>
+        <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </phone:PhoneApplicationPage.Resources>
 
     <toolkit:TransitionService.NavigationInTransition>
         <toolkit:NavigationInTransition>
@@ -74,6 +79,9 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </Grid>
+
+        <ProgressBar IsIndeterminate="true" Foreground="{StaticResource ThemeBrushGray}" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                     VerticalAlignment="Top"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

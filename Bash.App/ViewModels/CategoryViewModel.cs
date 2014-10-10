@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Navigation;
 using PhoneKit.Framework.Core.Collections;
 using System.ComponentModel;
+using PhoneKit.Framework.Core.Storage;
 
 namespace Bash.App.ViewModels
 {
@@ -32,6 +33,10 @@ namespace Bash.App.ViewModels
         private DelegateCommand _showCommentsCommand;
         private DelegateCommand _addToFavoritesCommand;
         private DelegateCommand _removeFromFavoritesCommand;
+
+        private bool _isBusy;
+
+        private readonly StoredObject<List<int>> _storedRatings = new StoredObject<List<int>>("__storedRating", new List<int>());
 
         public static bool WasLastNavigationNext { get; set; }
 
@@ -88,6 +93,11 @@ namespace Bash.App.ViewModels
             BashCollection = result;
             return true;
         }
+        
+        public void Reset()
+        {
+            CurrentBashDataIndex = -1;
+        }
 
         #endregion
 
@@ -117,20 +127,32 @@ namespace Bash.App.ViewModels
 
             _ratePositiveCommand = new DelegateCommand(async () =>
             {
-                await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_POS);
+                IsBusy = true;
+                if (await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_POS))
+                {
+                    _storedRatings.Value.Add(CurrentBashData.Id);
+                }
+                UpdateRatingCommands();
+                IsBusy = false;
             },
             () =>
             {
-                return CurrentBashData != null;
+                return IsBashUnrated(CurrentBashData);
             });
 
             _rateNegativeCommand = new DelegateCommand(async () =>
             {
-                await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_NEG);
+                IsBusy = true;
+                if (await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_NEG))
+                {
+                    _storedRatings.Value.Add(CurrentBashData.Id);
+                }
+                UpdateRatingCommands();
+                IsBusy = false;
             },
             () =>
             {
-                return CurrentBashData != null;
+                return IsBashUnrated(CurrentBashData);
             });
 
             _showCommentsCommand = new DelegateCommand(() =>
@@ -164,6 +186,17 @@ namespace Bash.App.ViewModels
             });
         }
 
+        private void UpdateRatingCommands()
+        {
+            _rateNegativeCommand.RaiseCanExecuteChanged();
+            _ratePositiveCommand.RaiseCanExecuteChanged();
+        }
+
+        private bool IsBashUnrated(BashData bashData)
+        {
+            return bashData != null && !_storedRatings.Value.Contains(bashData.Id);
+        }
+
         #endregion
 
         #region Properties
@@ -180,6 +213,7 @@ namespace Bash.App.ViewModels
                 _previousCommand.RaiseCanExecuteChanged();
                 _showCommentsCommand.RaiseCanExecuteChanged();
                 _addToFavoritesCommand.RaiseCanExecuteChanged();
+                UpdateRatingCommands();
             }
         }
 
@@ -201,6 +235,19 @@ namespace Bash.App.ViewModels
                 if (BashCollection == null || BashCollection.Contents.Data.Count <= CurrentBashDataIndex)
                     return null;
                 return BashCollection.Contents.Data[CurrentBashDataIndex];
+            }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    NotifyPropertyChanged("IsBusy");
+                }
             }
         }
 

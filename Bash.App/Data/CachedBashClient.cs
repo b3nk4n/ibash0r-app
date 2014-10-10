@@ -78,7 +78,7 @@ namespace Bash.App.Data
             return result;
         }
 
-        public Task<string> RateAsync(int id, string type)
+        public Task<bool> RateAsync(int id, string type)
         {
             return _bashClient.RateAsync(id, type);
         }

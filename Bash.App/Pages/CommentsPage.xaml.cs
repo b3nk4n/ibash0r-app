@@ -22,6 +22,7 @@ namespace Bash.App.Pages
             base.OnNavigatedTo(e);
 
             // setup view model
+            _commentsViewModel.Reset();
             DataContext = _commentsViewModel;
 
             bool success = false;

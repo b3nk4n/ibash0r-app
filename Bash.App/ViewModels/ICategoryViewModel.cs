@@ -17,11 +17,16 @@ namespace Bash.App.ViewModels
 
         Task<bool> SearchQuotesAsync(string term);
 
+
+        void Reset();
+
         BashData CurrentBashData { get; }
 
         NavigationService NavigationService { set; }
 
         bool IsCurrentBashFavorite { get; }
+
+        bool IsBusy { get; }
 
         ICommand NextCommand { get; }
 

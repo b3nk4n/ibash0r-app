@@ -11,6 +11,10 @@ namespace Bash.App.ViewModels
     {
         Task<bool> LoadCommentsAsync(int id);
 
+        void Reset();
+
         BashComments BashComments { get; }
+
+        bool IsBusy { get; }
     }
 }

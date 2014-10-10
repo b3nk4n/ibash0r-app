@@ -90,7 +90,7 @@ namespace Bash.App.Data
             return null;
         }
 
-        public async Task<string> RateAsync(int id, string type)
+        public async Task<bool> RateAsync(int id, string type)
         {
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}",
                 BASE_URI, PATH_RATE,
@@ -101,10 +101,10 @@ namespace Bash.App.Data
             if (response.IsSuccessStatusCode)
             {
                 var encodedData = await ReadEncodedContentAsync(response);
-                return encodedData;
+                return true;
             }
 
-            return null;
+            return false;
         }
 
         #endregion

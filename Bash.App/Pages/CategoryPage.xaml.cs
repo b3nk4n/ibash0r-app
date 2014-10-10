@@ -13,7 +13,7 @@ namespace Bash.App.Pages
 {
     public partial class CategoryPage : PhoneApplicationPage
     {
-        private const int SWIPE_LIMIT = 1500;
+        private const int SWIPE_LIMIT = 1250;
 
         private ICategoryViewModel _categoryViewModel;
 
@@ -32,12 +32,19 @@ namespace Bash.App.Pages
                 if (velocity.X < -SWIPE_LIMIT)
                 {
                     if (_categoryViewModel.NextCommand.CanExecute(null))
+                    {
                         _categoryViewModel.NextCommand.Execute(null);
+                        ResetScroller();
+                    }
+                        
                 }
                 else if (velocity.X > SWIPE_LIMIT)
                 {
                     if (_categoryViewModel.PreviousCommand.CanExecute(null))
+                    {
                         _categoryViewModel.PreviousCommand.Execute(null);
+                        ResetScroller();
+                    }
                 }
             };
         }
@@ -48,6 +55,7 @@ namespace Bash.App.Pages
 
             // setup view model
             _categoryViewModel.NavigationService = NavigationService;
+            _categoryViewModel.Reset();
             DataContext = _categoryViewModel;
 
             bool success = false;
@@ -108,6 +116,16 @@ namespace Bash.App.Pages
                 storyboard.BeginTime = (TimeSpan.FromMilliseconds(5 + 33 * animationIndex));
                 storyboard.Begin();
             }
+        }
+
+        private void ScrollUpHander(object sender, EventArgs e)
+        {
+            ResetScroller();
+        }
+
+        private void ResetScroller()
+        {
+            QuotesScroller.ScrollToVerticalOffset(0.0);
         }
     }
 }
