@@ -279,4 +279,20 @@ quotes</value>
     <value>Searched quotes</value>
     <comment>Misc</comment>
   </data>
+  <data name="MessageBoxInfoClipboard" xml:space="preserve">
+    <value>The content is copied to the clipboard.</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxInfoTitle" xml:space="preserve">
+    <value>Information</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxInfoWhatsapp" xml:space="preserve">
+    <value>Do you want to open WhatsApp? The content will be copied to the clipboard.</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="ShareLinkTitle" xml:space="preserve">
+    <value>Check out this awesome bash:</value>
+    <comment>Share</comment>
+  </data>
 </root>

@@ -301,6 +301,33 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die The content is copied to the clipboard. ähnelt.
+        /// </summary>
+        public static string MessageBoxInfoClipboard {
+            get {
+                return ResourceManager.GetString("MessageBoxInfoClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Information ähnelt.
+        /// </summary>
+        public static string MessageBoxInfoTitle {
+            get {
+                return ResourceManager.GetString("MessageBoxInfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Do you want to open WhatsApp? The content will be copied to the clipboard. ähnelt.
+        /// </summary>
+        public static string MessageBoxInfoWhatsapp {
+            get {
+                return ResourceManager.GetString("MessageBoxInfoWhatsapp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die more apps ähnelt.
         /// </summary>
         public static string MoreApps {
@@ -391,6 +418,15 @@ namespace Bash.App.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Check out this awesome bash: ähnelt.
+        /// </summary>
+        public static string ShareLinkTitle {
+            get {
+                return ResourceManager.GetString("ShareLinkTitle", resourceCulture);
             }
         }
         

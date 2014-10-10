@@ -10,7 +10,6 @@
     xmlns:local="clr-namespace:Bash.App.Controls"
     xmlns:abu="clr-namespace:AppBarUtils;assembly=AppBarUtils"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
-    xmlns:primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=System.Windows"
     x:Class="Bash.App.Pages.MainPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -312,19 +311,6 @@
 			</Setter>
 		</Style>
 
-        <Style x:Key="EmptyButtonStyle" TargetType="primitives:ButtonBase">
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="primitives:ButtonBase">
-                        <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
         <Storyboard x:Name="StartupAnimation">
             <DoubleAnimation Duration="0:0:0.66"  BeginTime="0:0:0.45" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="phoneTextBox" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>

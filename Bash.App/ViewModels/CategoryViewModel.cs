@@ -11,6 +11,9 @@ using System.Windows.Navigation;
 using PhoneKit.Framework.Core.Collections;
 using System.ComponentModel;
 using PhoneKit.Framework.Core.Storage;
+using System.Windows;
+using Bash.App.Resources;
+using Microsoft.Phone.Tasks;
 
 namespace Bash.App.ViewModels
 {
@@ -33,6 +36,10 @@ namespace Bash.App.ViewModels
         private DelegateCommand _showCommentsCommand;
         private DelegateCommand _addToFavoritesCommand;
         private DelegateCommand _removeFromFavoritesCommand;
+        private DelegateCommand _shareWhatsAppCommand;
+        private DelegateCommand _shareClipboardCommand;
+        private DelegateCommand _shareLinkCommand;
+        private DelegateCommand _shareContentCommand;
 
         private bool _isBusy;
 
@@ -184,6 +191,54 @@ namespace Bash.App.ViewModels
             {
                 return CurrentBashData != null;
             });
+
+            _shareContentCommand = new DelegateCommand(() =>
+            {
+                var task = new ShareStatusTask();
+                task.Status = CurrentBashData.QuoteString;
+                task.Show();
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _shareLinkCommand = new DelegateCommand(() =>
+            {
+                var task = new ShareLinkTask();
+                task.Title = AppResources.ShareLinkTitle;
+                task.LinkUri = new Uri(string.Format(@"http://www.ibash.de/zitat_{0}.html", CurrentBashData.Id), UriKind.Absolute);
+                task.Show();
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _shareClipboardCommand = new DelegateCommand(() =>
+            {
+                if (MessageBox.Show(AppResources.MessageBoxInfoWhatsapp, AppResources.MessageBoxInfoTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    Clipboard.SetText(CurrentBashData.QuoteString);
+                }
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _shareWhatsAppCommand = new DelegateCommand(async () =>
+            {
+                if (MessageBox.Show(AppResources.MessageBoxInfoWhatsapp, AppResources.MessageBoxInfoTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                {
+                    Clipboard.SetText(CurrentBashData.QuoteString);
+                    await Windows.System.Launcher.LaunchUriAsync(new Uri("whatsapp:"));
+                }
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
         }
 
         private void UpdateRatingCommands()
@@ -305,6 +360,26 @@ namespace Bash.App.ViewModels
         public ICommand RemoveFromFavoritesCommand
         {
             get { return _removeFromFavoritesCommand; }
+        }
+
+        public ICommand ShareWhatsAppCommand
+        {
+            get { return _shareWhatsAppCommand; }
+        }
+
+        public ICommand ShareClipboardCommand
+        {
+            get { return _shareClipboardCommand; }
+        }
+
+        public ICommand ShareLinkCommand
+        {
+            get { return _shareLinkCommand; }
+        }
+
+        public ICommand ShareContentCommand
+        {
+            get { return _shareContentCommand; }
         }
 
         #endregion

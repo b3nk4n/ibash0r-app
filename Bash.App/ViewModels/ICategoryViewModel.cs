@@ -41,5 +41,13 @@ namespace Bash.App.ViewModels
         ICommand AddToFavoritesCommand { get; }
 
         ICommand RemoveFromFavoritesCommand { get; }
+
+        ICommand ShareWhatsAppCommand { get; }
+
+        ICommand ShareClipboardCommand { get; }
+
+        ICommand ShareLinkCommand { get; }
+
+        ICommand ShareContentCommand { get; }
     }
 }

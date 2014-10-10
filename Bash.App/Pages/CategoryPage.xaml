@@ -46,6 +46,78 @@
         <lconv:IndexToThicknessConverter x:Key="IndexToThicknessConverter" />
         <lconv:PositivePlusConverter x:Key="PositivePlusConverter" />
         <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        
+        <Storyboard x:Name="ShowShareBar">
+        	<DoubleAnimation Duration="0:0:0.7" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ShareContainer" d:IsOptimized="True">
+        		<DoubleAnimation.EasingFunction>
+        			<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        		</DoubleAnimation.EasingFunction>
+        	</DoubleAnimation>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile1">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.3" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile2">
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.4" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+                	<EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                	</EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideShareBar">
+            <DoubleAnimation BeginTime="0:0:0.4" Duration="0:0:0.7" To="400" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ShareContainer" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile1">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.3" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile2">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.4" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="hubTile3">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
 
@@ -95,7 +167,7 @@
         </StackPanel>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Tap="ContentPanelTapped">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -174,6 +246,44 @@
                 </ItemsControl>
             </ScrollViewer>
         </Grid>
+
+        <Grid x:Name="ShareContainer" Grid.Row="1" Height="124" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5"
+              DataContext="{Binding ElementName=RootElement, Path=DataContext}">
+        	<Grid.RenderTransform>
+        		<CompositeTransform TranslateY="400"/>
+        	</Grid.RenderTransform>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}" Command="{Binding ShareLinkCommand}">
+                    <toolkit:HubTile x:Name="hubTile" Size="Small" Background="{StaticResource ThemeBrushBlue}" Source="/Assets/sharelink.png" RenderTransformOrigin="0.5,0.5" Margin="6">
+                	    <toolkit:HubTile.RenderTransform>
+                		    <CompositeTransform/>
+                	    </toolkit:HubTile.RenderTransform>
+                    </toolkit:HubTile>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}" Command="{Binding ShareContentCommand}">
+                    <toolkit:HubTile x:Name="hubTile1" Size="Small" Background="{StaticResource ThemeBrushBlue}" Source="/Assets/sharecontent.png" RenderTransformOrigin="0.5,0.5" Margin="6">
+                        <toolkit:HubTile.RenderTransform>
+                            <CompositeTransform/>
+                        </toolkit:HubTile.RenderTransform>
+                    </toolkit:HubTile>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}" Command="{Binding ShareWhatsAppCommand}">
+                    <toolkit:HubTile x:Name="hubTile2" Size="Small" Background="{StaticResource ThemeBrushBlue}" Source="/Assets/sharewa.png" RenderTransformOrigin="0.5,0.5" Margin="6">
+                        <toolkit:HubTile.RenderTransform>
+                            <CompositeTransform/>
+                        </toolkit:HubTile.RenderTransform>
+                    </toolkit:HubTile>
+                </HyperlinkButton>
+                <HyperlinkButton Style="{StaticResource EmptyButtonStyle}" Command="{Binding ShareClipboardCommand}">
+                    <toolkit:HubTile x:Name="hubTile3" Size="Small" Background="{StaticResource ThemeBrushBlue}" Source="/Assets/shareclip.png" RenderTransformOrigin="0.5,0.5" Margin="6">
+                        <toolkit:HubTile.RenderTransform>
+                            <CompositeTransform/>
+                        </toolkit:HubTile.RenderTransform>
+                    </toolkit:HubTile>
+                </HyperlinkButton>
+            </StackPanel>
+        </Grid>
+
         <ProgressBar IsIndeterminate="true" Foreground="{StaticResource ThemeBrushGray}" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
                      VerticalAlignment="Top"/>
     </Grid>
@@ -181,8 +291,9 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="id_comments"/>
                 <shell:ApplicationBarMenuItem Text="id_refresh"/>
+                <shell:ApplicationBarMenuItem Text="id_comments"/>
+                <shell:ApplicationBarMenuItem Text="id_share" Click="ShareClicked"/>
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/back.png" Text="id_prev"  Click="ScrollUpHander"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="id_neg"/>
@@ -205,7 +316,9 @@
         <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
         <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
         <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="kommentare anzeigen" Command="{Binding ShowCommentsCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="kommentare anzeigen" />
     </i:Interaction.Behaviors>
 
     <!--<i:Interaction.Triggers>

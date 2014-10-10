@@ -133,5 +133,26 @@ namespace Bash.App.Models
         {
             return this.Id.GetHashCode();
         }
+
+        public string QuoteString {
+            get
+            {
+                var sb = new StringBuilder();
+                bool isNotFirst = false;
+                foreach(var quote in QuoteItems)
+                {
+                    if (isNotFirst)
+                        sb.Append('\n');
+                    else
+                        isNotFirst = true;
+
+                    if (quote.PersonIndex == -1)
+                        sb.Append(string.Format("*** {0}", quote.Text));
+                    else
+                    sb.Append(string.Format("<{0}> {1}", quote.Nick, quote.Text));
+                }
+                return sb.ToString();
+            }
+        }
     }
 }

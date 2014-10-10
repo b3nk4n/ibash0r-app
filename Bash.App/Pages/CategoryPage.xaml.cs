@@ -8,6 +8,7 @@ using Microsoft.Phone.Shell;
 using Bash.App.Resources;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using Microsoft.Phone.Tasks;
 
 namespace Bash.App.Pages
 {
@@ -126,6 +127,25 @@ namespace Bash.App.Pages
         private void ResetScroller()
         {
             QuotesScroller.ScrollToVerticalOffset(0.0);
+        }
+
+        private void ShareClicked(object sender, EventArgs e)
+        {
+            //var shareTask = new ShareLinkTask();
+            //shareTask.LinkUri = new Uri("http://www.google.de");
+            //shareTask.Message = "test";
+            //shareTask.Title = "Share title";
+            //shareTask.Show();
+
+            //var shareTask = new ShareStatusTask();
+            //shareTask.Status = "Das ist mein Status";
+            //shareTask.Show();
+            ShowShareBar.Begin();
+        }
+
+        private void ContentPanelTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            HideShareBar.Begin();
         }
     }
 }

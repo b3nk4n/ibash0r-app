@@ -280,4 +280,20 @@ Zitate</value>
     <value>Gefundene Zitate</value>
     <comment>Misc</comment>
   </data>
+  <data name="MessageBoxInfoClipboard" xml:space="preserve">
+    <value>Der Inhalt wurde in die Zwischenablage kopiert.</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxInfoTitle" xml:space="preserve">
+    <value>Information</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="MessageBoxInfoWhatsapp" xml:space="preserve">
+    <value>Soll WhatsApp jetzt gestartet werden? Der Inhalt wird in die Zwischenablage kopiert.</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="ShareLinkTitle" xml:space="preserve">
+    <value>Schau mal diesen genialen Bash an:</value>
+    <comment>Share</comment>
+  </data>
 </root>
