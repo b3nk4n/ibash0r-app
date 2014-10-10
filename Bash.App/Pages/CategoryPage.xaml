@@ -105,10 +105,44 @@
                         <Run Text="{Binding Id}" />
                 </TextBlock>
             </Grid>
-            <ListBox Grid.Row="1" x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Padding="0,8,0,12">
+            <ListBox Grid.Row="1" x:Name="QuoteList" ItemsSource="{Binding QuoteItems}" Padding="0,8,0,12"
+                     toolkit:TurnstileFeatherEffect.FeatheringIndex="2">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
+                        <Grid x:Name="ContainerGrid" Opacity="0" Loaded="QuoteItemLoaded" Tag="{Binding IndexPosition}">
+                            <Grid.Resources>
+                                <Storyboard x:Name="FadeInLeftToRight">
+                                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContainerGrid">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="0.01"/>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Duration="0:0:0.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContainerGrid" d:IsOptimized="True">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="-480" />
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                                <Storyboard x:Name="FadeInRightToLeft">
+                                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContainerGrid">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="0.01"/>
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                    </DoubleAnimationUsingKeyFrames>
+                                    <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Duration="0:0:0.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContainerGrid" d:IsOptimized="True">
+                                        <EasingDoubleKeyFrame KeyTime="0" Value="480" />
+                                        <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                                            <EasingDoubleKeyFrame.EasingFunction>
+                                                <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                                            </EasingDoubleKeyFrame.EasingFunction>
+                                        </EasingDoubleKeyFrame>
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </Grid.Resources>
+                            <Grid.RenderTransform>
+                                <CompositeTransform />
+                            </Grid.RenderTransform>
                             <!-- normal -->
                             <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}"
                                     Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not-server-only}">

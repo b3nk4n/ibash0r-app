@@ -85,7 +85,8 @@ namespace Bash.App.Models
                     {
                         Nick = nick,
                         PersonIndex = personIndex,
-                        Text = text
+                        Text = text,
+                        IndexPosition = result.Count
                     });
                 }
 

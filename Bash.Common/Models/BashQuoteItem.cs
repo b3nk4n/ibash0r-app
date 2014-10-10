@@ -12,5 +12,10 @@ namespace Bash.App.Models
         public string Text { get; set; }
 
         public int PersonIndex { get; set; }
+
+        /// <summary>
+        /// The index position used by the animation.
+        /// </summary>
+        public int IndexPosition { get; set; }
     }
 }

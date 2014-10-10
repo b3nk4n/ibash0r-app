@@ -6,6 +6,8 @@ using Bash.App.Data;
 using System;
 using Microsoft.Phone.Shell;
 using Bash.App.Resources;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace Bash.App.Pages
 {
@@ -29,13 +31,13 @@ namespace Bash.App.Pages
 
                 if (velocity.X < -SWIPE_LIMIT)
                 {
-                    if (_categoryViewModel.PreviousCommand.CanExecute(null))
-                        _categoryViewModel.PreviousCommand.Execute(null);
+                    if (_categoryViewModel.NextCommand.CanExecute(null))
+                        _categoryViewModel.NextCommand.Execute(null);
                 }
                 else if (velocity.X > SWIPE_LIMIT)
                 {
-                    if (_categoryViewModel.NextCommand.CanExecute(null))
-                        _categoryViewModel.NextCommand.Execute(null);
+                    if (_categoryViewModel.PreviousCommand.CanExecute(null))
+                        _categoryViewModel.PreviousCommand.Execute(null);
                 }
             };
         }
@@ -88,6 +90,23 @@ namespace Bash.App.Pages
             if (!success)
             {
                 // TODO: handle error?
+            }
+        }
+
+        private void QuoteItemLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var grid = sender as Grid;
+
+            if (grid != null)
+            {
+                Storyboard storyboard;
+                if (CategoryViewModel.WasLastNavigationNext)
+                    storyboard = grid.Resources["FadeInRightToLeft"] as Storyboard;
+                else
+                    storyboard = grid.Resources["FadeInLeftToRight"] as Storyboard;
+                var animationIndex = (int)grid.Tag;
+                storyboard.BeginTime = (TimeSpan.FromMilliseconds(5 + 33 * animationIndex));
+                storyboard.Begin();
             }
         }
     }
