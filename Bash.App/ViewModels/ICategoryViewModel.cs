@@ -63,5 +63,7 @@ namespace Bash.App.ViewModels
         ICommand JumpToCommand { get; }
 
         ICommand RefreshCommand { get; }
+
+        ICommand OpenInBrowserCommand { get; }
     }
 }

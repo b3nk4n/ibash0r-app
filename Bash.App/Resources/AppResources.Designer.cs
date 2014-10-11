@@ -97,6 +97,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die open in web browser ähnelt.
+        /// </summary>
+        public static string AppBarOpenInBrowser {
+            get {
+                return ResourceManager.GetString("AppBarOpenInBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die reload ähnelt.
         /// </summary>
         public static string AppBarRefresh {

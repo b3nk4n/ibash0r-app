@@ -42,6 +42,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _shareContentCommand;
         private DelegateCommand _jumpToCommand;
         private DelegateCommand _refreshCommand;
+        private DelegateCommand _openInBrowserCommand;
 
         private bool _isBusy;
 
@@ -240,7 +241,7 @@ namespace Bash.App.ViewModels
             {
                 var task = new ShareLinkTask();
                 task.Title = AppResources.ShareLinkTitle;
-                task.LinkUri = new Uri(string.Format(@"http://www.ibash.de/zitat_{0}.html", CurrentBashData.Id), UriKind.Absolute);
+                task.LinkUri = CurrentBashData.Uri;
                 task.Show();
             },
             () =>
@@ -312,6 +313,17 @@ namespace Bash.App.ViewModels
             {
                 return CurrentBashData != null && CategoryState != ViewModels.CategoryState.Search;
             });
+
+            _openInBrowserCommand = new DelegateCommand(() =>
+            {
+                var browserTask = new WebBrowserTask();
+                browserTask.Uri = CurrentBashData.Uri;
+                browserTask.Show();
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
         }
 
         private void UpdateRatingCommands()
@@ -343,6 +355,7 @@ namespace Bash.App.ViewModels
                 _showCommentsCommand.RaiseCanExecuteChanged();
                 _addToFavoritesCommand.RaiseCanExecuteChanged();
                 _refreshCommand.RaiseCanExecuteChanged();
+                _openInBrowserCommand.RaiseCanExecuteChanged();
                 UpdateRatingCommands();
             }
         }
@@ -496,6 +509,11 @@ namespace Bash.App.ViewModels
         public ICommand RefreshCommand
         {
             get { return _refreshCommand; }
+        }
+
+        public ICommand OpenInBrowserCommand
+        {
+            get { return _openInBrowserCommand; }
         }
 
         #endregion

@@ -372,11 +372,13 @@
                 <shell:ApplicationBarMenuItem Text="id_comments"/>
                 <shell:ApplicationBarMenuItem Text="id_share" Click="ShareClicked"/>
                 <shell:ApplicationBarMenuItem Text="id_jump" Click="JumpToClicked"/>
+                <shell:ApplicationBarMenuItem Text="id_browser"/>
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/back.png" Text="id_prev"  Click="ScrollUpHander"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="id_neg"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/new.png" Text="id_pos"/>-->
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/favs.addto.png" Text="id_fav"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/appbar.text.align.left.png" Text="id_comments"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/next.png" Text="id_next" Click="ScrollUpHander"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
@@ -398,6 +400,7 @@
         <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="{Binding Path=LocalizedResources.AppBarShowComments, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_jump" Text="{Binding Path=LocalizedResources.AppBarJumpTo, Source={StaticResource LocalizedStrings}}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="{Binding Path=LocalizedResources.AppBarShare, Source={StaticResource LocalizedStrings}}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_browser" Text="{Binding Path=LocalizedResources.AppBarOpenInBrowser, Source={StaticResource LocalizedStrings}}" Command="{Binding OpenInBrowserCommand}" />
     </i:Interaction.Behaviors>
 
     <!--<i:Interaction.Triggers>

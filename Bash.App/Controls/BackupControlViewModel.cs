@@ -12,7 +12,7 @@ using Ninject;
 
 namespace Bash.App.Controls
 {
-    class BackupControlViewModel : BackupControlViewModelBase
+    public class BackupControlViewModel : BackupControlViewModelBase
     {
         private IFavoriteManager _favoriteManager;
 

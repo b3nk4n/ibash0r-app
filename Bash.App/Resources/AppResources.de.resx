@@ -412,4 +412,8 @@ Zitate</value>
     <value>Sie können Ihre erstellten Sicherungen hier wiederherstellen. Vorhandene Notizen werden überschrieben und erstellte Kacheln entfernt.</value>
     <comment>Backup</comment>
   </data>
+  <data name="AppBarOpenInBrowser" xml:space="preserve">
+    <value>im browser öffnen</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

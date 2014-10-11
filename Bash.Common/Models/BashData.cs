@@ -162,5 +162,13 @@ namespace Bash.App.Models
                 return sb.ToString();
             }
         }
+
+        public Uri Uri
+        {
+            get
+            {
+                return new Uri(string.Format(@"http://www.ibash.de/zitat_{0}.html", Id), UriKind.Absolute);
+            }
+        }
     }
 }

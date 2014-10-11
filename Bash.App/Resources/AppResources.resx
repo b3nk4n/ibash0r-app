@@ -411,4 +411,8 @@ quotes</value>
     <value>You can restore your favorites here. Current notes and tiles are going to be removed.</value>
     <comment>Backup</comment>
   </data>
+  <data name="AppBarOpenInBrowser" xml:space="preserve">
+    <value>open in web browser</value>
+    <comment>AppBar</comment>
+  </data>
 </root>
