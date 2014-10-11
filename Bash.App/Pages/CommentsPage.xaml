@@ -13,7 +13,8 @@
     Foreground="{StaticResource ThemeBrushGray}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    d:DataContext="{d:DesignData SampleData/CommentsViewModelSampleData.xaml}">
+    d:DataContext="{d:DesignData SampleData/CommentsViewModelSampleData.xaml}"
+    x:Name="RootElement">
     
     <phone:PhoneApplicationPage.Resources>
         <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
@@ -54,30 +55,55 @@
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1">
-            <ListBox ItemsSource="{Binding Path=BashComments.Comments}" Padding="0,12,0,12">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <!-- normal -->
-                            <Border HorizontalAlignment="Left">
-                                <StackPanel Orientation="Horizontal">
-                                    <Path Margin="12,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{StaticResource ThemeBrushBlue}"
+            <ScrollViewer x:Name="CommentsScroller"  Padding="0,12,0,12">
+                <ItemsControl ItemsSource="{Binding Path=BashComments.Comments}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid x:Name="ContainerGrid" Opacity="0" Loaded="CommentItemLoaded" Tag="{Binding IndexPosition}">
+                                <Grid.Resources>
+                                    <Storyboard x:Name="FadeInUp">
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ContainerGrid">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="0.01"/>
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.25" Duration="0:0:0.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ContainerGrid" d:IsOptimized="True">
+                                            <EasingDoubleKeyFrame KeyTime="0" Value="200" />
+                                            <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                                                <EasingDoubleKeyFrame.EasingFunction>
+                                                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                                                </EasingDoubleKeyFrame.EasingFunction>
+                                            </EasingDoubleKeyFrame>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </Grid.Resources>
+                                <Grid.RenderTransform>
+                                    <CompositeTransform />
+                                </Grid.RenderTransform>
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Copy, Source={StaticResource LocalizedStrings}}" Command="{Binding CopyPartToClipboardCommand}" CommandParameter="{Binding Text}" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
+                                <Border HorizontalAlignment="Left">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Path Margin="12,0,-8,12" Width="20" Height="20" Data="M 0,20 20,0, 20,20 Z" Fill="{StaticResource ThemeBrushBlue}"
                                             VerticalAlignment="Bottom"/>
-                                    <Border Margin="6" Width="436" Background="{StaticResource ThemeBrushBlue}">
-                                        <StackPanel Margin="0,6,0,6">
-                                            <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Style="{StaticResource ThemeTextNormalStyle}" />
-                                            <Grid>
-                                                <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Style="{StaticResource ThemeTextSubtleStyle}" />
-                                                <TextBlock Text="{Binding Timestamp}" TextTrimming="WordEllipsis" HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}" />
-                                            </Grid>
-                                        </StackPanel>
-                                    </Border>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                                        <Border Margin="6" Width="436" Background="{StaticResource ThemeBrushBlue}">
+                                            <StackPanel Margin="0,6,0,6">
+                                                <TextBlock Text="{Binding Text}" TextWrapping="Wrap" Style="{StaticResource ThemeTextNormalStyle}" />
+                                                <Grid>
+                                                    <TextBlock Text="{Binding Nick}" TextTrimming="WordEllipsis" HorizontalAlignment="Right" Style="{StaticResource ThemeTextSubtleStyle}" />
+                                                    <TextBlock Text="{Binding Timestamp}" TextTrimming="WordEllipsis" HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}" />
+                                                </Grid>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Grid>
 
         <ProgressBar IsIndeterminate="true" Foreground="{StaticResource ThemeBrushGray}" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"

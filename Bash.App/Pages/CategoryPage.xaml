@@ -213,11 +213,12 @@
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Tap="ContentPanelTapped">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="28" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=!}">
-                <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding ShortTimestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}" />
+            <Grid DataContext="{Binding ElementName=RootElement, Path=DataContext}"
+                  Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=!}">
+                <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding ShortTimestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}"/>
 
                 <TextBlock HorizontalAlignment="Center" Style="{StaticResource ThemeTextSubtleStyle}">
                         <Run Text="{Binding BashNumber}" />    
@@ -268,6 +269,11 @@
                                 <Grid.RenderTransform>
                                     <CompositeTransform />
                                 </Grid.RenderTransform>
+                                <toolkit:ContextMenuService.ContextMenu>
+                                    <toolkit:ContextMenu>
+                                        <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Copy, Source={StaticResource LocalizedStrings}}" Command="{Binding CopyPartToClipboardCommand}" CommandParameter="{Binding Text}" />
+                                    </toolkit:ContextMenu>
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <!-- normal -->
                                 <Border HorizontalAlignment="Left" Margin="{Binding PersonIndex, Converter={StaticResource IndexToThicknessConverter}}"
                                     Visibility="{Binding PersonIndex, Converter={StaticResource IndexToVisbilityConverter}, ConverterParameter=not-server-only}">
@@ -388,7 +394,7 @@
         <abu:AppBarItemCommand Type="Button" Id="id_next" Text="weiter" Command="{Binding NextCommand}"/>
         <!--<abu:AppBarItemCommand Type="Button" Id="id_neg" Text="langweilig" Command="{Binding RateNegativeCommand}"/>
         <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
-        <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="{Binding Path=LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="{Binding Path=LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}" Command="{Binding RefreshCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="{Binding Path=LocalizedResources.AppBarShowComments, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_jump" Text="{Binding Path=LocalizedResources.AppBarJumpTo, Source={StaticResource LocalizedStrings}}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="{Binding Path=LocalizedResources.AppBarShare, Source={StaticResource LocalizedStrings}}" />

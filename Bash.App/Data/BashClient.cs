@@ -84,7 +84,19 @@ namespace Bash.App.Data
             if (response.IsSuccessStatusCode)
             {
                 var encodedData = await ReadEncodedContentAsync(response);
-                return JsonConvert.DeserializeObject<BashComments>(encodedData);
+                var data = JsonConvert.DeserializeObject<BashComments>(encodedData);
+                
+                // trim to 50 items
+                if (data.Comments.Count > 50)
+                {
+                    data.Comments.RemoveRange(50, data.Comments.Count - 50);
+                }
+
+                for (int i = 0; i < data.Comments.Count; ++i)
+                {
+                    data.Comments[i].IndexPosition = i;
+                }
+                return data;
             }
 
             return null;

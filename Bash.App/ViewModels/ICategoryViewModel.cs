@@ -9,9 +9,11 @@ using System.Windows.Navigation;
 
 namespace Bash.App.ViewModels
 {
+    public enum CategoryState { New, Best, Search, Random, Favorites }
+
     interface ICategoryViewModel
     {
-        Task<bool> LoadQuotesAsync(string order);
+        Task<bool> LoadQuotesAsync(string order, bool forceReload = false);
 
         bool LoadFavorites();
 
@@ -33,6 +35,8 @@ namespace Bash.App.ViewModels
         int BashCount { get; }
 
         string JumpPageNumber { get; set; }
+
+        CategoryState CategoryState { get; set; }
 
         ICommand NextCommand { get; }
 
@@ -57,5 +61,7 @@ namespace Bash.App.ViewModels
         ICommand ShareContentCommand { get; }
 
         ICommand JumpToCommand { get; }
+
+        ICommand RefreshCommand { get; }
     }
 }

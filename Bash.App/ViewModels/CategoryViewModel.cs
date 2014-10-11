@@ -23,7 +23,7 @@ namespace Bash.App.ViewModels
 
         NavigationService _navigationService;
 
-        private IBashClient _bashClient;
+        private ICachedBashClient _bashClient;
         private IFavoriteManager _favoriteManager;
 
         private BashCollection _bashCollection;
@@ -41,6 +41,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _shareLinkCommand;
         private DelegateCommand _shareContentCommand;
         private DelegateCommand _jumpToCommand;
+        private DelegateCommand _refreshCommand;
 
         private bool _isBusy;
 
@@ -50,13 +51,17 @@ namespace Bash.App.ViewModels
 
         public static bool WasLastNavigationNext { get; set; }
 
+        public CategoryState CategoryState { get; set; }
+
+        public string LastSearchTerm { get; private set; }
+
         #endregion
 
         #region Constructors
 
         public CategoryViewModel() {
             InitializeCommands();
-            _bashClient = new BashClient();
+            _bashClient = new CachedBashClient(null);
             _favoriteManager = new FavoriteManager();
         } // for sample data
 
@@ -71,13 +76,17 @@ namespace Bash.App.ViewModels
 
         #region Public Methods
 
-        public async Task<bool> LoadQuotesAsync(string order)
+        public async Task<bool> LoadQuotesAsync(string order, bool forceReload = false)
         {
             IsBusy = true;
-            var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0);
+            var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0, forceReload);
 
             if (result == null)
+            {
+                IsBusy = false;
                 return false;
+            }
+
 
             if (order == AppConstants.ORDER_VALUE_RANDOM)
             {
@@ -86,18 +95,36 @@ namespace Bash.App.ViewModels
 
             BashCollection = result;
             IsBusy = false;
+            
+            // set category state
+            switch (order)
+            {
+                case AppConstants.ORDER_VALUE_BEST:
+                    CategoryState = CategoryState.Best;
+                    break;
+                case AppConstants.ORDER_VALUE_NEW:
+                    CategoryState = CategoryState.New;
+                    break;
+                case AppConstants.ORDER_VALUE_RANDOM:
+                    CategoryState = CategoryState.Random;
+                    break;
+            }
+
             return true;
         }
 
         public bool LoadFavorites()
         {
             BashCollection = _favoriteManager.GetData();
+            CategoryState = CategoryState.Favorites;
             return true;
         }
 
         public async Task<bool> SearchQuotesAsync(string term)
         {
+            LastSearchTerm = term;
             var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
+            CategoryState = CategoryState.Search;
 
             if (result == null)
                 return false;
@@ -256,6 +283,35 @@ namespace Bash.App.ViewModels
             {
                 return CurrentBashData != null;
             });
+
+            _refreshCommand = new DelegateCommand(async () =>
+            {
+                BashCollection = null;
+
+                switch (CategoryState)
+	            {
+                    case CategoryState.New:
+                        await LoadQuotesAsync(AppConstants.ORDER_VALUE_NEW, true);
+                        break;
+                    case CategoryState.Best:
+                        await LoadQuotesAsync(AppConstants.ORDER_VALUE_BEST, true);
+                        break;
+                    case CategoryState.Search:
+                        // NOP, because the result might be the same.
+                        break;
+                    case CategoryState.Random:
+                        await LoadQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, true);
+                        break;
+                    case CategoryState.Favorites:
+                        _favoriteManager.SaveData();
+                        LoadFavorites();
+                        break;
+	            }
+            },
+            () =>
+            {
+                return CurrentBashData != null && CategoryState != ViewModels.CategoryState.Search;
+            });
         }
 
         private void UpdateRatingCommands()
@@ -286,6 +342,7 @@ namespace Bash.App.ViewModels
                 _previousCommand.RaiseCanExecuteChanged();
                 _showCommentsCommand.RaiseCanExecuteChanged();
                 _addToFavoritesCommand.RaiseCanExecuteChanged();
+                _refreshCommand.RaiseCanExecuteChanged();
                 UpdateRatingCommands();
             }
         }
@@ -434,6 +491,11 @@ namespace Bash.App.ViewModels
         public ICommand JumpToCommand
         {
             get { return _jumpToCommand; }
+        }
+
+        public ICommand RefreshCommand
+        {
+            get { return _refreshCommand; }
         }
 
         #endregion

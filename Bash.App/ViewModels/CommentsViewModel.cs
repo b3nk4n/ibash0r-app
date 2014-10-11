@@ -37,7 +37,11 @@ namespace Bash.App.ViewModels
             var result = await _bashClient.GetCommentsAsync(id);
 
             if (result == null)
+            {
+                IsBusy = false;
                 return false;
+            }
+                
 
             BashComments = result;
             IsBusy = false;

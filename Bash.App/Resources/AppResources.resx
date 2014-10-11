@@ -331,4 +331,8 @@ quotes</value>
     <value>jump to...</value>
     <comment>AppBar</comment>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>copy</value>
+    <comment>General</comment>
+  </data>
 </root>

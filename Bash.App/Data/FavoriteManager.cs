@@ -66,7 +66,8 @@ namespace Bash.App.Data
                 // remove marked items
                 foreach (var item in _markToRemoveList)
                 {
-                    _favData.Contents.Data.Find(i => i.Id == item);
+                    var found = _favData.Contents.Data.Find(i => i.Id == item);
+                    _favData.Contents.Data.Remove(found);
                 }
                 _markToRemoveList.Clear();
 

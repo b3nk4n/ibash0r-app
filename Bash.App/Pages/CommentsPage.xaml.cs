@@ -4,6 +4,8 @@ using Bash.App.ViewModels;
 using Ninject;
 using Bash.App.Data;
 using System;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace Bash.App.Pages
 {
@@ -39,6 +41,26 @@ namespace Bash.App.Pages
             if (!success)
             {
                 // TODO: handle error?
+            }
+        }
+
+        private void CommentItemLoaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var grid = sender as Grid;
+
+            if (grid != null)
+            {
+                var animationIndex = (int)grid.Tag;
+                if (animationIndex < 15)
+                {
+                    Storyboard storyboard = grid.Resources["FadeInUp"] as Storyboard;
+                    storyboard.BeginTime = (TimeSpan.FromMilliseconds(5 + 25 * animationIndex));
+                    storyboard.Begin();
+                }
+                else
+                {
+                    grid.Opacity = 1.0;
+                }
             }
         }
     }

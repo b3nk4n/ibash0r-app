@@ -332,4 +332,8 @@ Zitate</value>
     <value>springe zu...</value>
     <comment>AppBar</comment>
   </data>
+  <data name="Copy" xml:space="preserve">
+    <value>kopieren</value>
+    <comment>General</comment>
+  </data>
 </root>
