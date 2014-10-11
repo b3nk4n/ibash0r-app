@@ -216,17 +216,16 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid>
-                <TextBlock Text="{Binding Timestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}" />
+            <Grid DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=!}">
+                <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding ShortTimestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}" />
 
-                <TextBlock DataContext="{Binding ElementName=RootElement, Path=DataContext}"
-                    HorizontalAlignment="Center" Style="{StaticResource ThemeTextSubtleStyle}">
+                <TextBlock HorizontalAlignment="Center" Style="{StaticResource ThemeTextSubtleStyle}">
                         <Run Text="{Binding BashNumber}" />    
                         <Run Text="/" />
                         <Run Text="{Binding BashCount}" />
                 </TextBlock>
 
-                <TextBlock HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}">
+                <TextBlock DataContext="{Binding CurrentBashData}" HorizontalAlignment="Left" Style="{StaticResource ThemeTextSubtleStyle}">
                         <Run Text="#" />
                         <Run Text="{Binding Id}" />
                 </TextBlock>

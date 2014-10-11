@@ -73,6 +73,7 @@ namespace Bash.App.ViewModels
 
         public async Task<bool> LoadQuotesAsync(string order)
         {
+            IsBusy = true;
             var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
@@ -84,6 +85,7 @@ namespace Bash.App.ViewModels
             }
 
             BashCollection = result;
+            IsBusy = false;
             return true;
         }
 

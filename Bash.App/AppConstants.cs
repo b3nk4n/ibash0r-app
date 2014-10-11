@@ -27,7 +27,7 @@ namespace Bash.App
         public const string TYPE_VALUE_POS = "pos";
         public const string TYPE_VALUE_NEG = "neg";
 
-        public const int QUOTES_COUNT = 250;
+        public const int QUOTES_COUNT = 999;
 
         public static readonly Color[] COLORS = { 
             Color.FromArgb(255,21,86,173),// #1556ad
