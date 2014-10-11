@@ -31,6 +31,10 @@
             <Setter Property="Foreground" Value="{StaticResource ThemeBrushGray}" />
         </Style>
 
+        <Style x:Key="ThemeTextLargeStyle" BasedOn="{StaticResource PhoneTextLargeStyle}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource ThemeBrushGray}" />
+        </Style>
+
         <Style x:Key="ThemeTextSubtleStyle" BasedOn="{StaticResource PhoneTextSubtleStyle}" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource ThemeBrushGrayDark}" />
         </Style>

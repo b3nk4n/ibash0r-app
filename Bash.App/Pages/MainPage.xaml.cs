@@ -104,25 +104,27 @@ namespace Bash.App.Pages
 
         private void LockscreenClicked(object sender, EventArgs e)
         {
-            if (InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
+            if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
             {
-                // to it as a command, so the button gets inactive when the app already is the lockscreen app.
+                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
             }
             else
             {
-                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
+                // to it as a command, so the button gets inactive when the app already is the lockscreen app.
             }
         }
 
         private void BackupClicked(object sender, EventArgs e)
         {
-            if (InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
-            {
-                NavigationService.Navigate(new Uri("/Pages/BackupPage.xaml", UriKind.Relative));
-            }
-            else
+#if !DEBUG
+            if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
             {
                 NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
+            }
+            else
+#endif
+            {
+                NavigationService.Navigate(new Uri("/Pages/BackupPage.xaml", UriKind.Relative));
             }
         }
     }

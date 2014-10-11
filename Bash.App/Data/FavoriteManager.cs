@@ -12,7 +12,7 @@ namespace Bash.App.Data
     {
         #region Members
 
-        private const string FAV_DATA_FILE = "bash_fav.data";
+        public const string FAV_DATA_FILE = "bash_fav.data";
 
         private BashCollection _favData;
         private bool _hasDataChanged;
