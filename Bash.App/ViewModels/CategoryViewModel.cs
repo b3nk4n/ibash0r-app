@@ -36,6 +36,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _showCommentsCommand;
         private DelegateCommand _addToFavoritesCommand;
         private DelegateCommand _removeFromFavoritesCommand;
+        private DelegateCommand _placeholderCommand;
         private DelegateCommand _shareWhatsAppCommand;
         private DelegateCommand _shareClipboardCommand;
         private DelegateCommand _shareLinkCommand;
@@ -54,7 +55,11 @@ namespace Bash.App.ViewModels
 
         public CategoryState CategoryState { get; set; }
 
-        public string LastSearchTerm { get; private set; }
+        /// <summary>
+        /// Freshly loaded data to indicate, that the data is new and shown the first time.
+        /// Used for the quotes animations.
+        /// </summary>
+        private bool? _isDataFreshlyLoaded = null;
 
         #endregion
 
@@ -79,6 +84,11 @@ namespace Bash.App.ViewModels
 
         public async Task<bool> LoadQuotesAsync(string order, bool forceReload = false)
         {
+            // set category state
+            UpdateCategoryState(order);
+
+            IsDataFreshlyLoaded = true;
+
             IsBusy = true;
             var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0, forceReload);
 
@@ -96,8 +106,11 @@ namespace Bash.App.ViewModels
 
             BashCollection = result;
             IsBusy = false;
-            
-            // set category state
+            return true;
+        }
+
+        private void UpdateCategoryState(string order)
+        {
             switch (order)
             {
                 case AppConstants.ORDER_VALUE_BEST:
@@ -110,22 +123,21 @@ namespace Bash.App.ViewModels
                     CategoryState = CategoryState.Random;
                     break;
             }
-
-            return true;
         }
 
         public bool LoadFavorites()
         {
-            BashCollection = _favoriteManager.GetData();
+            IsDataFreshlyLoaded = true;
             CategoryState = CategoryState.Favorites;
+            BashCollection = _favoriteManager.GetData();
             return true;
         }
 
         public async Task<bool> SearchQuotesAsync(string term)
         {
-            LastSearchTerm = term;
-            var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
             CategoryState = CategoryState.Search;
+            IsDataFreshlyLoaded = true;
+            var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
                 return false;
@@ -149,6 +161,7 @@ namespace Bash.App.ViewModels
             _nextCommand = new DelegateCommand(() =>
             {
                 WasLastNavigationNext = true;
+                InvalidateIsDataFreshlyLoaded();
                 CurrentBashDataIndex++;
             },
             () =>
@@ -159,6 +172,7 @@ namespace Bash.App.ViewModels
             _previousCommand = new DelegateCommand(() =>
             {
                 WasLastNavigationNext = false;
+                InvalidateIsDataFreshlyLoaded();
                 CurrentBashDataIndex--;
             },
             () =>
@@ -220,6 +234,15 @@ namespace Bash.App.ViewModels
             {
                 _favoriteManager.RemoveFromFavorites(CurrentBashData);
                 NotifyPropertyChanged("IsCurrentBashFavorite");
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _placeholderCommand = new DelegateCommand(() =>
+            {
+                // NOP
             },
             () =>
             {
@@ -332,9 +355,25 @@ namespace Bash.App.ViewModels
             _ratePositiveCommand.RaiseCanExecuteChanged();
         }
 
+        private void UpdateShareCommands()
+        {
+            _shareClipboardCommand.RaiseCanExecuteChanged();
+            _shareContentCommand.RaiseCanExecuteChanged();
+            _shareLinkCommand.RaiseCanExecuteChanged();
+            _shareWhatsAppCommand.RaiseCanExecuteChanged();
+        }
+
         private bool IsBashUnrated(BashData bashData)
         {
             return bashData != null && !_storedRatings.Value.Contains(bashData.Id);
+        }
+
+        private void InvalidateIsDataFreshlyLoaded()
+        {
+            if (IsDataFreshlyLoaded)
+            {
+                IsDataFreshlyLoaded = false;
+            }
         }
 
         #endregion
@@ -356,7 +395,10 @@ namespace Bash.App.ViewModels
                 _addToFavoritesCommand.RaiseCanExecuteChanged();
                 _refreshCommand.RaiseCanExecuteChanged();
                 _openInBrowserCommand.RaiseCanExecuteChanged();
+                _jumpToCommand.RaiseCanExecuteChanged();
+                _placeholderCommand.RaiseCanExecuteChanged();
                 UpdateRatingCommands();
+                UpdateShareCommands();
             }
         }
 
@@ -369,6 +411,7 @@ namespace Bash.App.ViewModels
                 // select the first one
                 CurrentBashDataIndex = 0;
                 NotifyPropertyChanged("BashCount");
+                NotifyPropertyChanged("ShowFavoritesInfo");
             }
         }
 
@@ -422,6 +465,30 @@ namespace Bash.App.ViewModels
                     NotifyPropertyChanged("JumpPageNumber");
                     _jumpToCommand.RaiseCanExecuteChanged();
                 }
+            }
+        }
+
+        public bool ShowFavoritesInfo
+        {
+            get
+            {
+                if (_favoriteManager == null || CategoryState != ViewModels.CategoryState.Favorites)
+                    return false;
+                return _favoriteManager.GetData().Contents.Data.Count == 0;
+            }
+        }
+
+        public bool IsDataFreshlyLoaded
+        {
+            get
+            {
+                if (_isDataFreshlyLoaded == null)
+                    return true;
+                return _isDataFreshlyLoaded.Value;
+            }
+            set
+            {
+                _isDataFreshlyLoaded = value;
             }
         }
 
@@ -479,6 +546,11 @@ namespace Bash.App.ViewModels
         public ICommand RemoveFromFavoritesCommand
         {
             get { return _removeFromFavoritesCommand; }
+        }
+
+        public ICommand PlaceholderCommand
+        {
+            get { return _placeholderCommand; }
         }
 
         public ICommand ShareWhatsAppCommand

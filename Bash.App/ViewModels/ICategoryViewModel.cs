@@ -36,6 +36,8 @@ namespace Bash.App.ViewModels
 
         string JumpPageNumber { get; set; }
 
+        bool IsDataFreshlyLoaded { get; }
+
         CategoryState CategoryState { get; set; }
 
         ICommand NextCommand { get; }
@@ -51,6 +53,8 @@ namespace Bash.App.ViewModels
         ICommand AddToFavoritesCommand { get; }
 
         ICommand RemoveFromFavoritesCommand { get; }
+
+        ICommand PlaceholderCommand { get; }
 
         ICommand ShareWhatsAppCommand { get; }
 

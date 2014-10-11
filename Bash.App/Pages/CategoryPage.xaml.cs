@@ -48,6 +48,11 @@ namespace Bash.App.Pages
                     }
                 }
             };
+
+            HideJumpBar.Completed += (s, e) =>
+                {
+                    phoneTextBox.Text = string.Empty;
+                };
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -109,12 +114,20 @@ namespace Bash.App.Pages
             if (grid != null)
             {
                 Storyboard storyboard;
-                if (CategoryViewModel.WasLastNavigationNext)
+                int offset = 0;
+                if (_categoryViewModel.IsDataFreshlyLoaded)
+                {
+                    storyboard = grid.Resources["FadeInUp"] as Storyboard;
+                    offset = 150;
+                }
+                else if (CategoryViewModel.WasLastNavigationNext)
                     storyboard = grid.Resources["FadeInRightToLeft"] as Storyboard;
                 else
                     storyboard = grid.Resources["FadeInLeftToRight"] as Storyboard;
+                
                 var animationIndex = (int)grid.Tag;
-                storyboard.BeginTime = (TimeSpan.FromMilliseconds(5 + 33 * animationIndex));
+
+                storyboard.BeginTime = (TimeSpan.FromMilliseconds(offset + 33 * animationIndex));
                 storyboard.Begin();
             }
         }
@@ -139,7 +152,7 @@ namespace Bash.App.Pages
             ShowJumpBar.Begin();
         }
 
-        private void ContentPanelTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        private void HideBarsTapHandler(object sender, System.Windows.Input.GestureEventArgs e)
         {
             HideShareBar.Begin();
             HideJumpBar.Begin();

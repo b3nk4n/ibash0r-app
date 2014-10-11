@@ -415,4 +415,9 @@ quotes</value>
     <value>open in web browser</value>
     <comment>AppBar</comment>
   </data>
+  <data name="FavoritesInfo" xml:space="preserve">
+    <value>Look's empty here, right?
+Add your most favorite bash quotes to your favorites...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>

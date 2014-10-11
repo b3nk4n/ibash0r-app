@@ -353,6 +353,16 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Look&apos;s empty here, right?
+        ///Add your most favorite bash quotes to your favorites... ähnelt.
+        /// </summary>
+        public static string FavoritesInfo {
+            get {
+                return ResourceManager.GetString("FavoritesInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die [Your feedback here]
         ///
         ///

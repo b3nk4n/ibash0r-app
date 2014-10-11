@@ -416,4 +416,9 @@ Zitate</value>
     <value>im browser öffnen</value>
     <comment>AppBar</comment>
   </data>
+  <data name="FavoritesInfo" xml:space="preserve">
+    <value>Schaut etwa leer aus, stimmt's?
+Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>
