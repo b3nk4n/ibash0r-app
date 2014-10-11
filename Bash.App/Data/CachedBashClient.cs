@@ -14,6 +14,8 @@ namespace Bash.App.Data
 
         private const string BASH_CACHE_FORMAT = "cache_{0}.data";
 
+        private string _lastLoadedOrder;
+
         private Dictionary<int, BashComments> _commentsMemoryCache = new Dictionary<int, BashComments>();
 
         public CachedBashClient(IBashClient bashClient)
@@ -30,6 +32,7 @@ namespace Bash.App.Data
         {
             BashCollection result;
             string cacheFileName = string.Format(BASH_CACHE_FORMAT, order);
+            _lastLoadedOrder = order;
 
             if (forceReload || !StorageHelper.FileExists(cacheFileName))
             {
@@ -81,6 +84,16 @@ namespace Bash.App.Data
         public Task<bool> RateAsync(int id, string type)
         {
             return _bashClient.RateAsync(id, type);
+        }
+
+        public void UpdateCache(BashCollection data)
+        {
+            if (_lastLoadedOrder != null &&
+                data != null)
+            {
+                string cacheFileName = string.Format(BASH_CACHE_FORMAT, _lastLoadedOrder);
+                StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, data);
+            }
         }
     }
 }

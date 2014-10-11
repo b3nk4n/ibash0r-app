@@ -70,6 +70,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die about ähnelt.
+        /// </summary>
+        public static string AppBarAbout {
+            get {
+                return ResourceManager.GetString("AppBarAbout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die add to favorites ähnelt.
         /// </summary>
         public static string AppBarAddFav {

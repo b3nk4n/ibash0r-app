@@ -420,4 +420,8 @@ quotes</value>
 Add your most favorite bash quotes to your favorites...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>about</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

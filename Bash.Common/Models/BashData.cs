@@ -5,11 +5,12 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using PhoneKit.Framework.Core.MVVM;
 
 namespace Bash.App.Models
 {
     [DataContract]
-    public class BashData
+    public class BashData : ViewModelBase
     {
         private static readonly string[] NEWLINE_DELEMITERS = { "[newline]<", "[newline] <" };
         private const string NEWLINE = "[newline]";
@@ -37,8 +38,24 @@ namespace Bash.App.Models
         [DataMember(Name = "content")]
         public string Content { get; set; }
 
+        private int _rating;
+
         [DataMember(Name = "rating")]
-        public int Rating { get; set; }
+        public int Rating
+        {
+            get
+            {
+                return _rating;
+            }
+            set
+            {
+                if (_rating != value)
+                {
+                    _rating = value;
+                    NotifyPropertyChanged("Rating");
+                }
+            }
+        }
 
         public List<BashQuoteItem> QuoteItems
         {

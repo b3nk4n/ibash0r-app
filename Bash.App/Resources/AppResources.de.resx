@@ -421,4 +421,8 @@ Zitate</value>
 Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="AppBarAbout" xml:space="preserve">
+    <value>hilfe</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

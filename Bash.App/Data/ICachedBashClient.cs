@@ -12,5 +12,7 @@ namespace Bash.App.Data
         Task<BashCollection> GetQuotesAsync(string order, int number, int page, bool forceReload);
 
         Task<BashComments> GetCommentsAsync(int id, bool foreceReload);
+
+        void UpdateCache(BashCollection data);
     }
 }

@@ -186,6 +186,8 @@ namespace Bash.App.ViewModels
                 if (await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_POS))
                 {
                     _storedRatings.Value.Add(CurrentBashData.Id);
+                    CurrentBashData.Rating++;
+                    _bashClient.UpdateCache(BashCollection);
                 }
                 UpdateRatingCommands();
                 IsBusy = false;
@@ -201,6 +203,8 @@ namespace Bash.App.ViewModels
                 if (await _bashClient.RateAsync(CurrentBashData.Id, AppConstants.TYPE_VALUE_NEG))
                 {
                     _storedRatings.Value.Add(CurrentBashData.Id);
+                    CurrentBashData.Rating--;
+                    _bashClient.UpdateCache(BashCollection);
                 }
                 UpdateRatingCommands();
                 IsBusy = false;

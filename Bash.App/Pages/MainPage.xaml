@@ -166,7 +166,7 @@
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <i:Interaction.Behaviors>
-        <abu:AppBarItemNavigation Type="Button" Id="id_about" Text="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/AboutPage.xaml"/>
+        <abu:AppBarItemNavigation Type="Button" Id="id_about" Text="{Binding Path=LocalizedResources.AppBar, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/AboutPage.xaml"/>
     </i:Interaction.Behaviors>
 
 </phone:PhoneApplicationPage>
