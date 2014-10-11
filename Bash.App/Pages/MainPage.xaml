@@ -159,14 +159,16 @@
         <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/questionmark.png" Text="id_about"/>
             <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="als lockscreen festlegen" Click="LockscreenClicked"/>
-                <shell:ApplicationBarMenuItem Text="favoriten in onedrive sichern" Click="BackupClicked"/>
+                <shell:ApplicationBarMenuItem Text="id_lock"/>
+                <shell:ApplicationBarMenuItem Text="id_backup"/>
             </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
     <i:Interaction.Behaviors>
-        <abu:AppBarItemNavigation Type="Button" Id="id_about" Text="{Binding Path=LocalizedResources.AppBar, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/AboutPage.xaml"/>
+        <abu:AppBarItemNavigation Type="Button" Id="id_about" Text="{Binding Path=LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/AboutPage.xaml"/>
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_lock" Text="{Binding Path=LocalizedResources.AppBarSetLockScreen, Source={StaticResource LocalizedStrings}}" Command="{Binding SetLockScreenCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_backup" Text="{Binding Path=LocalizedResources.AppBarBackup, Source={StaticResource LocalizedStrings}}" Command="{Binding BackupCommand}" />
     </i:Interaction.Behaviors>
 
 </phone:PhoneApplicationPage>

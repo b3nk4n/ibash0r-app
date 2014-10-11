@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bash.App.Models
+namespace Bash.Common.Models
 {
     [DataContract]
     public class BashComments

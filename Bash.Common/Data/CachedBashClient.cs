@@ -1,4 +1,4 @@
-﻿using Bash.App.Models;
+﻿using Bash.Common.Models;
 using PhoneKit.Framework.Core.Storage;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bash.App.Data
+namespace Bash.Common.Data
 {
-    class CachedBashClient : ICachedBashClient
+    public class CachedBashClient : ICachedBashClient
     {
         private IBashClient _bashClient;
 

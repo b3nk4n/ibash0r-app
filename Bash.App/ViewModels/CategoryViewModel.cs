@@ -1,5 +1,5 @@
-﻿using Bash.App.Data;
-using Bash.App.Models;
+﻿using Bash.Common.Data;
+using Bash.Common.Models;
 using PhoneKit.Framework.Core.MVVM;
 using System;
 using System.Collections.Generic;
@@ -14,6 +14,7 @@ using PhoneKit.Framework.Core.Storage;
 using System.Windows;
 using Bash.App.Resources;
 using Microsoft.Phone.Tasks;
+using Bash.Common;
 
 namespace Bash.App.ViewModels
 {

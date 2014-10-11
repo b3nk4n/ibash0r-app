@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using PhoneKit.Framework.Core.MVVM;
 
-namespace Bash.App.Models
+namespace Bash.Common.Models
 {
     [DataContract]
     public class BashData : ViewModelBase

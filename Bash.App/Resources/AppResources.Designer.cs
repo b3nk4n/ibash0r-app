@@ -97,6 +97,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die backup favorites in onedrive ähnelt.
+        /// </summary>
+        public static string AppBarBackup {
+            get {
+                return ResourceManager.GetString("AppBarBackup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die jump to... ähnelt.
         /// </summary>
         public static string AppBarJumpTo {
@@ -138,6 +147,15 @@ namespace Bash.App.Resources {
         public static string AppBarRemoveFromFavorites {
             get {
                 return ResourceManager.GetString("AppBarRemoveFromFavorites", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die set as lock screen ähnelt.
+        /// </summary>
+        public static string AppBarSetLockScreen {
+            get {
+                return ResourceManager.GetString("AppBarSetLockScreen", resourceCulture);
             }
         }
         

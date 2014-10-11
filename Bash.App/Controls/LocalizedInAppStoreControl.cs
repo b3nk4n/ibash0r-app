@@ -1,4 +1,5 @@
 ﻿using Bash.App.Resources;
+using Bash.Common;
 using PhoneKit.Framework.Controls;
 using System;
 using System.Collections.Generic;

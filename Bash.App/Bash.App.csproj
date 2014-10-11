@@ -93,8 +93,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AppConstants.cs" />
     <Compile Include="Controls\BackupControlViewModel.cs" />
+    <Compile Include="Controls\LockQuoteControl.xaml.cs">
+      <DependentUpon>LockQuoteControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MyInAppStoreControlBase.xaml.cs">
       <DependentUpon>MyInAppStoreControlBase.xaml</DependentUpon>
     </Compile>
@@ -112,12 +114,6 @@
     <Compile Include="Conversion\IndexToVisibilityConverter.cs" />
     <Compile Include="Conversion\IntToColorConverter.cs" />
     <Compile Include="Conversion\PositivePlusConverter.cs" />
-    <Compile Include="Data\BashClient.cs" />
-    <Compile Include="Data\CachedBashClient.cs" />
-    <Compile Include="Data\FavoriteManager.cs" />
-    <Compile Include="Data\IBashClient.cs" />
-    <Compile Include="Data\ICachedBashClient.cs" />
-    <Compile Include="Data\IFavoriteManager.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
@@ -156,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\LockQuoteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\MyInAppStoreControlBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

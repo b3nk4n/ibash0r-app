@@ -1,4 +1,4 @@
-﻿using Bash.App.Data;
+﻿using Bash.Common.Data;
 using Bash.App.ViewModels;
 using Ninject.Modules;
 using System;

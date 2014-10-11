@@ -6,7 +6,7 @@ using System.Windows;
 using PhoneKit.Framework.Core.MVVM;
 using System.Windows.Input;
 
-namespace Bash.App.Models
+namespace Bash.Common.Models
 {
     public class BashQuoteItem
     {

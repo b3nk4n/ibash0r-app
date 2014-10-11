@@ -2,10 +2,11 @@
 using Microsoft.Phone.Controls;
 using Bash.App.ViewModels;
 using Ninject;
-using Bash.App.Data;
+using Bash.Common.Data;
 using System;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using Bash.Common;
 
 namespace Bash.App.Pages
 {

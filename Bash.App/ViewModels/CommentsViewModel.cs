@@ -1,5 +1,5 @@
-﻿using Bash.App.Data;
-using Bash.App.Models;
+﻿using Bash.Common.Data;
+using Bash.Common.Models;
 using PhoneKit.Framework.Core.MVVM;
 using System;
 using System.Collections.Generic;

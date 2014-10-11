@@ -1,4 +1,4 @@
-﻿using Bash.App.Data;
+﻿using Bash.Common.Data;
 using Bash.App.Resources;
 using PhoneKit.Framework.Controls;
 using PhoneKit.Framework.Storage;

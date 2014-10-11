@@ -425,4 +425,12 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>hilfe</value>
     <comment>AppBar</comment>
   </data>
+  <data name="AppBarBackup" xml:space="preserve">
+    <value>favoriten in onedrive sichern</value>
+    <comment>ApPBar</comment>
+  </data>
+  <data name="AppBarSetLockScreen" xml:space="preserve">
+    <value>als lockscreen festlegen</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

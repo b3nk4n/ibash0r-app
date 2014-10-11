@@ -15,5 +15,9 @@ namespace Bash.App.ViewModels
         NavigationService NavigationService { set; }
 
         ICommand SearchCommand { get; }
+
+        ICommand SetLockScreenCommand { get; }
+
+        ICommand BackupCommand { get; }
     }
 }

@@ -424,4 +424,12 @@ Add your most favorite bash quotes to your favorites...</value>
     <value>about</value>
     <comment>AppBar</comment>
   </data>
+  <data name="AppBarBackup" xml:space="preserve">
+    <value>backup favorites in onedrive</value>
+    <comment>ApPBar</comment>
+  </data>
+  <data name="AppBarSetLockScreen" xml:space="preserve">
+    <value>set as lock screen</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

@@ -10,7 +10,7 @@ using Bash.App.Resources;
 using Ninject;
 using Bash.App.Modules;
 using PhoneKit.Framework.Support;
-using Bash.App.Data;
+using Bash.Common.Data;
 
 namespace Bash.App
 {

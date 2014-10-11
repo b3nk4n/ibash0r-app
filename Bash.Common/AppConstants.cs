@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Bash.App
+namespace Bash.Common
 {
     /// <summary>
     /// Gloabal application constants

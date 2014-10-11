@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace Bash.App.Models
+namespace Bash.Common.Models
 {
     [DataContract]
     public class BashComment

@@ -8,8 +8,8 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Bash.App.Resources;
-using Bash.App.Data;
-using Bash.App.Models;
+using Bash.Common.Data;
+using Bash.Common.Models;
 using Newtonsoft.Json;
 using PhoneKit.Framework.Support;
 using Bash.App.ViewModels;
@@ -100,32 +100,6 @@ namespace Bash.App.Pages
         {
             TextBox txtbox = sender as TextBox;
             _mainViewModel.SearchTerm = txtbox.Text;
-        }
-
-        private void LockscreenClicked(object sender, EventArgs e)
-        {
-            if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
-            {
-                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
-            }
-            else
-            {
-                // to it as a command, so the button gets inactive when the app already is the lockscreen app.
-            }
-        }
-
-        private void BackupClicked(object sender, EventArgs e)
-        {
-#if !DEBUG
-            if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
-            {
-                NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
-            }
-            else
-#endif
-            {
-                NavigationService.Navigate(new Uri("/Pages/BackupPage.xaml", UriKind.Relative));
-            }
         }
     }
 }
