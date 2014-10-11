@@ -320,4 +320,16 @@ Zitate</value>
     <value>Schau mal diesen genialen Bash an:</value>
     <comment>Share</comment>
   </data>
+  <data name="PageNumberHint" xml:space="preserve">
+    <value>Seitenzahl</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="SearchTermHint" xml:space="preserve">
+    <value>Suchbegriff</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="AppBarJumpTo" xml:space="preserve">
+    <value>springe zu...</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

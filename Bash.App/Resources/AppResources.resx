@@ -319,4 +319,16 @@ quotes</value>
     <value>Comments</value>
     <comment>CommentsPage</comment>
   </data>
+  <data name="PageNumberHint" xml:space="preserve">
+    <value>Page number</value>
+    <comment>CategoryPage</comment>
+  </data>
+  <data name="SearchTermHint" xml:space="preserve">
+    <value>Search term</value>
+    <comment>MainPage</comment>
+  </data>
+  <data name="AppBarJumpTo" xml:space="preserve">
+    <value>jump to...</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

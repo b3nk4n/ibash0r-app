@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 using PhoneKit.Framework.Support;
 using Bash.App.ViewModels;
 using Ninject;
+using System.Windows.Input;
+using System.Windows.Data;
 
 namespace Bash.App.Pages
 {
@@ -80,6 +82,23 @@ namespace Bash.App.Pages
                 var animationId = int.Parse(tag.Split(';')[0]);
                 TurnstileFeatherEffect.SetFeatheringIndex(tile,animationId);
             }
+        }
+
+        private void SearchKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (_mainViewModel.SearchCommand.CanExecute(null))
+                {
+                    _mainViewModel.SearchCommand.Execute(null);
+                }
+            }
+        }
+
+        private void SearchTextChangedEvent(object sender, TextChangedEventArgs e)
+        {
+            TextBox txtbox = sender as TextBox;
+            _mainViewModel.SearchTerm = txtbox.Text;
         }
     }
 }

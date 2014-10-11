@@ -40,8 +40,11 @@ namespace Bash.App.ViewModels
         private DelegateCommand _shareClipboardCommand;
         private DelegateCommand _shareLinkCommand;
         private DelegateCommand _shareContentCommand;
+        private DelegateCommand _jumpToCommand;
 
         private bool _isBusy;
+
+        private string _jumpPageNumber;
 
         private readonly StoredObject<List<int>> _storedRatings = new StoredObject<List<int>>("__storedRating", new List<int>());
 
@@ -218,10 +221,8 @@ namespace Bash.App.ViewModels
 
             _shareClipboardCommand = new DelegateCommand(() =>
             {
-                if (MessageBox.Show(AppResources.MessageBoxInfoWhatsapp, AppResources.MessageBoxInfoTitle, MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                {
-                    Clipboard.SetText(CurrentBashData.QuoteString);
-                }
+                Clipboard.SetText(CurrentBashData.QuoteString);
+                MessageBox.Show(AppResources.MessageBoxInfoClipboard, AppResources.MessageBoxInfoTitle, MessageBoxButton.OK);
             },
             () =>
             {
@@ -234,6 +235,19 @@ namespace Bash.App.ViewModels
                 {
                     Clipboard.SetText(CurrentBashData.QuoteString);
                     await Windows.System.Launcher.LaunchUriAsync(new Uri("whatsapp:"));
+                }
+            },
+            () =>
+            {
+                return CurrentBashData != null;
+            });
+
+            _jumpToCommand = new DelegateCommand(() =>
+            {
+                int number = 0;
+                if (int.TryParse(JumpPageNumber, out number))
+                {
+                    CurrentBashDataIndex = (int)Math.Min((int)Math.Max(number, 1), BashCount) - 1;
                 }
             },
             () =>
@@ -325,6 +339,20 @@ namespace Bash.App.ViewModels
             }
         }
 
+        public string JumpPageNumber
+        {
+            get { return _jumpPageNumber; }
+            set
+            {
+                if (value != _jumpPageNumber)
+                {
+                    _jumpPageNumber = value;
+                    NotifyPropertyChanged("JumpPageNumber");
+                    _jumpToCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
         private bool CanPrevious
         {
             get { return BashCollection != null && CurrentBashDataIndex > 0; }
@@ -399,6 +427,11 @@ namespace Bash.App.ViewModels
         public ICommand ShareContentCommand
         {
             get { return _shareContentCommand; }
+        }
+
+        public ICommand JumpToCommand
+        {
+            get { return _jumpToCommand; }
         }
 
         #endregion

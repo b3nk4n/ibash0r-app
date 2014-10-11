@@ -88,6 +88,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die jump to... ähnelt.
+        /// </summary>
+        public static string AppBarJumpTo {
+            get {
+                return ResourceManager.GetString("AppBarJumpTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die reload ähnelt.
         /// </summary>
         public static string AppBarRefresh {
@@ -391,6 +400,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Page number ähnelt.
+        /// </summary>
+        public static string PageNumberHint {
+            get {
+                return ResourceManager.GetString("PageNumberHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die privacy info ähnelt.
         /// </summary>
         public static string PrivacyInfo {
@@ -472,6 +490,15 @@ namespace Bash.App.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Search term ähnelt.
+        /// </summary>
+        public static string SearchTermHint {
+            get {
+                return ResourceManager.GetString("SearchTermHint", resourceCulture);
             }
         }
         

@@ -131,21 +131,38 @@ namespace Bash.App.Pages
 
         private void ShareClicked(object sender, EventArgs e)
         {
-            //var shareTask = new ShareLinkTask();
-            //shareTask.LinkUri = new Uri("http://www.google.de");
-            //shareTask.Message = "test";
-            //shareTask.Title = "Share title";
-            //shareTask.Show();
-
-            //var shareTask = new ShareStatusTask();
-            //shareTask.Status = "Das ist mein Status";
-            //shareTask.Show();
             ShowShareBar.Begin();
+        }
+
+        private void JumpToClicked(object sender, EventArgs e)
+        {
+            ShowJumpBar.Begin();
         }
 
         private void ContentPanelTapped(object sender, System.Windows.Input.GestureEventArgs e)
         {
             HideShareBar.Begin();
+            HideJumpBar.Begin();
+        }
+
+        private void JumpToTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            HideJumpBar.Begin();
+        }
+
+        private void JumpToLostFocus(object sender, System.Windows.RoutedEventArgs e)
+        {
+            HideJumpBar.Begin();
+        }
+
+        private void AppBarStateChanged(object sender, ApplicationBarStateChangedEventArgs e)
+        {
+            if (e.IsMenuVisible)
+            {
+                HideJumpBar.Begin();
+                HideShareBar.Begin();
+            }
+
         }
     }
 }

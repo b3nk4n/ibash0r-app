@@ -32,6 +32,8 @@ namespace Bash.App.ViewModels
 
         int BashCount { get; }
 
+        string JumpPageNumber { get; set; }
+
         ICommand NextCommand { get; }
 
         ICommand PreviousCommand { get; }
@@ -53,5 +55,7 @@ namespace Bash.App.ViewModels
         ICommand ShareLinkCommand { get; }
 
         ICommand ShareContentCommand { get; }
+
+        ICommand JumpToCommand { get; }
     }
 }

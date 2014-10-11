@@ -119,6 +119,50 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
 
+        <Storyboard x:Name="ShowJumpBar">
+            <DoubleAnimation Duration="0:0:0.7" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="JumpContainer" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="phoneTextBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Name="HideJumpBar">
+            <DoubleAnimation Duration="0:0:0.7" To="200" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="JumpContainer" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="phoneTextBox">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:0.2" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="200">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
     </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
@@ -292,16 +336,37 @@
             </StackPanel>
         </Grid>
 
+        <Grid x:Name="JumpContainer" Grid.Row="1" Height="92" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5"
+              DataContext="{Binding ElementName=RootElement, Path=DataContext}">
+            <Grid.RenderTransform>
+                <CompositeTransform TranslateY="400"/>
+            </Grid.RenderTransform>
+            <StackPanel Orientation="Horizontal" Margin="16,0,16,0" VerticalAlignment="Center">
+                <toolkit:PhoneTextBox x:Name="phoneTextBox" Hint="{Binding Path=LocalizedResources.PageNumberHint, Source={StaticResource LocalizedStrings}}" InputScope="Number" Text="{Binding JumpPageNumber, Mode=TwoWay}" Width="386" Style="{StaticResource CustomPhoneTextBoxStyle}" RenderTransformOrigin="0.5,0.5" LostFocus="JumpToLostFocus" >
+                    <toolkit:PhoneTextBox.RenderTransform>
+                        <CompositeTransform/>
+                    </toolkit:PhoneTextBox.RenderTransform>
+                </toolkit:PhoneTextBox>
+                <Button x:Name="button" Command="{Binding JumpToCommand}" Template="{StaticResource RoundButtonTemplate}" Background="{StaticResource ThemeBrushBlue}" Width="72" Height="72" Margin="-8" RenderTransformOrigin="0.5,0.5" Tap="JumpToTapped">
+                    <Button.RenderTransform>
+                        <CompositeTransform/>
+                    </Button.RenderTransform>
+                    <Path Width="39" Height="28" Stretch="Fill" Fill="White" Data="F1 M 19.0002,34L 19.0002,42L 43.7502,42L 33.7502,52L 44.2502,52L 58.2502,38L 44.2502,24L 33.7502,24L 43.7502,34L 19.0002,34 Z "/>
+                </Button>
+            </StackPanel>
+        </Grid>
+
         <ProgressBar IsIndeterminate="true" Foreground="{StaticResource ThemeBrushGray}" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
                      VerticalAlignment="Top"/>
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
+        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}" StateChanged="AppBarStateChanged">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_refresh"/>
                 <shell:ApplicationBarMenuItem Text="id_comments"/>
                 <shell:ApplicationBarMenuItem Text="id_share" Click="ShareClicked"/>
+                <shell:ApplicationBarMenuItem Text="id_jump" Click="JumpToClicked"/>
             </shell:ApplicationBar.MenuItems>
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/back.png" Text="id_prev"  Click="ScrollUpHander"/>
             <!--<shell:ApplicationBarIconButton IconUri="/Assets/AppBar/minus.png" Text="id_neg"/>
@@ -326,6 +391,7 @@
         <abu:AppBarItemCommand Type="Button" Id="id_pos" Text="gefällt mir" Command="{Binding RatePositiveCommand}"/>-->
         <abu:AppBarItemCommand Type="MenuItem" Id="id_refresh" Text="{Binding Path=LocalizedResources.AppBarRefresh, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_comments" Text="{Binding Path=LocalizedResources.AppBarShowComments, Source={StaticResource LocalizedStrings}}" Command="{Binding ShowCommentsCommand}" />
+        <abu:AppBarItemCommand Type="MenuItem" Id="id_jump" Text="{Binding Path=LocalizedResources.AppBarJumpTo, Source={StaticResource LocalizedStrings}}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_share" Text="{Binding Path=LocalizedResources.AppBarShare, Source={StaticResource LocalizedStrings}}" />
     </i:Interaction.Behaviors>
 
