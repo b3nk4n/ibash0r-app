@@ -158,6 +158,10 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/questionmark.png" Text="id_about"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="als lockscreen festlegen" Click="LockscreenClicked"/>
+                <shell:ApplicationBarMenuItem Text="favoriten in onedrive sichern" Click="BackupClicked"/>
+            </shell:ApplicationBar.MenuItems>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

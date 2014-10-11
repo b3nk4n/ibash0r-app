@@ -178,6 +178,33 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Attention: ähnelt.
+        /// </summary>
+        public static string AttentionTitle {
+            get {
+                return ResourceManager.GetString("AttentionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can create a backup of your favorites, which are going to be saved on you OneDrive. You can later restore the data on any device. ähnelt.
+        /// </summary>
+        public static string BackupInfoText {
+            get {
+                return ResourceManager.GetString("BackupInfoText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OneDrive backup ähnelt.
+        /// </summary>
+        public static string BackupTitle {
+            get {
+                return ResourceManager.GetString("BackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Best quotes ähnelt.
         /// </summary>
         public static string CategoryBestQuotes {
@@ -272,6 +299,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Keep this app active until the operation is finished. A stable internet connection is required. ähnelt.
+        /// </summary>
+        public static string CommonBackupWarningText {
+            get {
+                return ResourceManager.GetString("CommonBackupWarningText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Contributors ähnelt.
         /// </summary>
         public static string Contributors {
@@ -295,6 +331,15 @@ namespace Bash.App.Resources {
         public static string Copy {
             get {
                 return ResourceManager.GetString("Copy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die create ähnelt.
+        /// </summary>
+        public static string CreateBackupHeaderText {
+            get {
+                return ResourceManager.GetString("CreateBackupHeaderText", resourceCulture);
             }
         }
         
@@ -373,6 +418,78 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die loading... ähnelt.
+        /// </summary>
+        public static string InAppStoreLoading {
+            get {
+                return ResourceManager.GetString("InAppStoreLoading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There are currently no in-app purchases available. Please try again later. ähnelt.
+        /// </summary>
+        public static string InAppStoreNoProducts {
+            get {
+                return ResourceManager.GetString("InAppStoreNoProducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die purchased ähnelt.
+        /// </summary>
+        public static string InAppStorePurchased {
+            get {
+                return ResourceManager.GetString("InAppStorePurchased", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die In-App Store ähnelt.
+        /// </summary>
+        public static string InAppStoreTitle {
+            get {
+                return ResourceManager.GetString("InAppStoreTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die sign in ähnelt.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die sign out ähnelt.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Backup &apos;{0}&apos; could not be created. Please check you internet connection. ähnelt.
+        /// </summary>
+        public static string MessageBoxBackupErrorText {
+            get {
+                return ResourceManager.GetString("MessageBoxBackupErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Backup &apos;{0}&apos; has been created successfully. ähnelt.
+        /// </summary>
+        public static string MessageBoxBackupSuccessText {
+            get {
+                return ResourceManager.GetString("MessageBoxBackupSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die The content is copied to the clipboard. ähnelt.
         /// </summary>
         public static string MessageBoxInfoClipboard {
@@ -400,11 +517,47 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Backup &apos;{0}&apos; could ne be restored. Please check you internet connection. ähnelt.
+        /// </summary>
+        public static string MessageBoxRestoreErrorText {
+            get {
+                return ResourceManager.GetString("MessageBoxRestoreErrorText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Backup &apos;{0}&apos; has been restored successfully. ähnelt.
+        /// </summary>
+        public static string MessageBoxRestoreSuccessText {
+            get {
+                return ResourceManager.GetString("MessageBoxRestoreSuccessText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Warning ähnelt.
+        /// </summary>
+        public static string MessageBoxWarningTitle {
+            get {
+                return ResourceManager.GetString("MessageBoxWarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die more apps ähnelt.
         /// </summary>
         public static string MoreApps {
             get {
                 return ResourceManager.GetString("MoreApps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Backup title ähnelt.
+        /// </summary>
+        public static string NameOfBackupHintText {
+            get {
+                return ResourceManager.GetString("NameOfBackupHintText", resourceCulture);
             }
         }
         
@@ -499,6 +652,24 @@ namespace Bash.App.Resources {
         public static string ResourceLanguage {
             get {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die restore ähnelt.
+        /// </summary>
+        public static string RestoreBackupHeaderText {
+            get {
+                return ResourceManager.GetString("RestoreBackupHeaderText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can restore your favorites here. Current notes and tiles are going to be removed. ähnelt.
+        /// </summary>
+        public static string RestoreInfoText {
+            get {
+                return ResourceManager.GetString("RestoreInfoText", resourceCulture);
             }
         }
         

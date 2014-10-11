@@ -94,8 +94,17 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppConstants.cs" />
+    <Compile Include="Controls\BackupControlViewModel.cs" />
+    <Compile Include="Controls\MyInAppStoreControlBase.xaml.cs">
+      <DependentUpon>MyInAppStoreControlBase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\LocalizedAboutControl.cs" />
+    <Compile Include="Controls\LocalizedBackupControl.cs" />
     <Compile Include="Controls\LocalizedFeedbackDialogControl.cs" />
+    <Compile Include="Controls\LocalizedInAppStoreControl.cs" />
+    <Compile Include="Controls\MyBackupControlBase.xaml.cs">
+      <DependentUpon>MyBackupControlBase.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ThemedAboutControlBase.xaml.cs">
       <DependentUpon>ThemedAboutControlBase.xaml</DependentUpon>
     </Compile>
@@ -114,11 +123,17 @@
     <Compile Include="Pages\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\BackupPage.xaml.cs">
+      <DependentUpon>BackupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CategoryPage.xaml.cs">
       <DependentUpon>CategoryPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\CommentsPage.xaml.cs">
       <DependentUpon>CommentsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InAppStorePage.xaml.cs">
+      <DependentUpon>InAppStorePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -141,6 +156,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Controls\MyInAppStoreControlBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\MyBackupControlBase.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\ThemedAboutControlBase.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -149,11 +172,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\BackupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\CategoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\CommentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\InAppStorePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +247,7 @@
       <HintPath>..\packages\BugSense.WP8.3.6.8.0\lib\wp8\BugSense-WP8.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
+    <Reference Include="Microsoft.Live, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Phone.Controls.Toolkit">
       <HintPath>..\..\PhoneKit.Framework\Libs\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>

@@ -336,4 +336,80 @@ Zitate</value>
     <value>kopieren</value>
     <comment>General</comment>
   </data>
+  <data name="InAppStoreLoading" xml:space="preserve">
+    <value>lade...</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreNoProducts" xml:space="preserve">
+    <value>Aktuell gibt es keine In-App-Käufe. Versuchen Sie es später noch einmal.</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStorePurchased" xml:space="preserve">
+    <value>gekauft</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="InAppStoreTitle" xml:space="preserve">
+    <value>Erweiterungen</value>
+    <comment>InAppStorePage</comment>
+  </data>
+  <data name="AttentionTitle" xml:space="preserve">
+    <value>Achtung:</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="BackupInfoText" xml:space="preserve">
+    <value>Sie können eine Sicherung ihrer Favoriten erstellen, welche auf ihrem OneDrive gespeichert werden. Die Daten können auf einem beliebigen Gerät wiederherstellt werden.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="BackupTitle" xml:space="preserve">
+    <value>OneDrive Sicherungen</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="CommonBackupWarningText" xml:space="preserve">
+    <value>Lassen Sie die App aktiv, bis der Vorgang abgeschlossen ist. Es wird eine Internetverbindung benötigt.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="CreateBackupHeaderText" xml:space="preserve">
+    <value>erstellen</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>anmelden</value>
+    <comment>General</comment>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>abmelden</value>
+    <comment>General</comment>
+  </data>
+  <data name="MessageBoxBackupErrorText" xml:space="preserve">
+    <value>Die Sicherung '{0}' konnte leider nicht erstellt werden. Bitte prüfen Sie ihre Internetverbindung.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="MessageBoxBackupSuccessText" xml:space="preserve">
+    <value>Die Sicherung '{0}' wurde erfolgreich erstellt.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="MessageBoxRestoreErrorText" xml:space="preserve">
+    <value>Die Sicherung '{0}' konnte leider nicht wiederhergestellt werden. Bitte prüfen Sie ihre Internetverbindung.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="MessageBoxRestoreSuccessText" xml:space="preserve">
+    <value>Die Sicherung '{0}' wurde erfolgreich wiederhergestellt.</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="MessageBoxWarningTitle" xml:space="preserve">
+    <value>Warnung</value>
+    <comment>MessageBox</comment>
+  </data>
+  <data name="NameOfBackupHintText" xml:space="preserve">
+    <value>Sicherungsname</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="RestoreBackupHeaderText" xml:space="preserve">
+    <value>wiederherstellen</value>
+    <comment>Backup</comment>
+  </data>
+  <data name="RestoreInfoText" xml:space="preserve">
+    <value>Sie können Ihre erstellten Sicherungen hier wiederherstellen. Vorhandene Notizen werden überschrieben und erstellte Kacheln entfernt.</value>
+    <comment>Backup</comment>
+  </data>
 </root>
