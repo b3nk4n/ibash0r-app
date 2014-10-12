@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace Bash.App.Conversion
+namespace Bash.Common.Conversion
 {
     /// <summary>
     /// The value converer to convert a index to a margin thickness for the speech bubbles.

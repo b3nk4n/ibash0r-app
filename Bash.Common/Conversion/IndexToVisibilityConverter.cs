@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 
-namespace Bash.App.Conversion
+namespace Bash.Common.Conversion
 {
     /// <summary>
     /// Value converter to convert quote indexes with a visibility for the speech bubble pointers.

@@ -17,6 +17,8 @@ namespace Bash.Common.Models
 
         private static readonly string[] CUTSOM_SEPERATORS = { "---- 1 Stunde später ----" };
 
+        private List<BashQuoteItem> _cachedQuoteItems;
+
         public BashData()
         {
         }
@@ -61,6 +63,9 @@ namespace Bash.Common.Models
         {
             get
             {
+                if (_cachedQuoteItems != null)
+                    return _cachedQuoteItems;
+
                 var result = new List<BashQuoteItem>();
                 var persons = new Dictionary<string, int>();
 
@@ -73,13 +78,13 @@ namespace Bash.Common.Models
                     string text;
                     int nameOpen = conversationPart.IndexOf('<');
                     int nameClose = conversationPart.IndexOf('>');
+                    int heightScore;
 
                     if (nameOpen != -1 && nameClose != -1)
                     {
                         nick = conversationPart.Substring(nameOpen + 1, nameClose - nameOpen - 1);
                         text = conversationPart.Substring(nameClose + 1, conversationPart.Length - nameClose - 1).Trim();
 
-                        // person index (-1 == SEVER!!!)
                         if (persons.ContainsKey(nick))
                         {
                             personIndex = persons[nick];
@@ -89,19 +94,22 @@ namespace Bash.Common.Models
                             personIndex = persons.Count;
                             persons.Add(nick, personIndex);
                         }
+                        heightScore = 3;
                     }
                     else if (IsServerText(conversationPart))
                     {
                         nick = "server";
                         personIndex = -1;
                         text = TrimServerText(conversationPart);
-                        
+                        heightScore = 2;
                     }
                     else // belongs to the quote before
                     {
                         if (result.Count > 0)
                         {
-                            result[result.Count - 1].Text += '\n' + conversationPart;
+                            var itemBefore = result[result.Count - 1];
+                            itemBefore.Text += '\n' + conversationPart;
+                            itemBefore.HeightScore++;
                         }
                         continue;
                     }
@@ -111,12 +119,26 @@ namespace Bash.Common.Models
                         Nick = nick,
                         PersonIndex = personIndex,
                         Text = text,
-                        IndexPosition = result.Count
+                        IndexPosition = result.Count,
+                        HeightScore = heightScore
                     });
                 }
 
+                _cachedQuoteItems = result;
                 return result;
             }
+        }
+
+        public int GuessHeightScore()
+        {
+            int heightScore = 0;
+
+            foreach (var item in QuoteItems)
+            {
+                heightScore += item.HeightScore;
+            }
+
+            return heightScore;
         }
 
         private string TrimServerText(string text)

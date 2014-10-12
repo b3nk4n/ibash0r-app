@@ -1,4 +1,4 @@
-﻿<ViewModels:CategoryViewModel xmlns:ViewModels="clr-namespace:Bash.App.ViewModels" xmlns:Models="clr-namespace:Bash.App.Models;assembly=Bash.Common" IsCurrentBashFavorite="True" IsBusy="True">
+﻿<ViewModels:CategoryViewModel xmlns:ViewModels="clr-namespace:Bash.App.ViewModels" xmlns:Models="clr-namespace:Bash.Common.Models;assembly=Bash.Common" IsCurrentBashFavorite="True" IsBusy="True">
 	<ViewModels:CategoryViewModel.CurrentBashData>
 		<Models:BashData Id="123456" Rating="1500" Timestamp="12.06.2014">
 			<Models:BashData.QuoteItems>

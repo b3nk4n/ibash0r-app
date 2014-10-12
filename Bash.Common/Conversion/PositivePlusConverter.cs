@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace Bash.App.Conversion
+namespace Bash.Common.Conversion
 {
     /// <summary>
     /// Prepends a PLUS before a positive number.

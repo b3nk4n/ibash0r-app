@@ -1,4 +1,5 @@
-﻿using Bash.App.Controls;
+﻿using Bash.Common.Controls;
+using Bash.Common.Data;
 using PhoneKit.Framework.Core.Graphics;
 using PhoneKit.Framework.Core.LockScreen;
 using PhoneKit.Framework.Core.MVVM;
@@ -12,6 +13,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using Ninject;
+using Bash.Common;
 
 namespace Bash.App.ViewModels
 {
@@ -27,6 +30,8 @@ namespace Bash.App.ViewModels
         private DelegateCommand _setLockScreenCommand;
         private DelegateCommand _backupCommand;
 
+        private ICachedBashClient _bashClient;
+
         #endregion
 
         #region Constructors
@@ -34,6 +39,7 @@ namespace Bash.App.ViewModels
         public MainViewModel()
         {
             InitializeCommands();
+            _bashClient = App.Injector.Get<ICachedBashClient>();
         }
 
         #endregion
@@ -107,7 +113,9 @@ namespace Bash.App.ViewModels
         /// </summary>
         private StoredObject<string> _nextLockScreenExtension = new StoredObject<string>("__nextLockScreenExtension", "A");
 
-        private void UpdateLockScreen()
+        private Random random = new Random();
+
+        private async void UpdateLockScreen()
         {
             if (!LockScreenHelper.HasAccess())
                 return;
@@ -116,10 +124,28 @@ namespace Bash.App.ViewModels
             Uri lockUri;
 
             // get data
+            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
+            if (data == null || data.Contents.Data.Count == 0)
+                return;
 
+            // find quote
+            int index = -1;
+            for (int retry = 0; retry < 15; retry++)
+            {
+                int i = random.Next(data.Contents.Data.Count);
+
+                if (data.Contents.Data[i].GuessHeightScore() < 14)
+                {
+                    index = i;
+                    break;
+                }
+            }
+
+            if (index == -1)
+                return;
 
             // render image
-            lockGfx = GraphicsHelper.Create(new LockQuoteControl());
+            lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[index]));
 
             // save lock image
             var nextExtension = _nextLockScreenExtension.Value;

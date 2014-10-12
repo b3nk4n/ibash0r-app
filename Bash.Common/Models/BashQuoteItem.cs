@@ -39,5 +39,7 @@ namespace Bash.Common.Models
         {
             get { return _copyPartToClipboardCommand; }
         }
+
+        public int HeightScore { get; set; }
     }
 }

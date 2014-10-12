@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace Bash.App.Conversion
+namespace Bash.Common.Conversion
 {
     /// <summary>
     /// The converter to get different colors for speech bubbles.
