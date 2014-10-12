@@ -433,4 +433,12 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>als lockscreen festlegen</value>
     <comment>AppBar</comment>
   </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>weiter</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>zurück</value>
+    <comment>AppBar</comment>
+  </data>
 </root>

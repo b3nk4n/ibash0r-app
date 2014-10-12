@@ -46,10 +46,10 @@ namespace Bash.App.Helpers
                     return;
 
                 // render image
-                lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[index]));
+                lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[1]));
 
                 // save lock image
-                var nextExtension = DateTime.Now.Minute % 7;
+                var nextExtension = DateTime.Now.Millisecond % 7;
                 lockUri = StorageHelper.SaveJpeg(string.Format("/lockquote_{0}.jpg", nextExtension), lockGfx);
 
                 // set lockscreen image

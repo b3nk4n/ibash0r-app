@@ -12,6 +12,8 @@ using Bash.App.Modules;
 using PhoneKit.Framework.Support;
 using Bash.Common.Data;
 using Bash.App.ViewModels;
+using BugSense;
+using BugSense.Core.Model;
 
 namespace Bash.App
 {

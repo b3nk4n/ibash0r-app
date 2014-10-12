@@ -59,8 +59,6 @@ namespace Bash.App.Pages
                 };
         }
 
-        private const string KEY_CURRENT_INDEX = "current_index";
-
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -109,11 +107,7 @@ namespace Bash.App.Pages
 
             if (!e.IsNavigationInitiator)
             {
-                if (PhoneStateHelper.ValueExists(KEY_CURRENT_INDEX))
-                {
-                      var index = PhoneStateHelper.LoadValue<int>(KEY_CURRENT_INDEX);
-                      _categoryViewModel.CurrentBashDataIndex = Math.Min(index, _categoryViewModel.BashCount - 1);
-                }
+                _categoryViewModel.RestoreState();
             }
 
             if (!success)
@@ -126,7 +120,7 @@ namespace Bash.App.Pages
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            PhoneStateHelper.SaveValue(KEY_CURRENT_INDEX, _categoryViewModel.CurrentBashDataIndex);
+            _categoryViewModel.SaveState();
 
             // ensure favorites are saved (for my favorites page)
             _favoriteManager.SaveData();

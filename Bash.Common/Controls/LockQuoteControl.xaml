@@ -14,12 +14,12 @@
         <Grid Margin="12,64,12,0">
             <ItemsControl x:Name="QuoteItems" />
         </Grid>
-        <Rectangle Fill="Black" Margin="0,560,0,0">
+        <Rectangle Fill="Black" Margin="0,686,0,0">
             <Rectangle.OpacityMask>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0, 1">
                     <GradientStop Offset="0"    Color="#00FFFFFF" />
                     <GradientStop Offset="0.05" Color="#09FFFFFF" />
-                    <GradientStop Offset="0.25" Color="#FFFFFFFF" />
+                    <GradientStop Offset="0.20" Color="#FFFFFFFF" />
                 </LinearGradientBrush>
             </Rectangle.OpacityMask>
         </Rectangle>

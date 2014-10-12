@@ -40,6 +40,10 @@ namespace Bash.App.ViewModels
 
         bool IsDataFreshlyLoaded { get; }
 
+        void SaveState();
+
+        void RestoreState();
+
         CategoryState CategoryState { get; set; }
 
         ICommand NextCommand { get; }

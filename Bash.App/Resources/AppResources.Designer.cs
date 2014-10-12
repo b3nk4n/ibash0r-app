@@ -79,7 +79,7 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die add to favorites ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die like ähnelt.
         /// </summary>
         public static string AppBarAddFav {
             get {
@@ -115,11 +115,29 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die next ähnelt.
+        /// </summary>
+        public static string AppBarNext {
+            get {
+                return ResourceManager.GetString("AppBarNext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die open in web browser ähnelt.
         /// </summary>
         public static string AppBarOpenInBrowser {
             get {
                 return ResourceManager.GetString("AppBarOpenInBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die previous ähnelt.
+        /// </summary>
+        public static string AppBarPrevious {
+            get {
+                return ResourceManager.GetString("AppBarPrevious", resourceCulture);
             }
         }
         
@@ -133,7 +151,7 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die remove from favorites ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die dislike ähnelt.
         /// </summary>
         public static string AppBarRemoveFav {
             get {

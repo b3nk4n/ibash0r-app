@@ -292,7 +292,7 @@ quotes</value>
     <comment>MessageBox</comment>
   </data>
   <data name="AppBarAddFav" xml:space="preserve">
-    <value>add to favorites</value>
+    <value>like</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarRefresh" xml:space="preserve">
@@ -300,7 +300,7 @@ quotes</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarRemoveFav" xml:space="preserve">
-    <value>remove from favorites</value>
+    <value>dislike</value>
     <comment>AppBar</comment>
   </data>
   <data name="AppBarShare" xml:space="preserve">
@@ -430,6 +430,14 @@ Add your most favorite bash quotes to your favorites...</value>
   </data>
   <data name="AppBarSetLockScreen" xml:space="preserve">
     <value>set as lock screen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarNext" xml:space="preserve">
+    <value>next</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="AppBarPrevious" xml:space="preserve">
+    <value>previous</value>
     <comment>AppBar</comment>
   </data>
 </root>
