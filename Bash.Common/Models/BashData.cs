@@ -157,10 +157,23 @@ namespace Bash.Common.Models
 
         private bool IsServerText(string text)
         {
-            return (text.StartsWith("*") && (text.Contains("was banned from the server") || text.Contains("is back from") || text.Contains("was kicked by") || text.Contains("Quits: ") || text.Contains("Joins: ") || text.Contains("has joined") || text.Contains("has quit (") || text.Contains("changed nick to")) ||
+            return (text.StartsWith("*") && 
+                    (text.Contains("was banned from the server") || 
+                    text.Contains("is back from") || 
+                    text.Contains("was kicked by") || 
+                    text.Contains("Quits: ") || 
+                    text.Contains("Joins: ") || 
+                    text.Contains("has joined") || text.Contains("has quit (") || 
+                    text.Contains("changed nick to") || 
+                    text.Contains("wirft seine Tastatur ausm Fenster") || 
+                    text.Contains("is now known as") ||
+                    text.Contains("Parts: ") ||
+                    text.Contains("sets mode: ") ||
+                    text.Contains("is away -")) ||
                 (text.StartsWith("<--") || (text.StartsWith("-->")) && (text.Contains("has quit (") || text.Contains(") has joined"))) ||
                 text.Contains("has quit IRC") ||
-                text.Equals("---- 1 Stunde später ----"));
+                text.Equals("---- 1 Stunde später ----") ||
+                text.Equals("- etwa einen Tag später -"));
         }
 
         public override bool Equals(object obj)
