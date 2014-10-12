@@ -11,6 +11,7 @@ using Ninject;
 using Bash.App.Modules;
 using PhoneKit.Framework.Support;
 using Bash.Common.Data;
+using Bash.App.ViewModels;
 
 namespace Bash.App
 {
@@ -28,6 +29,8 @@ namespace Bash.App
         public static IKernel Injector { get; private set; }
 
         private IFavoriteManager _favoriteManager;
+
+        private IMainViewModel _mainViewModel;
 
         /// <summary>
         /// Konstruktor für das Application-Objekt.
@@ -73,6 +76,7 @@ namespace Bash.App
 
             Injector = new StandardKernel(new MainModule());
             _favoriteManager = Injector.Get<IFavoriteManager>();
+            _mainViewModel = Injector.Get<IMainViewModel>();
         }
 
         // Code, der beim Starten der Anwendung ausgeführt werden soll (z. B. über "Start")
@@ -99,9 +103,11 @@ namespace Bash.App
 
         // Code, der beim Schließen der Anwendung ausgeführt wird (z. B. wenn der Benutzer auf "Zurück" klickt)
         // Dieser Code wird beim Deaktivieren der Anwendung nicht ausgeführt
-        private void Application_Closing(object sender, ClosingEventArgs e)
+        private async void Application_Closing(object sender, ClosingEventArgs e)
         {
             _favoriteManager.SaveData();
+            await _mainViewModel.UpdateLockScreenAsync();
+            _mainViewModel.UpdateBackgroundTask();
         }
 
         // Code, der bei einem Navigationsfehler ausgeführt wird

@@ -43,5 +43,8 @@ namespace Bash.Common
         public static readonly Color SERVER_COLOR = Color.FromArgb(255, 229, 36, 22); // #e52416
 
         public const string IAP_AWESOME_EDITION = "awesome_edition";
+
+        public const string BACKGROUND_TASK_NAME = "Bash.BackgroundTask";
+        public const string BACKGROUND_TASK_DESC = "Aktualisiert deinen Sperrbildschirm in regelmäßigen Zeitabständen.";
     }
 }

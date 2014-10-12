@@ -15,6 +15,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Ninject;
 using Bash.Common;
+using PhoneKit.Framework.Tasks;
+using Microsoft.Phone.Scheduler;
+using Bash.App.Helpers;
 
 namespace Bash.App.ViewModels
 {
@@ -31,6 +34,8 @@ namespace Bash.App.ViewModels
         private DelegateCommand _backupCommand;
 
         private ICachedBashClient _bashClient;
+
+        private bool _isBusy;
 
         #endregion
 
@@ -79,8 +84,12 @@ namespace Bash.App.ViewModels
                     {
                         if (await LockScreenHelper.VerifyAccessAsync())
                         {
-                            UpdateLockScreen();
+                            
                         }
+
+                        IsBusy = true;
+                        UpdateBackgroundTask();
+                        IsBusy = false;
                     }
                     _setLockScreenCommand.RaiseCanExecuteChanged();
                 }
@@ -107,53 +116,24 @@ namespace Bash.App.ViewModels
             });
         }
 
-        /// <summary>
-        /// The persistent name of the next lockscreen image to toggle from A to B,
-        /// which is required for lockscreen image update.
-        /// </summary>
-        private StoredObject<string> _nextLockScreenExtension = new StoredObject<string>("__nextLockScreenExtension", "A");
+        public async Task UpdateLockScreenAsync()
+        {
+            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
+            BashLockscreenHelper.UpdateAsync(data);
+            return;
+        }
 
-        private Random random = new Random();
-
-        private async void UpdateLockScreen()
+        public void UpdateBackgroundTask()
         {
             if (!LockScreenHelper.HasAccess())
                 return;
 
-            WriteableBitmap lockGfx;
-            Uri lockUri;
-
-            // get data
-            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
-            if (data == null || data.Contents.Data.Count == 0)
-                return;
-
-            // find quote
-            int index = -1;
-            for (int retry = 0; retry < 15; retry++)
+            var task = new PeriodicTask(AppConstants.BACKGROUND_TASK_NAME)
             {
-                int i = random.Next(data.Contents.Data.Count);
+                Description = AppConstants.BACKGROUND_TASK_DESC
+            };
 
-                if (data.Contents.Data[i].GuessHeightScore() < 14)
-                {
-                    index = i;
-                    break;
-                }
-            }
-
-            if (index == -1)
-                return;
-
-            // render image
-            lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[index]));
-
-            // save lock image
-            var nextExtension = _nextLockScreenExtension.Value;
-            lockUri = StorageHelper.SaveJpeg(string.Format("/lockquote_{0}.jpg", nextExtension), lockGfx);
-            _nextLockScreenExtension.Value = (nextExtension == "A") ? "B" : "A";
-
-            // set lockscreen image
-            LockScreenHelper.SetLockScreenImage(lockUri, true);
+            BackgroundTaskHelper.StartTask(task);
         }
 
         #endregion
@@ -186,6 +166,19 @@ namespace Bash.App.ViewModels
         {
             set { _navigationService = value; }
             private get { return _navigationService; }
+        }
+
+        public bool IsBusy
+        {
+            get { return _isBusy; }
+            set
+            {
+                if (_isBusy != value)
+                {
+                    _isBusy = value;
+                    NotifyPropertyChanged("IsBusy");
+                }
+            }
         }
 
         public ICommand SearchCommand

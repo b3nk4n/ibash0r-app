@@ -266,6 +266,10 @@
       <Project>{9274ed00-223e-41d1-a1bc-e7cdd8c8d34d}</Project>
       <Name>PhoneKit.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Bash.BackgroundTask\Bash.BackgroundTask.csproj">
+      <Project>{b5d3b0e0-dfee-4df5-912e-ff426c8400bb}</Project>
+      <Name>Bash.BackgroundTask</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bash.Common\Bash.Common.csproj">
       <Project>{87467d9d-8f9d-43bc-9e46-dbafa8fc9886}</Project>
       <Name>Bash.Common</Name>

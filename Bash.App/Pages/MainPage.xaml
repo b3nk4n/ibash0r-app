@@ -8,6 +8,7 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:local="clr-namespace:Bash.App.Controls"
+    xmlns:conv="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
     xmlns:abu="clr-namespace:AppBarUtils;assembly=AppBarUtils"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="Bash.App.Pages.MainPage"
@@ -15,8 +16,11 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait">
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    x:Name="RootElement">
 	<phone:PhoneApplicationPage.Resources>
+        
+        <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
         <Storyboard x:Name="StartupAnimation">
             <DoubleAnimation Duration="0:0:0.66"  BeginTime="0:0:0.45" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="phoneTextBox" d:IsOptimized="True">
@@ -150,6 +154,9 @@
                 </Grid>
             </StackPanel>	
 		</Grid>
+
+        <ProgressBar IsIndeterminate="true" Foreground="{StaticResource ThemeBrushGray}" DataContext="{Binding ElementName=RootElement, Path=DataContext}" Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                     VerticalAlignment="Top"/>
 
         <!-- Feedback dialog -->
         <local:LocalizedFeedbackDialogControl Grid.RowSpan="2" EnableAnimation="True" />

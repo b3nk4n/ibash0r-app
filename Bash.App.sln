@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.Common", "Bash.Common\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.Tests", "Bash.Tests\Bash.Tests.csproj", "{FF560B46-97DA-457F-906F-49AFCFBA0335}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.BackgroundTask", "Bash.BackgroundTask\Bash.BackgroundTask.csproj", "{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -109,6 +111,22 @@ Global
 		{FF560B46-97DA-457F-906F-49AFCFBA0335}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{FF560B46-97DA-457F-906F-49AFCFBA0335}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{FF560B46-97DA-457F-906F-49AFCFBA0335}.Release|x86.ActiveCfg = Release|Any CPU
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|ARM.ActiveCfg = Debug|ARM
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|ARM.Build.0 = Debug|ARM
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|x86.ActiveCfg = Debug|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Debug|x86.Build.0 = Debug|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|ARM.ActiveCfg = Release|ARM
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|ARM.Build.0 = Release|ARM
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|x86.ActiveCfg = Release|x86
+		{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

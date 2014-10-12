@@ -5,19 +5,20 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{87467D9D-8F9D-43BC-9E46-DBAFA8FC9886}</ProjectGuid>
+    <ProjectGuid>{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Bash.App</RootNamespace>
-    <AssemblyName>Bash.Common</AssemblyName>
+    <RootNamespace>Bash.BackgroundTask</RootNamespace>
+    <AssemblyName>Bash.BackgroundTask</AssemblyName>
     <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <ValidateXaml>true</ValidateXaml>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <BackgroundAgentType>AgentLibrary</BackgroundAgentType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,67 +84,22 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AppConstants.cs" />
-    <Compile Include="Controls\LockQuoteControl.xaml.cs">
-      <DependentUpon>LockQuoteControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Conversion\IndexToThicknessConverter.cs" />
-    <Compile Include="Conversion\IndexToVisibilityConverter.cs" />
-    <Compile Include="Conversion\IntToColorConverter.cs" />
-    <Compile Include="Conversion\PositivePlusConverter.cs" />
-    <Compile Include="Data\BashClient.cs" />
-    <Compile Include="Data\CachedBashClient.cs" />
-    <Compile Include="Data\FavoriteManager.cs" />
-    <Compile Include="Data\IBashClient.cs" />
-    <Compile Include="Data\ICachedBashClient.cs" />
-    <Compile Include="Data\IFavoriteManager.cs" />
-    <Compile Include="Models\BashCollection.cs" />
-    <Compile Include="Models\BashComment.cs" />
-    <Compile Include="Models\BashComments.cs" />
-    <Compile Include="Models\BashData.cs" />
-    <Compile Include="Models\BashDatas.cs" />
-    <Compile Include="Models\BashQuoteItem.cs" />
-    <Compile Include="Models\BashStatistic.cs" />
+    <Compile Include="ScheduledAgent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Helpers\BashLockscreenHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\PhoneKit.Framework\PhoneKit.Framework.Core\PhoneKit.Framework.Core.csproj">
       <Project>{0028ac27-312b-4f73-b8f2-c3b8d9740a86}</Project>
       <Name>PhoneKit.Framework.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="Controls\LockQuoteControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <ProjectReference Include="..\Bash.Common\Bash.Common.csproj">
+      <Project>{87467d9d-8f9d-43bc-9e46-dbafa8fc9886}</Project>
+      <Name>Bash.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

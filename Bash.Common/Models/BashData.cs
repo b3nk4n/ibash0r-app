@@ -19,6 +19,8 @@ namespace Bash.Common.Models
 
         private List<BashQuoteItem> _cachedQuoteItems;
 
+        private const double LINE_LENGTH = 52.0;
+
         public BashData()
         {
         }
@@ -94,7 +96,7 @@ namespace Bash.Common.Models
                             personIndex = persons.Count;
                             persons.Add(nick, personIndex);
                         }
-                        heightScore = 3;
+                        heightScore = 1 + (int)Math.Ceiling(text.Length / LINE_LENGTH);
                     }
                     else if (IsServerText(conversationPart))
                     {
@@ -109,7 +111,7 @@ namespace Bash.Common.Models
                         {
                             var itemBefore = result[result.Count - 1];
                             itemBefore.Text += '\n' + conversationPart;
-                            itemBefore.HeightScore++;
+                            itemBefore.HeightScore += (int)Math.Ceiling(conversationPart.Length / LINE_LENGTH);
                         }
                         continue;
                     }
