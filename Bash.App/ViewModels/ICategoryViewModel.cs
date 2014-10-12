@@ -24,6 +24,8 @@ namespace Bash.App.ViewModels
 
         BashData CurrentBashData { get; }
 
+        int CurrentBashDataIndex { get; set; }
+
         NavigationService NavigationService { set; }
 
         bool IsCurrentBashFavorite { get; }

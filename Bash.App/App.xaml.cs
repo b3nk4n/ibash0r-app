@@ -28,8 +28,6 @@ namespace Bash.App
         /// </summary>
         public static IKernel Injector { get; private set; }
 
-        private IFavoriteManager _favoriteManager;
-
         private IMainViewModel _mainViewModel;
 
         /// <summary>
@@ -75,7 +73,6 @@ namespace Bash.App
             }
 
             Injector = new StandardKernel(new MainModule());
-            _favoriteManager = Injector.Get<IFavoriteManager>();
             _mainViewModel = Injector.Get<IMainViewModel>();
         }
 
@@ -98,14 +95,12 @@ namespace Bash.App
         // Dieser Code wird beim Schließen der Anwendung nicht ausgeführt
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
-            _favoriteManager.SaveData();
         }
 
         // Code, der beim Schließen der Anwendung ausgeführt wird (z. B. wenn der Benutzer auf "Zurück" klickt)
         // Dieser Code wird beim Deaktivieren der Anwendung nicht ausgeführt
         private async void Application_Closing(object sender, ClosingEventArgs e)
         {
-            _favoriteManager.SaveData();
             await _mainViewModel.UpdateLockScreenAsync();
             _mainViewModel.UpdateBackgroundTask();
         }

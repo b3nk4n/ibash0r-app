@@ -10,19 +10,22 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using Microsoft.Phone.Tasks;
 using Bash.Common;
+using PhoneKit.Framework.Storage;
 
 namespace Bash.App.Pages
 {
     public partial class CategoryPage : PhoneApplicationPage
     {
-        private const int SWIPE_LIMIT = 1250;
+        private const int SWIPE_LIMIT = 1000;
 
         private ICategoryViewModel _categoryViewModel;
+        private IFavoriteManager _favoriteManager;
 
         public CategoryPage()
         {
             InitializeComponent();
             _categoryViewModel = App.Injector.Get<ICategoryViewModel>();
+            _favoriteManager = App.Injector.Get<IFavoriteManager>();
 
             QuotesScroller.ManipulationCompleted += (s, e) =>
             {
@@ -55,6 +58,8 @@ namespace Bash.App.Pages
                     phoneTextBox.Text = string.Empty;
                 };
         }
+
+        private const string KEY_CURRENT_INDEX = "current_index";
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -102,10 +107,29 @@ namespace Bash.App.Pages
                 throw new ArgumentException("Paremeters required.");
             }
 
+            if (!e.IsNavigationInitiator)
+            {
+                if (PhoneStateHelper.ValueExists(KEY_CURRENT_INDEX))
+                {
+                      var index = PhoneStateHelper.LoadValue<int>(KEY_CURRENT_INDEX);
+                      _categoryViewModel.CurrentBashDataIndex = Math.Min(index, _categoryViewModel.BashCount - 1);
+                }
+            }
+
             if (!success)
             {
                 // TODO: handle error?
             }
+
+            ShowBashInfoBar.Begin();
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            PhoneStateHelper.SaveValue(KEY_CURRENT_INDEX, _categoryViewModel.CurrentBashDataIndex);
+
+            // ensure favorites are saved (for my favorites page)
+            _favoriteManager.SaveData();
         }
 
         private void QuoteItemLoaded(object sender, System.Windows.RoutedEventArgs e)

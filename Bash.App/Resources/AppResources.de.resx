@@ -409,7 +409,7 @@ Zitate</value>
     <comment>Backup</comment>
   </data>
   <data name="RestoreInfoText" xml:space="preserve">
-    <value>Sie können Ihre erstellten Sicherungen hier wiederherstellen. Vorhandene Notizen werden überschrieben und erstellte Kacheln entfernt.</value>
+    <value>Sie können Ihre erstellten Sicherungen hier wiederherstellen. Bestehende Favoriten werden überschrieben.</value>
     <comment>Backup</comment>
   </data>
   <data name="AppBarOpenInBrowser" xml:space="preserve">

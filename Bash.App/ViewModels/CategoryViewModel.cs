@@ -387,7 +387,7 @@ namespace Bash.App.ViewModels
 
         public int CurrentBashDataIndex
         {
-            private get { return _currentBashDataIndex; }
+            get { return _currentBashDataIndex; }
             set // sample data only
             {
                 _currentBashDataIndex = value;

@@ -711,7 +711,7 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die You can restore your favorites here. Current notes and tiles are going to be removed. ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die You can restore your favorites here. Current favorites are going to be overwritten. ähnelt.
         /// </summary>
         public static string RestoreInfoText {
             get {

@@ -54,10 +54,7 @@ namespace Bash.App.Pages
 
             StartupActionManager.Instance.Fire(e);
 
-            if (e.NavigationMode == NavigationMode.New)
-            {
-                StartupAnimation.Begin();
-            }
+            StartupAnimation.Begin();
         }
 
         private void TileTapped(object sender, System.Windows.Input.GestureEventArgs e)

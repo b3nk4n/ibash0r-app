@@ -65,7 +65,7 @@
         <ScrollViewer Margin="12,0,12,0" VerticalScrollBarVisibility="Hidden" >
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Border Margin="12">
+                    <Border Margin="12" Background="{StaticResource ThemeBrushBlue}">
                         <Image x:Name="ApplicationIconElement" Width="99" Height="99" />
                     </Border>
                     <StackPanel VerticalAlignment="Center">

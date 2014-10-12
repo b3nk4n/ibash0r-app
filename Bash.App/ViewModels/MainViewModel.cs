@@ -84,7 +84,7 @@ namespace Bash.App.ViewModels
                     {
                         if (await LockScreenHelper.VerifyAccessAsync())
                         {
-                            
+                            await UpdateLockScreenAsync();
                         }
 
                         IsBusy = true;

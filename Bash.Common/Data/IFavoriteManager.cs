@@ -13,7 +13,7 @@ namespace Bash.Common.Data
 
         void RemoveFromFavorites(BashData bashData);
 
-        BashCollection GetData();
+        BashCollection GetData(bool forceReload = false);
 
         void SaveData();
 

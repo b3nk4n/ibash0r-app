@@ -142,7 +142,7 @@
         </Storyboard>
 
         <Storyboard x:Name="HideJumpBar">
-            <DoubleAnimation Duration="0:0:0.7" To="200" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="JumpContainer" d:IsOptimized="True">
+            <DoubleAnimation Duration="0:0:0.7" To="400" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="JumpContainer" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
                 </DoubleAnimation.EasingFunction>
@@ -162,6 +162,17 @@
                 </EasingDoubleKeyFrame>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        
+        <Storyboard x:Name="ShowBashInfoBar">
+            <DoubleAnimationUsingKeyFrames BeginTime="0:0:1" Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.LocalOffsetY)" Storyboard.TargetName="grid">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="-100"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.66" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
 
     </phone:PhoneApplicationPage.Resources>
 
@@ -172,39 +183,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <StackPanel>
-            <Grid Grid.Row="0" Background="{StaticResource ThemeBrushBlue}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <!-- row0 -->
-                <TextBlock x:Name="PageTitle" Text="Title" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
-                <!-- row1 -->
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Template="{StaticResource RoundButtonTemplate}" Width="52" Height="52" Background="{StaticResource ThemeBrushGray}"
-                            Command="{Binding RateNegativeCommand}">
-                        <Path Width="22" Height="24" Stretch="Fill" Margin="0,0,0,2" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 22.1667,50.6667L 42.75,50.6667L 42.75,55.4167L 22.1667,55.4167L 22.1667,50.6667 Z M 27.4442,32.1942C 29.0275,31.6667 29.9034,32.0635 30.2694,31.4088C 30.6353,30.7542 31.1527,30.0924 31.8217,29.4234C 32.4907,28.7545 33.2997,28.0712 34.2488,27.3737L 37.4392,25.281C 38.2626,24.7836 39.0173,24.1818 39.7034,23.4757C 40.3895,22.7696 40.997,22.042 41.5259,21.293C 42.0548,20.544 42.4936,19.8121 42.8424,19.0974L 43.5799,17.2707C 43.8429,16.3044 44.2117,15.5983 44.6863,15.1523C 45.1608,14.7063 45.6297,14.4833 46.0928,14.4833C 46.5388,14.4833 46.9276,14.662 47.2592,15.0194C 47.5908,15.3767 47.7738,15.8784 47.8081,16.5245L 47.8338,17.0048L 47.8338,17.4851C 47.8338,18.6629 47.7095,19.8064 47.4607,20.9156C 47.212,22.0248 46.8361,22.9082 46.3329,23.5657L 45.411,24.9208L 44.4633,26.4388L 43.3912,28.1798L 48.5628,28.7116L 50.7069,28.9431L 52.821,29.1833L 54.7249,29.4105L 56.2301,29.6035C 56.636,29.655 56.9605,29.908 57.2035,30.3625C 57.4465,30.8171 57.568,31.3302 57.568,31.902L 57.4865,32.7082L 57.1906,33.4886L 56.9248,34.0204L 56.5345,34.8137L 56.1443,35.6327L 55.9042,36.2502L 55.7455,36.9964L 55.5826,38.0813L 55.4196,39.2091L 55.261,40.0238L 54.8193,41.1645L 54.2318,42.0779L 53.6272,42.854L 53.1426,43.5916L 52.7695,44.6079L 52.5165,45.4655L 52.2335,46.2546L 51.8047,47.0479L 51.5131,47.451L 50.5825,48.7503L 49.6048,49.8738C 49.2646,50.2026 48.8987,50.4656 48.5071,50.6628C 48.1154,50.8601 47.6766,50.9587 47.1906,50.9587L 46.4702,50.9587L 44.3333,50.9587L 44.3333,49.0833L 26.9615,49.0833L 27.4442,32.1942 Z M 19,50.9587L 19,32.1942L 25.4323,32.164L 25.4323,49.0833L 20.5833,49.0833L 20.5833,50.9587L 19,50.9587 Z "/>
-                    </Button>
-                    <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding Rating, Converter={StaticResource PositivePlusConverter}}" VerticalAlignment="Center" MinWidth="86" TextAlignment="Center" Style="{StaticResource ThemeTextNormalStyle}" Margin="0" />
-                    <Button  Template="{StaticResource RoundButtonTemplate}" Width="52" Height="52" Background="{StaticResource ThemeBrushGray}"
-                            Command="{Binding RatePositiveCommand}">
-                        <Path Width="22" Height="28" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 30.0833,42.75L 34.8333,42.75L 34.8333,50.6667L 42.75,50.6667L 42.75,55.4167L 34.8333,55.4167L 34.8333,63.3333L 30.0833,63.3333L 30.0833,55.4167L 22.1667,55.4167L 22.1667,50.6667L 30.0833,50.6667L 30.0833,42.75 Z M 27.4442,32.1942C 29.0275,31.6667 29.9034,32.0635 30.2694,31.4088C 30.6353,30.7542 31.1527,30.0924 31.8217,29.4234C 32.4907,28.7545 33.2997,28.0712 34.2488,27.3736L 37.4392,25.281C 38.2626,24.7836 39.0173,24.1818 39.7034,23.4757C 40.3895,22.7696 40.997,22.042 41.5259,21.293C 42.0548,20.544 42.4936,19.8121 42.8424,19.0974L 43.5799,17.2707C 43.8429,16.3044 44.2117,15.5983 44.6863,15.1523C 45.1608,14.7063 45.6297,14.4833 46.0928,14.4833C 46.5388,14.4833 46.9276,14.662 47.2592,15.0194C 47.5908,15.3767 47.7738,15.8784 47.8081,16.5245L 47.8338,17.0048L 47.8338,17.4851C 47.8338,18.6629 47.7095,19.8064 47.4607,20.9156C 47.212,22.0248 46.8361,22.9082 46.3329,23.5657L 45.411,24.9208L 44.4633,26.4388L 43.3912,28.1798L 48.5628,28.7116L 50.7069,28.9431L 52.821,29.1833L 54.7249,29.4105L 56.2301,29.6035C 56.636,29.655 56.9605,29.908 57.2035,30.3625C 57.4465,30.8171 57.568,31.3302 57.568,31.902L 57.4865,32.7082L 57.1907,33.4886L 56.9248,34.0203L 56.5346,34.8137L 56.1443,35.6327L 55.9042,36.2502L 55.7455,36.9964L 55.5826,38.0813L 55.4196,39.2091L 55.261,40.0238L 54.8193,41.1645L 54.2318,42.0779L 53.6272,42.854L 53.1426,43.5916L 52.7695,44.6079L 52.5165,45.4655L 52.2335,46.2546L 51.8047,47.0479L 51.5131,47.451L 50.5826,48.7503L 49.6048,49.8738C 49.2646,50.2026 48.8987,50.4656 48.5071,50.6628C 48.1154,50.8601 47.6766,50.9587 47.1906,50.9587L 46.4702,50.9587L 44.3333,50.9587L 44.3333,49.0833L 36.4167,49.0833L 36.4167,41.1667L 28.5,41.1667L 28.5,49.0833L 26.9616,49.0833L 27.4442,32.1942 Z M 19,50.9587L 19,32.1942L 25.4323,32.164L 25.4323,49.0833L 20.5833,49.0833L 20.5833,50.9587L 19,50.9587 Z "/>
-                    </Button>
-                </StackPanel>
-            </Grid>
-
-        </StackPanel>
-
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Tap="HideBarsTapHandler">
             <Grid.RowDefinitions>
                 <RowDefinition Height="28" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid
+            <Grid x:Name="grid"
                   Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=!}">
+            	<Grid.Projection>
+            		<PlaneProjection LocalOffsetY="-100"/>
+            	</Grid.Projection>
                 <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding ShortTimestamp}" HorizontalAlignment="Right"  Style="{StaticResource ThemeTextSubtleStyle}"/>
 
                 <TextBlock HorizontalAlignment="Center" Style="{StaticResource ThemeTextSubtleStyle}">
@@ -315,9 +304,33 @@
             </ScrollViewer>
         </Grid>
 
+        <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
+        <StackPanel>
+            <Grid Grid.Row="0" Background="{StaticResource ThemeBrushBlue}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <!-- row0 -->
+                <TextBlock x:Name="PageTitle" Text="Title" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
+                <!-- row1 -->
+                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Template="{StaticResource RoundButtonTemplate}" Width="52" Height="52" Background="{StaticResource ThemeBrushGray}"
+                            Command="{Binding RateNegativeCommand}">
+                        <Path Width="22" Height="24" Stretch="Fill" Margin="0,0,0,2" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 22.1667,50.6667L 42.75,50.6667L 42.75,55.4167L 22.1667,55.4167L 22.1667,50.6667 Z M 27.4442,32.1942C 29.0275,31.6667 29.9034,32.0635 30.2694,31.4088C 30.6353,30.7542 31.1527,30.0924 31.8217,29.4234C 32.4907,28.7545 33.2997,28.0712 34.2488,27.3737L 37.4392,25.281C 38.2626,24.7836 39.0173,24.1818 39.7034,23.4757C 40.3895,22.7696 40.997,22.042 41.5259,21.293C 42.0548,20.544 42.4936,19.8121 42.8424,19.0974L 43.5799,17.2707C 43.8429,16.3044 44.2117,15.5983 44.6863,15.1523C 45.1608,14.7063 45.6297,14.4833 46.0928,14.4833C 46.5388,14.4833 46.9276,14.662 47.2592,15.0194C 47.5908,15.3767 47.7738,15.8784 47.8081,16.5245L 47.8338,17.0048L 47.8338,17.4851C 47.8338,18.6629 47.7095,19.8064 47.4607,20.9156C 47.212,22.0248 46.8361,22.9082 46.3329,23.5657L 45.411,24.9208L 44.4633,26.4388L 43.3912,28.1798L 48.5628,28.7116L 50.7069,28.9431L 52.821,29.1833L 54.7249,29.4105L 56.2301,29.6035C 56.636,29.655 56.9605,29.908 57.2035,30.3625C 57.4465,30.8171 57.568,31.3302 57.568,31.902L 57.4865,32.7082L 57.1906,33.4886L 56.9248,34.0204L 56.5345,34.8137L 56.1443,35.6327L 55.9042,36.2502L 55.7455,36.9964L 55.5826,38.0813L 55.4196,39.2091L 55.261,40.0238L 54.8193,41.1645L 54.2318,42.0779L 53.6272,42.854L 53.1426,43.5916L 52.7695,44.6079L 52.5165,45.4655L 52.2335,46.2546L 51.8047,47.0479L 51.5131,47.451L 50.5825,48.7503L 49.6048,49.8738C 49.2646,50.2026 48.8987,50.4656 48.5071,50.6628C 48.1154,50.8601 47.6766,50.9587 47.1906,50.9587L 46.4702,50.9587L 44.3333,50.9587L 44.3333,49.0833L 26.9615,49.0833L 27.4442,32.1942 Z M 19,50.9587L 19,32.1942L 25.4323,32.164L 25.4323,49.0833L 20.5833,49.0833L 20.5833,50.9587L 19,50.9587 Z "/>
+                    </Button>
+                    <TextBlock DataContext="{Binding CurrentBashData}" Text="{Binding Rating, Converter={StaticResource PositivePlusConverter}}" VerticalAlignment="Center" MinWidth="86" TextAlignment="Center" Style="{StaticResource ThemeTextNormalStyle}" Margin="0" />
+                    <Button  Template="{StaticResource RoundButtonTemplate}" Width="52" Height="52" Background="{StaticResource ThemeBrushGray}"
+                            Command="{Binding RatePositiveCommand}">
+                        <Path Width="22" Height="28" Stretch="Fill" Fill="{StaticResource ThemeBrushBlue}" Data="F1 M 30.0833,42.75L 34.8333,42.75L 34.8333,50.6667L 42.75,50.6667L 42.75,55.4167L 34.8333,55.4167L 34.8333,63.3333L 30.0833,63.3333L 30.0833,55.4167L 22.1667,55.4167L 22.1667,50.6667L 30.0833,50.6667L 30.0833,42.75 Z M 27.4442,32.1942C 29.0275,31.6667 29.9034,32.0635 30.2694,31.4088C 30.6353,30.7542 31.1527,30.0924 31.8217,29.4234C 32.4907,28.7545 33.2997,28.0712 34.2488,27.3736L 37.4392,25.281C 38.2626,24.7836 39.0173,24.1818 39.7034,23.4757C 40.3895,22.7696 40.997,22.042 41.5259,21.293C 42.0548,20.544 42.4936,19.8121 42.8424,19.0974L 43.5799,17.2707C 43.8429,16.3044 44.2117,15.5983 44.6863,15.1523C 45.1608,14.7063 45.6297,14.4833 46.0928,14.4833C 46.5388,14.4833 46.9276,14.662 47.2592,15.0194C 47.5908,15.3767 47.7738,15.8784 47.8081,16.5245L 47.8338,17.0048L 47.8338,17.4851C 47.8338,18.6629 47.7095,19.8064 47.4607,20.9156C 47.212,22.0248 46.8361,22.9082 46.3329,23.5657L 45.411,24.9208L 44.4633,26.4388L 43.3912,28.1798L 48.5628,28.7116L 50.7069,28.9431L 52.821,29.1833L 54.7249,29.4105L 56.2301,29.6035C 56.636,29.655 56.9605,29.908 57.2035,30.3625C 57.4465,30.8171 57.568,31.3302 57.568,31.902L 57.4865,32.7082L 57.1907,33.4886L 56.9248,34.0203L 56.5346,34.8137L 56.1443,35.6327L 55.9042,36.2502L 55.7455,36.9964L 55.5826,38.0813L 55.4196,39.2091L 55.261,40.0238L 54.8193,41.1645L 54.2318,42.0779L 53.6272,42.854L 53.1426,43.5916L 52.7695,44.6079L 52.5165,45.4655L 52.2335,46.2546L 51.8047,47.0479L 51.5131,47.451L 50.5826,48.7503L 49.6048,49.8738C 49.2646,50.2026 48.8987,50.4656 48.5071,50.6628C 48.1154,50.8601 47.6766,50.9587 47.1906,50.9587L 46.4702,50.9587L 44.3333,50.9587L 44.3333,49.0833L 36.4167,49.0833L 36.4167,41.1667L 28.5,41.1667L 28.5,49.0833L 26.9616,49.0833L 27.4442,32.1942 Z M 19,50.9587L 19,32.1942L 25.4323,32.164L 25.4323,49.0833L 20.5833,49.0833L 20.5833,50.9587L 19,50.9587 Z "/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
         <Grid x:Name="ShareContainer" Grid.Row="1" Height="124" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
         	<Grid.RenderTransform>
-        		<CompositeTransform TranslateY="400"/>
+        		<CompositeTransform TranslateY="600"/>
         	</Grid.RenderTransform>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                 <HyperlinkButton Style="{StaticResource EmptyButtonStyle}" Command="{Binding ShareLinkCommand}" Tap="HideBarsTapHandler">
@@ -353,7 +366,7 @@
 
         <Grid x:Name="JumpContainer" Grid.Row="1" Height="92" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
             <Grid.RenderTransform>
-                <CompositeTransform TranslateY="400"/>
+                <CompositeTransform TranslateY="600"/>
             </Grid.RenderTransform>
             <StackPanel Orientation="Horizontal" Margin="16,0,16,0" VerticalAlignment="Center">
                 <toolkit:PhoneTextBox x:Name="phoneTextBox" Hint="{Binding Path=LocalizedResources.PageNumberHint, Source={StaticResource LocalizedStrings}}" InputScope="Number" Text="{Binding JumpPageNumber, Mode=TwoWay}" Width="386" Style="{StaticResource CustomPhoneTextBoxStyle}" RenderTransformOrigin="0.5,0.5" LostFocus="JumpToLostFocus" >

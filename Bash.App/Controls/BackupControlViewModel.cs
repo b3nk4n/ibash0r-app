@@ -70,7 +70,7 @@ namespace Bash.App.Controls
             if (success)
             {
                 // load new data to memory
-                _favoriteManager.GetData(); // TODO: does this work???
+                _favoriteManager.GetData(true);
 
                 MessageBox.Show(string.Format(AppResources.MessageBoxRestoreSuccessText, backupName), AppResources.MessageBoxInfoTitle, MessageBoxButton.OK);
             }

@@ -51,9 +51,9 @@ namespace Bash.Common.Data
             HasDataChanged = true;
         }
 
-        public BashCollection GetData()
+        public BashCollection GetData(bool forceReload = false)
         {
-            if (_favData == null)
+            if (_favData == null || forceReload)
                 _favData = LoadData();
 
             return _favData;
@@ -73,15 +73,17 @@ namespace Bash.Common.Data
 
                 // save file
                 StorageHelper.SaveAsSerializedFile<BashCollection>(FAV_DATA_FILE, _favData);
+                HasDataChanged = false;
             }
         }
 
         public bool IsFavorite(BashData bashData)
         {
-            if (_favData == null || bashData == null)
+            var favdata = GetData();
+            if (favdata == null || bashData == null)
                 return false;
 
-            var result = _favData.Contents.Data.Contains(bashData);
+            var result = favdata.Contents.Data.Contains(bashData);
 
             if (_markToRemoveList.Contains(bashData.Id))
             {
