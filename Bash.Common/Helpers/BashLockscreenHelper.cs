@@ -46,7 +46,7 @@ namespace Bash.App.Helpers
                     return;
 
                 // render image
-                lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[1]));
+                lockGfx = GraphicsHelper.Create(new LockQuoteControl(data.Contents.Data[index]));
 
                 // save lock image
                 var nextExtension = DateTime.Now.Millisecond % 7;
