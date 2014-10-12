@@ -7,6 +7,7 @@ using System;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using Bash.Common;
+using System.Windows;
 
 namespace Bash.App.Pages
 {
@@ -62,6 +63,15 @@ namespace Bash.App.Pages
                 {
                     grid.Opacity = 1.0;
                 }
+            }
+        }
+
+        private void CopyClicked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem != null)
+            {
+                Clipboard.SetText((string)menuItem.Tag);
             }
         }
     }

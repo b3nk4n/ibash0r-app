@@ -11,6 +11,7 @@ using System.Windows.Media.Animation;
 using Microsoft.Phone.Tasks;
 using Bash.Common;
 using PhoneKit.Framework.Storage;
+using System.Windows;
 
 namespace Bash.App.Pages
 {
@@ -195,6 +196,15 @@ namespace Bash.App.Pages
                 HideShareBar.Begin();
             }
 
+        }
+
+        private void CopyClicked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem != null)
+            {
+                Clipboard.SetText((string)menuItem.Tag);
+            }
         }
     }
 }

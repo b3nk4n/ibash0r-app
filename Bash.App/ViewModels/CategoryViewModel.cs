@@ -105,7 +105,7 @@ namespace Bash.App.ViewModels
 
             if (order == AppConstants.ORDER_VALUE_RANDOM)
             {
-                result.Contents.Data.ShuffleList(); // TODO make sure after a tombstone, the same item is selected?
+                result.Contents.Data.ShuffleList();
             }
 
             BashCollection = result;

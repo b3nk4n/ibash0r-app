@@ -81,7 +81,7 @@
                                 </Grid.RenderTransform>
                                 <toolkit:ContextMenuService.ContextMenu>
                                     <toolkit:ContextMenu>
-                                        <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Copy, Source={StaticResource LocalizedStrings}}" Command="{Binding CopyPartToClipboardCommand}" CommandParameter="{Binding Text}" />
+                                        <toolkit:MenuItem Header="{Binding Path=LocalizedResources.Copy, Source={StaticResource LocalizedStrings}}" Command="{Binding CopyPartToClipboardCommand}" Click="CopyClicked" Tag="{Binding Text}" />
                                     </toolkit:ContextMenu>
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <Border HorizontalAlignment="Left">

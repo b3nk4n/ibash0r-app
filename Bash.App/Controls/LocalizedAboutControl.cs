@@ -32,6 +32,7 @@ namespace Bash.App.Controls
             ContributorsList.Items.Add(new ContributorModel("/Assets/ibash.png", AppResources.ContributorsDescriptionBash));
             ContributorsList.Items.Add(new ContributorModel("/Assets/icon.png", "Laurent Sutterlity (The Noun Project)"));
             ContributorsList.Items.Add(new ContributorModel("/Assets/icon.png", "iconsmind.com (The Noun Project)"));
+            ContributorsList.Items.Add(new ContributorModel("/Assets/icon.png", "Cengiz SARI (The Noun Project)"));
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using PhoneKit.Framework.Core.MVVM;
+﻿using PhoneKit.Framework.Core.MVVM;
 using System.Windows.Input;
 
 namespace Bash.Common.Models
@@ -16,7 +11,8 @@ namespace Bash.Common.Models
         {
             _copyPartToClipboardCommand = new DelegateCommand<string>((param) =>
             {
-                Clipboard.SetText(param);
+                //Clipboard.SetText(param);
+                // moved to click event, because this call is not allowed in a Common project!
             },
             (param) =>
             {

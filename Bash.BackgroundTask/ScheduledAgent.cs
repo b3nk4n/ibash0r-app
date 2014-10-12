@@ -48,7 +48,6 @@ namespace Bash.BackgroundTask
         /// </remarks>
         protected async override void OnInvoke(ScheduledTask task)
         {
-            //TODO: Code zum Ausführen der Aufgabe im Hintergrund hinzufügen
             await UpdateLockScreenAsync();
 
 #if DEBUG

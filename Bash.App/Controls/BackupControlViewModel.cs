@@ -17,7 +17,7 @@ namespace Bash.App.Controls
         private IFavoriteManager _favoriteManager;
 
         public BackupControlViewModel()
-            : base("0000000044119663", AppResources.ApplicationTitle) // TODO: onedrive id !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            : base("000000004412D53A", AppResources.ApplicationTitle)
         {
             _favoriteManager = App.Injector.Get<IFavoriteManager>();
         }
