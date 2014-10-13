@@ -95,7 +95,7 @@ namespace Bash.App.ViewModels
             IsDataFreshlyLoaded = true;
 
             IsBusy = true;
-            var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0, forceReload);
+            var result = await _bashClient.GetQuotesAsync(order, AppConstants.QUOTES_COUNT, 0, CachedBashClient.LIFE_TIME_DAYS_DEFAULT, forceReload);
 
             if (result == null)
             {
@@ -475,7 +475,7 @@ namespace Bash.App.ViewModels
         {
             get
             {
-                if (BashCollection == null || BashCollection.Contents.Data.Count <= CurrentBashDataIndex)
+                if (BashCollection == null || BashCollection.Contents.Data.Count <= CurrentBashDataIndex || CurrentBashDataIndex < 0)
                     return null;
                 return BashCollection.Contents.Data[CurrentBashDataIndex];
             }
@@ -490,11 +490,7 @@ namespace Bash.App.ViewModels
                 {
                     _isBusy = value;
                     NotifyPropertyChanged("IsBusy");
-                    if (!_isBusy)
-                    {
-                        NotifyPropertyChanged("ShowSearchNoResultsInfo");
-                    }
-
+                    NotifyPropertyChanged("ShowSearchNoResultsInfo");
                 }
             }
         }

@@ -18,6 +18,15 @@ namespace Bash.Common.Data
 
         private Dictionary<int, BashComments> _commentsMemoryCache = new Dictionary<int, BashComments>();
 
+        public const double LIFE_TIME_DAYS_LONG = 365.0;
+        public const double LIFE_TIME_DAYS_DEFAULT = 30.0;
+        public const double LIFE_TIME_DAYS_SHORT = 1.0;
+
+        /// <summary>
+        /// The stored deadlines when the quotes cache data is invalid.
+        /// </summary>
+        private StoredObject<Dictionary<string, DateTime>> _quotesCacheDeadlines = new StoredObject<Dictionary<string, DateTime>>("__quotesDeadlines", new Dictionary<string, DateTime>());
+
         public CachedBashClient(IBashClient bashClient)
         {
             _bashClient = bashClient;
@@ -25,31 +34,25 @@ namespace Bash.Common.Data
 
         public Task<BashCollection> GetQuotesAsync(string order, int number, int page)
         {
-            return GetQuotesAsync(order, number, page, false);
+            return GetQuotesAsync(order, number, page, LIFE_TIME_DAYS_DEFAULT, false);
         }
 
-        public async Task<BashCollection> GetQuotesAsync(string order, int number, int page, bool forceReload)
+        public async Task<BashCollection> GetQuotesAsync(string order, int number, int page, double lifeTimeDays, bool forceReload)
         {
             BashCollection result = null;
             string cacheFileName = string.Format(BASH_CACHE_FORMAT, order);
             _lastLoadedOrder = order;
+            DateTime deadline = DateTime.MaxValue;
 
-            //if (forceReload || !StorageHelper.FileExists(cacheFileName))
-            //{
-            //    result = await _bashClient.GetQuotesAsync(order, number, page);
-            //    if (result != null)
-            //    {
-            //        StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, result);
-            //    }
-            //}
-            //else
-            //{
-            //    result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
-            //}
-
-            ///------
             var cacheFileExists = StorageHelper.FileExists(cacheFileName);
-            if (!forceReload && cacheFileExists)
+
+            // check deadline/cache lifetime
+            if (_quotesCacheDeadlines.Value.ContainsKey(order))
+            {
+                deadline = _quotesCacheDeadlines.Value[order];
+            }
+
+            if (!forceReload && cacheFileExists && DateTime.Now < deadline)
             {
                 result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
             }
@@ -60,6 +63,17 @@ namespace Bash.Common.Data
                 if (result != null)
                 {
                     StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, result);
+                    
+                    // update deadline/cache lifetime for the data
+                    var newDeadline = DateTime.Now.AddDays(lifeTimeDays);
+                    if (_quotesCacheDeadlines.Value.ContainsKey(order))
+                    {
+                        _quotesCacheDeadlines.Value[order] = newDeadline;
+                    }
+                    else
+                    {
+                        _quotesCacheDeadlines.Value.Add(order, newDeadline);
+                    }
                 }
             }
 

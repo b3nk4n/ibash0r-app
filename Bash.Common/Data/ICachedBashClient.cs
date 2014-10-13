@@ -9,7 +9,7 @@ namespace Bash.Common.Data
 {
     public interface ICachedBashClient : IBashClient
     {
-        Task<BashCollection> GetQuotesAsync(string order, int number, int page, bool forceReload);
+        Task<BashCollection> GetQuotesAsync(string order, int number, int page, double lifeTimeDays, bool forceReload);
 
         Task<BashComments> GetCommentsAsync(int id, bool foreceReload);
 
