@@ -30,7 +30,7 @@ namespace Bash.App.Helpers
             {
                 // find quote
                 int index = -1;
-                for (int retry = 0; retry < 15; retry++)
+                for (int retry = 0; retry < AppConstants.QUOTES_COUNT_PRELOAD; retry++)
                 {
                     int i = random.Next(data.Contents.Data.Count);
 

@@ -58,7 +58,7 @@ namespace Bash.App.ViewModels
 
         public async Task UpdateLockScreenAsync()
         {
-            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
+            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT_PRELOAD, 0);
             BashLockscreenHelper.UpdateAsync(data);
             return;
         }

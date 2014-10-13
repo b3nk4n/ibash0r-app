@@ -30,21 +30,37 @@ namespace Bash.Common.Data
 
         public async Task<BashCollection> GetQuotesAsync(string order, int number, int page, bool forceReload)
         {
-            BashCollection result;
+            BashCollection result = null;
             string cacheFileName = string.Format(BASH_CACHE_FORMAT, order);
             _lastLoadedOrder = order;
 
-            if (forceReload || !StorageHelper.FileExists(cacheFileName))
+            //if (forceReload || !StorageHelper.FileExists(cacheFileName))
+            //{
+            //    result = await _bashClient.GetQuotesAsync(order, number, page);
+            //    if (result != null)
+            //    {
+            //        StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, result);
+            //    }
+            //}
+            //else
+            //{
+            //    result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
+            //}
+
+            ///------
+            var cacheFileExists = StorageHelper.FileExists(cacheFileName);
+            if (!forceReload && cacheFileExists)
+            {
+                result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
+            }
+            
+            if (result == null || forceReload || !cacheFileExists || (cacheFileExists && result.Contents.Data.Count < number)) // ensure there is at least 'number' of quotes, which could be lower (15), caused by the lockscreen pre-load.
             {
                 result = await _bashClient.GetQuotesAsync(order, number, page);
                 if (result != null)
                 {
                     StorageHelper.SaveAsSerializedFile<BashCollection>(cacheFileName, result);
                 }
-            }
-            else
-            {
-                result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
             }
 
             return result;
