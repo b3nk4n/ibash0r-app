@@ -445,4 +445,8 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>Für den Suchbegriff konnten leider keiner Zitate gefunden werden...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>auf startseite</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

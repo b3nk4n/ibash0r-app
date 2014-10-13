@@ -444,4 +444,8 @@ Add your most favorite bash quotes to your favorites...</value>
     <value>There've been no results for the given search term...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>pin to start</value>
+    <comment>MainPage</comment>
+  </data>
 </root>

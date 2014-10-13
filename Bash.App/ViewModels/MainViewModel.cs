@@ -18,6 +18,10 @@ using Bash.Common;
 using PhoneKit.Framework.Tasks;
 using Microsoft.Phone.Scheduler;
 using Bash.App.Helpers;
+using PhoneKit.Framework.Tile;
+using PhoneKit.Framework.Core.Tile;
+using Microsoft.Phone.Shell;
+using Bash.App.Resources;
 
 namespace Bash.App.ViewModels
 {
@@ -32,6 +36,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _searchCommand;
         private DelegateCommand _setLockScreenCommand;
         private DelegateCommand _backupCommand;
+        private DelegateCommand<string> _pinToStartCommand;
 
         private ICachedBashClient _bashClient;
 
@@ -50,6 +55,26 @@ namespace Bash.App.ViewModels
         #endregion
 
         #region Public Methods
+
+        public async Task UpdateLockScreenAsync()
+        {
+            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
+            BashLockscreenHelper.UpdateAsync(data);
+            return;
+        }
+
+        public void UpdateBackgroundTask()
+        {
+            if (!LockScreenHelper.HasAccess())
+                return;
+
+            var task = new PeriodicTask(AppConstants.BACKGROUND_TASK_NAME)
+            {
+                Description = AppConstants.BACKGROUND_TASK_DESC
+            };
+
+            BackgroundTaskHelper.StartTask(task);
+        }
 
         #endregion
 
@@ -114,26 +139,41 @@ namespace Bash.App.ViewModels
             {
                 return true;
             });
-        }
 
-        public async Task UpdateLockScreenAsync()
-        {
-            var data = await _bashClient.GetQuotesAsync(AppConstants.ORDER_VALUE_RANDOM, AppConstants.QUOTES_COUNT, 0);
-            BashLockscreenHelper.UpdateAsync(data);
-            return;
-        }
-
-        public void UpdateBackgroundTask()
-        {
-            if (!LockScreenHelper.HasAccess())
-                return;
-
-            var task = new PeriodicTask(AppConstants.BACKGROUND_TASK_NAME)
+            _pinToStartCommand = new DelegateCommand<string>((param) =>
             {
-                Description = AppConstants.BACKGROUND_TASK_DESC
-            };
+                string[] splitted = param.Split(';');
 
-            BackgroundTaskHelper.StartTask(task);
+                var tile = new StandardTileData
+                {
+                    Title = AppResources.ApplicationTitle, 
+                    BackgroundImage = new Uri(string.Format("/Assets/{0}.png", splitted[0]), UriKind.Relative),
+                    BackTitle = MapToLocalizedTitleResource(splitted[0]),
+                    BackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+                };
+
+                LiveTilePinningHelper.PinOrUpdateTile(new Uri(splitted[1], UriKind.Relative), tile);
+            }, (param) =>
+            {
+                string[] splitted = param.Split(';');
+                return !LiveTileHelper.TileExists(new Uri(splitted[1], UriKind.Relative));
+            });
+        }
+
+        private string MapToLocalizedTitleResource(string splitted)
+        {
+            switch (splitted)
+            {
+                case AppConstants.ORDER_VALUE_BEST:
+                    return AppResources.CategoryBestQuotes;
+                case AppConstants.ORDER_VALUE_NEW:
+                    return AppResources.CategoryNewQuotes;
+                case AppConstants.ORDER_VALUE_RANDOM:
+                    return AppResources.CategoryRandomQuotes;
+                case AppConstants.PARAM_FAVORITES:
+                    return AppResources.CategoryFavoriteQuotes;
+            }
+            return string.Empty;
         }
 
         #endregion
@@ -194,6 +234,11 @@ namespace Bash.App.ViewModels
         public ICommand BackupCommand
         {
             get { return _backupCommand; }
+        }
+
+        public ICommand PinToStartCommand
+        {
+            get { return _pinToStartCommand; }
         }
 
         #endregion

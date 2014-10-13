@@ -25,5 +25,7 @@ namespace Bash.App.ViewModels
         ICommand SetLockScreenCommand { get; }
 
         ICommand BackupCommand { get; }
+
+        ICommand PinToStartCommand { get; }
     }
 }

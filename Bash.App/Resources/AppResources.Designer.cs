@@ -635,6 +635,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die pin to start ähnelt.
+        /// </summary>
+        public static string PinToStart {
+            get {
+                return ResourceManager.GetString("PinToStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die privacy info ähnelt.
         /// </summary>
         public static string PrivacyInfo {

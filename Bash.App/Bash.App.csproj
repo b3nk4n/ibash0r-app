@@ -202,14 +202,14 @@
     </Content>
     <Content Include="Assets\ibash.png" />
     <Content Include="Assets\icon.png" />
-    <Content Include="Assets\love.png" />
+    <Content Include="Assets\favorites.png" />
     <Content Include="Assets\new.png" />
     <Content Include="Assets\random.png" />
     <Content Include="Assets\shareclip.png" />
     <Content Include="Assets\sharecontent.png" />
     <Content Include="Assets\sharelink.png" />
     <Content Include="Assets\sharewa.png" />
-    <Content Include="Assets\star.png" />
+    <Content Include="Assets\best.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -120,6 +120,11 @@
                     </Grid.RowDefinitions>
 
                     <HyperlinkButton Grid.Row="0" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="2;/Pages/CategoryPage.xaml?order=new" Tap="TileTapped">
+                        <toolkit:ContextMenuService.ContextMenu>
+                            <toolkit:ContextMenu>
+                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="new;/Pages/CategoryPage.xaml?order=new" />
+                            </toolkit:ContextMenu>
+                        </toolkit:ContextMenuService.ContextMenu>
                         <toolkit:HubTile x:Name="hubTile" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryNewQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/new.png" Margin="0,0,7,0" RenderTransformOrigin="0.5,0.5">
                         	<toolkit:HubTile.RenderTransform>
                         		<CompositeTransform TranslateX="-480"/>
@@ -128,7 +133,12 @@
                     </HyperlinkButton>
 
                     <HyperlinkButton Grid.Row="0" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="3;/Pages/CategoryPage.xaml?order=best" Tap="TileTapped">
-                        <toolkit:HubTile x:Name="hubTile1" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryBestQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/star.png" RenderTransformOrigin="0.5,0.5">
+                        <toolkit:ContextMenuService.ContextMenu>
+                            <toolkit:ContextMenu>
+                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="best;/Pages/CategoryPage.xaml?order=best" />
+                            </toolkit:ContextMenu>
+                        </toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:HubTile x:Name="hubTile1" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryBestQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/best.png" RenderTransformOrigin="0.5,0.5">
                         	<toolkit:HubTile.RenderTransform>
                         		<CompositeTransform TranslateX="-480"/>
                         	</toolkit:HubTile.RenderTransform>
@@ -136,6 +146,11 @@
                     </HyperlinkButton>
 
                     <HyperlinkButton Grid.Row="1" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="4;/Pages/CategoryPage.xaml?order=random" Tap="TileTapped">
+                        <toolkit:ContextMenuService.ContextMenu>
+                            <toolkit:ContextMenu>
+                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="random;/Pages/CategoryPage.xaml?order=random" />
+                            </toolkit:ContextMenu>
+                        </toolkit:ContextMenuService.ContextMenu>
                         <toolkit:HubTile x:Name="hubTile2" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryRandomQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/random.png" RenderTransformOrigin="0.5,0.5">
                         	<toolkit:HubTile.RenderTransform>
                         		<CompositeTransform TranslateX="-480"/>
@@ -143,9 +158,13 @@
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left"
-                                      Loaded="TileLoaded"  Tag="5;/Pages/CategoryPage.xaml?favorites=true" Tap="TileTapped">
-                        <toolkit:HubTile x:Name="hubTile3" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryFavoriteQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/love.png" RenderTransformOrigin="0.5,0.5">
+                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="5;/Pages/CategoryPage.xaml?favorites=true" Tap="TileTapped">
+                        <toolkit:ContextMenuService.ContextMenu>
+                            <toolkit:ContextMenu>
+                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="favorites;/Pages/CategoryPage.xaml?favorites=true" />
+                            </toolkit:ContextMenu>
+                        </toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:HubTile x:Name="hubTile3" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryFavoriteQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="/Assets/favorites.png" RenderTransformOrigin="0.5,0.5">
                         	<toolkit:HubTile.RenderTransform>
                         		<CompositeTransform TranslateX="-480"/>
                         	</toolkit:HubTile.RenderTransform>
