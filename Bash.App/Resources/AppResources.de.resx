@@ -441,4 +441,8 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>zurück</value>
     <comment>AppBar</comment>
   </data>
+  <data name="SearchNoResultsInfo" xml:space="preserve">
+    <value>Für den Suchbegriff konnten leider keiner Zitate gefunden werden...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>

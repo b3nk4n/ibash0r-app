@@ -44,6 +44,10 @@ namespace Bash.App.ViewModels
 
         void RestoreState();
 
+        bool ShowFavoritesInfo { get; }
+
+        bool ShowSearchNoResultsInfo { get; }
+
         CategoryState CategoryState { get; set; }
 
         ICommand NextCommand { get; }

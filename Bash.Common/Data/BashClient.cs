@@ -58,7 +58,7 @@ namespace Bash.Common.Data
             // TODO: escape "term" string?
 
             string uriString = String.Format("{0}{1}?{2}={3}&{4}={5}&{6}={7}",
-                BASE_URI, PATH_QUOTES,
+                BASE_URI, PATH_QUERY,
                 AppConstants.PARAM_TERM, term,
                 AppConstants.PARAM_NUMBER, number,
                 AppConstants.PARAM_PAGE, page);

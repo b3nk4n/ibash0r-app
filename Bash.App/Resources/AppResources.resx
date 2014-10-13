@@ -440,4 +440,8 @@ Add your most favorite bash quotes to your favorites...</value>
     <value>previous</value>
     <comment>AppBar</comment>
   </data>
+  <data name="SearchNoResultsInfo" xml:space="preserve">
+    <value>There've been no results for the given search term...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>

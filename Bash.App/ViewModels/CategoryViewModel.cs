@@ -141,12 +141,14 @@ namespace Bash.App.ViewModels
         {
             CategoryState = CategoryState.Search;
             IsDataFreshlyLoaded = true;
+            IsBusy = true;
             var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
                 return false;
 
             BashCollection = result;
+            IsBusy = false;
             return true;
         }
         
@@ -488,6 +490,11 @@ namespace Bash.App.ViewModels
                 {
                     _isBusy = value;
                     NotifyPropertyChanged("IsBusy");
+                    if (!_isBusy)
+                    {
+                        NotifyPropertyChanged("ShowSearchNoResultsInfo");
+                    }
+
                 }
             }
         }
@@ -529,6 +536,16 @@ namespace Bash.App.ViewModels
                 if (_favoriteManager == null || CategoryState != ViewModels.CategoryState.Favorites)
                     return false;
                 return _favoriteManager.GetData().Contents.Data.Count == 0;
+            }
+        }
+
+        public bool ShowSearchNoResultsInfo
+        {
+            get
+            {
+                if (CategoryState != ViewModels.CategoryState.Search)
+                    return false;
+                return BashCount == 0 && !IsBusy;
             }
         }
 

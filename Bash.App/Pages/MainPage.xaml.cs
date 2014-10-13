@@ -54,6 +54,9 @@ namespace Bash.App.Pages
 
             StartupActionManager.Instance.Fire(e);
 
+            // clear the existing search text
+            phoneTextBox.Text = string.Empty;
+
             StartupAnimation.Begin();
         }
 

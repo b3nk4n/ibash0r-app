@@ -738,6 +738,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There&apos;ve been no results for the given search term... ähnelt.
+        /// </summary>
+        public static string SearchNoResultsInfo {
+            get {
+                return ResourceManager.GetString("SearchNoResultsInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Search term ähnelt.
         /// </summary>
         public static string SearchTermHint {
