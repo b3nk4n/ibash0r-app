@@ -184,7 +184,8 @@
         </Grid.RowDefinitions>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Tap="HideBarsTapHandler">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Tap="HideBarsTapHandler"
+               Margin="0,0,0,72">
             <Grid.RowDefinitions>
                 <RowDefinition Height="28" />
                 <RowDefinition Height="*" />
@@ -399,7 +400,8 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}" StateChanged="AppBarStateChanged">
+        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}" StateChanged="AppBarStateChanged"
+                              Opacity="0.99">
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_refresh"/>
                 <shell:ApplicationBarMenuItem Text="id_comments"/>

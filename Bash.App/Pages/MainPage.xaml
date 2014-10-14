@@ -90,7 +90,7 @@
         </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
-		<Grid x:Name="ContentPanel" Grid.Row="1">
+		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,72">
             <StackPanel>
                 <!-- search -->
                 <StackPanel Orientation="Horizontal" Margin="16,40,16,28" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
@@ -182,7 +182,8 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}">
+        <shell:ApplicationBar ForegroundColor="{StaticResource ThemeColorGray}" BackgroundColor="{StaticResource ThemeColorBlue}"
+                              Opacity="0.99">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/questionmark.png" Text="id_about"/>
             <shell:ApplicationBar.MenuItems>
                 <shell:ApplicationBarMenuItem Text="id_lock"/>

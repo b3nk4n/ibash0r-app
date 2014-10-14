@@ -14,9 +14,11 @@ namespace Bash.Common.Data
 
         private const string BASH_CACHE_FORMAT = "cache_{0}.data";
 
-        private string _lastLoadedOrder;
+        private const string SEARCH_PREFIX = "search_";
 
-        private Dictionary<int, BashComments> _commentsMemoryCache = new Dictionary<int, BashComments>();
+        private const string COMMENTS_PREFIX = "comments_";
+
+        private string _lastLoadedOrder;
 
         public const double LIFE_TIME_DAYS_LONG = 365.0;
         public const double LIFE_TIME_DAYS_DEFAULT = 30.0;
@@ -24,8 +26,14 @@ namespace Bash.Common.Data
 
         /// <summary>
         /// The stored deadlines when the quotes cache data is invalid.
+        /// IDs: favorites, new, best, random
         /// </summary>
         private StoredObject<Dictionary<string, DateTime>> _quotesCacheDeadlines = new StoredObject<Dictionary<string, DateTime>>("__quotesDeadlines", new Dictionary<string, DateTime>());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bashClient"></param>
 
         public CachedBashClient(IBashClient bashClient)
         {
@@ -44,20 +52,22 @@ namespace Bash.Common.Data
             _lastLoadedOrder = order;
             DateTime deadline = DateTime.MaxValue;
 
-            var cacheFileExists = StorageHelper.FileExists(cacheFileName);
-
             // check deadline/cache lifetime
             if (_quotesCacheDeadlines.Value.ContainsKey(order))
             {
                 deadline = _quotesCacheDeadlines.Value[order];
             }
 
-            if (!forceReload && cacheFileExists && DateTime.Now < deadline)
+            // load locally
+            if (!forceReload && StorageHelper.FileExists(cacheFileName))
             {
                 result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
             }
-            
-            if (result == null || forceReload || !cacheFileExists || (cacheFileExists && result.Contents.Data.Count < number)) // ensure there is at least 'number' of quotes, which could be lower (15), caused by the lockscreen pre-load.
+
+            // load from web
+            if (result == null ||
+               (result != null && result.Contents.Data.Count < number) || // ensure there is at least 'number' of quotes, which could be lower (50), caused by the lockscreen pre-load.
+               (DateTime.Now < deadline && result.Contents.Data.Count < number))
             {
                 result = await _bashClient.GetQuotesAsync(order, number, page);
                 if (result != null)
@@ -80,9 +90,20 @@ namespace Bash.Common.Data
             return result;
         }
 
-        public Task<BashCollection> GetQueryAsync(string term, int number, int page)
+        public async Task<BashCollection> GetQueryAsync(string term, int number, int page)
         {
-            return _bashClient.GetQueryAsync(term, number, page);
+            var searchKey = SEARCH_PREFIX + term;
+            if (PhoneStateHelper.ValueExists(searchKey))
+            {
+                return PhoneStateHelper.LoadValue<BashCollection>(searchKey);
+            }
+
+            var result = await _bashClient.GetQueryAsync(term, number, page);
+            if (result != null)
+            {
+                PhoneStateHelper.SaveValue(searchKey, result);
+            }
+            return result;
         }
 
         public Task<BashComments> GetCommentsAsync(int id)
@@ -92,22 +113,17 @@ namespace Bash.Common.Data
 
         public async Task<BashComments> GetCommentsAsync(int id, bool forceReload)
         {
-            BashComments result;
-
-            if (forceReload || !_commentsMemoryCache.ContainsKey(id))
+            var commentsKey = COMMENTS_PREFIX + id;
+            if (!forceReload && PhoneStateHelper.ValueExists(commentsKey))
             {
-                result = await _bashClient.GetCommentsAsync(id);
-
-                if (result != null)
-                {
-                    _commentsMemoryCache.Add(id, result);
-                }
-            }
-            else
-            {
-                result = _commentsMemoryCache[id];
+                return PhoneStateHelper.LoadValue<BashComments>(commentsKey);
             }
 
+            var result = await _bashClient.GetCommentsAsync(id);
+            if (result != null)
+            {
+                PhoneStateHelper.SaveValue(commentsKey, result);
+            }
             return result;
         }
 
