@@ -17,6 +17,7 @@ using Ninject;
 using System.Windows.Input;
 using System.Windows.Data;
 using PhoneKit.Framework.InAppPurchase;
+using Bash.App.Helpers;
 
 namespace Bash.App.Pages
 {
@@ -49,6 +50,7 @@ namespace Bash.App.Pages
             base.OnNavigatedTo(e);
 
             // setup view model
+            _mainViewModel.Update();
             _mainViewModel.NavigationService = NavigationService;
             DataContext = _mainViewModel;
 
@@ -67,9 +69,19 @@ namespace Bash.App.Pages
             if (tile != null)
             {
                 var tag = (string)tile.Tag;
-                var link = tag.Split(';')[1];
+                var splitted = tag.Split(';');
+                var link = splitted[1];
+                var requiresAwesomeEdition = bool.Parse(splitted[2]);
                 TurnstileFeatherEffect.SetFeatheringIndex(tile, -1);
-                NavigationService.Navigate(new Uri(link, UriKind.Relative));
+
+                if (requiresAwesomeEdition && !LicenceEasterEggHelper.IsAwesomeEditionUnlocked())
+                {
+                    NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
+                }
+                else
+                {
+                    NavigationService.Navigate(new Uri(link, UriKind.Relative));
+                }
             }
         }
 

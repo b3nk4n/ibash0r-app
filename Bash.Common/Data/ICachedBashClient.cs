@@ -13,6 +13,8 @@ namespace Bash.Common.Data
 
         Task<BashComments> GetCommentsAsync(int id, bool foreceReload);
 
+        Task<BashCollection> GetWarteAsync(bool foreceReload);
+
         void UpdateCache(BashCollection data);
     }
 }

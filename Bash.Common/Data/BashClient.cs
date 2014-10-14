@@ -20,6 +20,7 @@ namespace Bash.Common.Data
         private const string PATH_QUERY = "/query.php";
         private const string PATH_COMMENTS = "/comments.php";
         private const string PATH_RATE = "/rate.php";
+        private const string PATH_WARTE = "/warte.php";
 
         private HttpClient _httpClient = new HttpClient();
 
@@ -117,6 +118,21 @@ namespace Bash.Common.Data
             }
 
             return false;
+        }
+
+        public async Task<BashCollection> GetWarteAsync()
+        {
+            string uriString = String.Format("{0}{1}",
+                BASE_URI, PATH_WARTE);
+            var response = await _httpClient.GetAsync(uriString);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var encodedData = await ReadEncodedContentAsync(response);
+                return JsonConvert.DeserializeObject<BashCollection>(encodedData);
+            }
+
+            return null;
         }
 
         #endregion

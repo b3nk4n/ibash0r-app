@@ -18,6 +18,8 @@ namespace Bash.Common.Data
 
         private const string COMMENTS_PREFIX = "comments_";
 
+        private const string WARTE_KEY = "WARTE";
+
         private string _lastLoadedOrder;
 
         public const double LIFE_TIME_DAYS_LONG = 365.0;
@@ -130,6 +132,26 @@ namespace Bash.Common.Data
         public Task<bool> RateAsync(int id, string type)
         {
             return _bashClient.RateAsync(id, type);
+        }
+
+        public Task<BashCollection> GetWarteAsync()
+        {
+            return GetWarteAsync(false);
+        }
+
+        public async Task<BashCollection> GetWarteAsync(bool forceReload)
+        {
+            if (!forceReload && PhoneStateHelper.ValueExists(WARTE_KEY))
+            {
+                return PhoneStateHelper.LoadValue<BashCollection>(WARTE_KEY);
+            }
+
+            var result = await _bashClient.GetWarteAsync();
+            if (result != null)
+            {
+                PhoneStateHelper.SaveValue(WARTE_KEY, result);
+            }
+            return result;
         }
 
         public void UpdateCache(BashCollection data)

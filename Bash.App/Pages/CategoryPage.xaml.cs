@@ -101,6 +101,11 @@ namespace Bash.App.Pages
                 // load data from favorites list.
                 success = _categoryViewModel.LoadFavorites();
             }
+            else if (NavigationContext.QueryString.ContainsKey(AppConstants.PARAM_WARTE))
+            {
+                PageTitle.Text = AppResources.CategoryWarteQuotes;
+                success = await _categoryViewModel.LoadWarteAsync();
+            }
             else
             {
                 throw new ArgumentException("Paremeters required.");

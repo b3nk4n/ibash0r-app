@@ -10,6 +10,8 @@ namespace Bash.App.ViewModels
 {
     public interface IMainViewModel
     {
+        void Update();
+
         Task UpdateLockScreenAsync();
 
         void UpdateBackgroundTask();
@@ -17,6 +19,8 @@ namespace Bash.App.ViewModels
         string SearchTerm { get; set; }
 
         bool IsBusy { get; }
+
+        bool IsAwesomeEdition { get; }
 
         NavigationService NavigationService { set; }
 
@@ -27,5 +31,7 @@ namespace Bash.App.ViewModels
         ICommand BackupCommand { get; }
 
         ICommand PinToStartCommand { get; }
+
+        ICommand PinToStartProCommand { get; }
     }
 }

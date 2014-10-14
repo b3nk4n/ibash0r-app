@@ -457,4 +457,13 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>Awesome!</value>
     <comment>EasterEgg</comment>
   </data>
+  <data name="CategoryWarteQuotes" xml:space="preserve">
+    <value>Warteschlange</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryWarteQuotesNL" xml:space="preserve">
+    <value>Warte
+schlange</value>
+    <comment>Misc</comment>
+  </data>
 </root>

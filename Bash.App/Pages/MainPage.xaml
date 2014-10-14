@@ -9,6 +9,7 @@
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:local="clr-namespace:Bash.App.Controls"
     xmlns:conv="clr-namespace:PhoneKit.Framework.Conversion;assembly=PhoneKit.Framework"
+    xmlns:lconv="clr-namespace:Bash.App.Conversion"
     xmlns:abu="clr-namespace:AppBarUtils;assembly=AppBarUtils"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     x:Class="Bash.App.Pages.MainPage"
@@ -21,7 +22,8 @@
 	<phone:PhoneApplicationPage.Resources>
         
         <conv:BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter" />
-
+        <lconv:BooleanToAwesomeEditionImageConverter x:Key="BoolToAwesomeEditionImageConverter" />
+        
         <Storyboard x:Name="StartupAnimation">
             <DoubleAnimation Duration="0:0:0.66"  BeginTime="0:0:0.45" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="phoneTextBox" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
@@ -50,6 +52,11 @@
             	</DoubleAnimation.EasingFunction>
         	</DoubleAnimation>
             <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.60" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile3" d:IsOptimized="True">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Duration="0:0:0.66" BeginTime="0:0:0.75" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="hubTile4" d:IsOptimized="True">
                 <DoubleAnimation.EasingFunction>
                     <BackEase EasingMode="EaseOut" Amplitude="0.2"/>
                 </DoubleAnimation.EasingFunction>
@@ -93,7 +100,7 @@
 		<Grid x:Name="ContentPanel" Grid.Row="1" Margin="0,0,0,72">
             <StackPanel>
                 <!-- search -->
-                <StackPanel Orientation="Horizontal" Margin="16,40,16,28" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
+                <StackPanel Orientation="Horizontal" Margin="16,12,16,6" toolkit:TurnstileFeatherEffect.FeatheringIndex="1">
                     <toolkit:PhoneTextBox x:Name="phoneTextBox" InputScope="Search" Hint="{Binding Path=LocalizedResources.SearchTermHint, Source={StaticResource LocalizedStrings}}" Text="{Binding SearchTerm, Mode=TwoWay, UpdateSourceTrigger=Explicit}" Width="386" Style="{StaticResource CustomPhoneTextBoxStyle}" RenderTransformOrigin="0.5,0.5"
                                           KeyDown="SearchKeyDown" TextChanged="SearchTextChangedEvent">
                     	<toolkit:PhoneTextBox.RenderTransform>
@@ -109,7 +116,7 @@
                 </StackPanel>
                 
                 <!-- tiles -->
-                <Grid Height="380" Margin="28,8,74,8">
+                <Grid Height="568" Margin="28,0,74,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
@@ -117,9 +124,10 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="2;/Pages/CategoryPage.xaml?order=new" Tap="TileTapped">
+                    <HyperlinkButton Grid.Row="0" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="2;/Pages/CategoryPage.xaml?order=new;false" Tap="TileTapped">
                         <toolkit:ContextMenuService.ContextMenu>
                             <toolkit:ContextMenu>
                                 <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="new;/Pages/CategoryPage.xaml?order=new" />
@@ -132,7 +140,7 @@
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="3;/Pages/CategoryPage.xaml?order=best" Tap="TileTapped">
+                    <HyperlinkButton Grid.Row="0" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded" Tag="3;/Pages/CategoryPage.xaml?order=best;false" Tap="TileTapped">
                         <toolkit:ContextMenuService.ContextMenu>
                             <toolkit:ContextMenu>
                                 <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="best;/Pages/CategoryPage.xaml?order=best" />
@@ -145,7 +153,7 @@
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="4;/Pages/CategoryPage.xaml?order=random" Tap="TileTapped">
+                    <HyperlinkButton Grid.Row="1" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="4;/Pages/CategoryPage.xaml?order=random;false" Tap="TileTapped">
                         <toolkit:ContextMenuService.ContextMenu>
                             <toolkit:ContextMenu>
                                 <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="random;/Pages/CategoryPage.xaml?order=random" />
@@ -158,7 +166,7 @@
                         </toolkit:HubTile>
                     </HyperlinkButton>
 
-                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="5;/Pages/CategoryPage.xaml?favorites=true" Tap="TileTapped">
+                    <HyperlinkButton Grid.Row="1" Grid.Column="1" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="5;/Pages/CategoryPage.xaml?favorites=true;false" Tap="TileTapped">
                         <toolkit:ContextMenuService.ContextMenu>
                             <toolkit:ContextMenu>
                                 <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartCommand}" CommandParameter="favorites;/Pages/CategoryPage.xaml?favorites=true" />
@@ -168,6 +176,19 @@
                         	<toolkit:HubTile.RenderTransform>
                         		<CompositeTransform TranslateX="-480"/>
                         	</toolkit:HubTile.RenderTransform>
+                        </toolkit:HubTile>
+                    </HyperlinkButton>
+
+                    <HyperlinkButton Grid.Row="2" Grid.Column="0" Style="{StaticResource EmptyButtonStyle}" HorizontalAlignment="Left" Loaded="TileLoaded"  Tag="6;/Pages/CategoryPage.xaml?warte=true;true" Tap="TileTapped">
+                        <toolkit:ContextMenuService.ContextMenu>
+                            <toolkit:ContextMenu>
+                                <toolkit:MenuItem Header="{Binding Path=LocalizedResources.PinToStart, Source={StaticResource LocalizedStrings}}" Command="{Binding PinToStartProCommand}" CommandParameter="warte;/Pages/CategoryPage.xaml?warte=true" />
+                            </toolkit:ContextMenu>
+                        </toolkit:ContextMenuService.ContextMenu>
+                        <toolkit:HubTile x:Name="hubTile4" Background="{StaticResource ThemeBrushBlue}" Message="{Binding Path=LocalizedResources.CategoryWarteQuotesNL, Source={StaticResource LocalizedStrings}}" Style="{StaticResource CustomHubTileStyle}" Source="{Binding IsAwesomeEdition, Converter={StaticResource BoolToAwesomeEditionImageConverter}}" RenderTransformOrigin="0.5,0.5">
+                            <toolkit:HubTile.RenderTransform>
+                                <CompositeTransform TranslateX="-480"/>
+                            </toolkit:HubTile.RenderTransform>
                         </toolkit:HubTile>
                     </HyperlinkButton>
                 </Grid>

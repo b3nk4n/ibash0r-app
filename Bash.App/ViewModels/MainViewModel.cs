@@ -37,6 +37,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand _setLockScreenCommand;
         private DelegateCommand _backupCommand;
         private DelegateCommand<string> _pinToStartCommand;
+        private DelegateCommand<string> _pinToStartProCommand;
 
         private ICachedBashClient _bashClient;
 
@@ -55,6 +56,11 @@ namespace Bash.App.ViewModels
         #endregion
 
         #region Public Methods
+
+        public void Update()
+        {
+            NotifyPropertyChanged("IsAwesomeEdition");
+        }
 
         public async Task UpdateLockScreenAsync()
         {
@@ -139,21 +145,48 @@ namespace Bash.App.ViewModels
             _pinToStartCommand = new DelegateCommand<string>((param) =>
             {
                 string[] splitted = param.Split(';');
+                string category = splitted[0];
+                string navigationString = splitted[1];
 
-                var tile = new StandardTileData
-                {
-                    Title = AppResources.ApplicationTitle, 
-                    BackgroundImage = new Uri(string.Format("/Assets/{0}.png", splitted[0]), UriKind.Relative),
-                    BackTitle = MapToLocalizedTitleResource(splitted[0]),
-                    BackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
-                };
-
-                LiveTilePinningHelper.PinOrUpdateTile(new Uri(splitted[1], UriKind.Relative), tile);
+                PinTileToStart(category, navigationString);
             }, (param) =>
             {
                 string[] splitted = param.Split(';');
-                return !LiveTileHelper.TileExists(new Uri(splitted[1], UriKind.Relative));
+                string navigationString = splitted[1];
+
+                return !LiveTileHelper.TileExists(new Uri(navigationString, UriKind.Relative));
             });
+
+            _pinToStartProCommand = new DelegateCommand<string>((param) =>
+            {
+                string[] splitted = param.Split(';');
+                string category = splitted[0];
+                string navigationString = splitted[1];
+
+                PinTileToStart(category, navigationString);
+            }, (param) =>
+            {
+                if (!LicenceEasterEggHelper.IsAwesomeEditionUnlocked())
+                    return false;
+
+                string[] splitted = param.Split(';');
+                string navigationString = splitted[1];
+
+                return !LiveTileHelper.TileExists(new Uri(navigationString, UriKind.Relative));
+            });
+        }
+
+        private void PinTileToStart(string category, string navigationString)
+        {
+            var tile = new StandardTileData
+            {
+                Title = AppResources.ApplicationTitle,
+                BackgroundImage = new Uri(string.Format("/Assets/{0}.png", category), UriKind.Relative),
+                BackTitle = MapToLocalizedTitleResource(category),
+                BackBackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+            };
+
+            LiveTilePinningHelper.PinOrUpdateTile(new Uri(navigationString, UriKind.Relative), tile);
         }
 
         private string MapToLocalizedTitleResource(string splitted)
@@ -217,6 +250,14 @@ namespace Bash.App.ViewModels
             }
         }
 
+        public bool IsAwesomeEdition
+        {
+            get
+            {
+                return LicenceEasterEggHelper.IsAwesomeEditionUnlocked();
+            }
+        }
+
         public ICommand SearchCommand
         {
             get { return _searchCommand; }
@@ -235,6 +276,11 @@ namespace Bash.App.ViewModels
         public ICommand PinToStartCommand
         {
             get { return _pinToStartCommand; }
+        }
+
+        public ICommand PinToStartProCommand
+        {
+            get { return _pinToStartProCommand; }
         }
 
         #endregion

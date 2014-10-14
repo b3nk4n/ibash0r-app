@@ -456,4 +456,13 @@ Add your most favorite bash quotes to your favorites...</value>
     <value>Awesome!</value>
     <comment>EasterEgg</comment>
   </data>
+  <data name="CategoryWarteQuotes" xml:space="preserve">
+    <value>Quotes queue</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="CategoryWarteQuotesNL" xml:space="preserve">
+    <value>Quotes
+queue</value>
+    <comment>Misc</comment>
+  </data>
 </root>

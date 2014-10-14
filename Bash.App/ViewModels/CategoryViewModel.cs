@@ -113,6 +113,25 @@ namespace Bash.App.ViewModels
             return true;
         }
 
+        public async Task<bool> LoadWarteAsync(bool forceReload = false)
+        {
+            CategoryState = CategoryState.Warte;
+            IsDataFreshlyLoaded = true;
+
+            IsBusy = true;
+            var result = await _bashClient.GetWarteAsync(forceReload);
+
+            if (result == null)
+            {
+                IsBusy = false;
+                return false;
+            }
+
+            BashCollection = result;
+            IsBusy = false;
+            return true;
+        }
+
         private void UpdateCategoryState(string order)
         {
             switch (order)

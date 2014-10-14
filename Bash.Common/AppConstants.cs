@@ -19,6 +19,7 @@ namespace Bash.Common
         public const string PARAM_NUMBER = "number";
         public const string PARAM_PAGE = "page";
         public const string PARAM_FAVORITES = "favorites";
+        public const string PARAM_WARTE = "warte";
 
         public const string ORDER_VALUE_NEW = "new";
         public const string ORDER_VALUE_BEST = "best";

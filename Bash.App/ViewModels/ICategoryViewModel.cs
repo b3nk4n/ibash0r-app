@@ -9,11 +9,13 @@ using System.Windows.Navigation;
 
 namespace Bash.App.ViewModels
 {
-    public enum CategoryState { New, Best, Search, Random, Favorites }
+    public enum CategoryState { New, Best, Search, Random, Favorites, Warte }
 
     interface ICategoryViewModel
     {
         Task<bool> LoadQuotesAsync(string order, bool forceReload = false);
+
+        Task<bool> LoadWarteAsync(bool forceReload = false);
 
         bool LoadFavorites();
 

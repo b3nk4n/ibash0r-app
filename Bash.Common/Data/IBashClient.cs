@@ -16,5 +16,7 @@ namespace Bash.Common.Data
         Task<BashComments> GetCommentsAsync(int id);
 
         Task<bool> RateAsync(int id, string type);
+
+        Task<BashCollection> GetWarteAsync();
     }
 }

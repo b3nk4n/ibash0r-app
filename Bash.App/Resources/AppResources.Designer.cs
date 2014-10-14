@@ -344,6 +344,25 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Quotes queue ähnelt.
+        /// </summary>
+        public static string CategoryWarteQuotes {
+            get {
+                return ResourceManager.GetString("CategoryWarteQuotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Quotes
+        ///queue ähnelt.
+        /// </summary>
+        public static string CategoryWarteQuotesNL {
+            get {
+                return ResourceManager.GetString("CategoryWarteQuotesNL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Comments ähnelt.
         /// </summary>
         public static string CommentsTitle {
