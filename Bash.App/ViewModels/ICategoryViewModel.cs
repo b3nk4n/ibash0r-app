@@ -50,6 +50,8 @@ namespace Bash.App.ViewModels
 
         bool ShowSearchNoResultsInfo { get; }
 
+        bool ShowLoadingFailedInfo { get; }
+
         CategoryState CategoryState { get; set; }
 
         ICommand NextCommand { get; }

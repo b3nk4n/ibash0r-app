@@ -466,4 +466,8 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
 schlange</value>
     <comment>Misc</comment>
   </data>
+  <data name="NoDataOrInternetInfo" xml:space="preserve">
+    <value>Leider konnten keine Daten gelanden werden. Das kann nur drei Dinge bedeuten. Entweder hast du keine Internetverbindung, die Server sind offline, oder die Erde wird von Aliens angegriffen...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>

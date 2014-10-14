@@ -66,6 +66,8 @@ namespace Bash.App.ViewModels
         /// </summary>
         private bool? _isDataFreshlyLoaded = null;
 
+        private bool _showLoadingFaildInfo;
+
         #endregion
 
         #region Constructors
@@ -100,6 +102,7 @@ namespace Bash.App.ViewModels
             if (result == null)
             {
                 IsBusy = false;
+                ShowLoadingFailedInfo = true;
                 return false;
             }
 
@@ -124,6 +127,7 @@ namespace Bash.App.ViewModels
             if (result == null)
             {
                 IsBusy = false;
+                ShowLoadingFailedInfo = true;
                 return false;
             }
 
@@ -164,7 +168,11 @@ namespace Bash.App.ViewModels
             var result = await _bashClient.GetQueryAsync(term, AppConstants.QUOTES_COUNT, 0);
 
             if (result == null)
+            {
+                ShowLoadingFailedInfo = true;
+                IsBusy = false;
                 return false;
+            }
 
             BashCollection = result;
             IsBusy = false;
@@ -173,6 +181,7 @@ namespace Bash.App.ViewModels
         
         public void Reset()
         {
+            ShowLoadingFailedInfo = false;
             CurrentBashDataIndex = 0;
             BashCollection = null;
         }
@@ -561,6 +570,22 @@ namespace Bash.App.ViewModels
                 if (CategoryState != ViewModels.CategoryState.Search)
                     return false;
                 return BashCount == 0 && !IsBusy;
+            }
+        }
+
+        public bool ShowLoadingFailedInfo
+        {
+            private set
+            {
+                if (_showLoadingFaildInfo != value)
+                {
+                    _showLoadingFaildInfo = value;
+                    NotifyPropertyChanged("ShowLoadingFailedInfo");
+                }
+            }
+            get
+            {
+                return _showLoadingFaildInfo; ;
             }
         }
 

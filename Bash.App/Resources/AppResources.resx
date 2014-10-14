@@ -465,4 +465,8 @@ Add your most favorite bash quotes to your favorites...</value>
 queue</value>
     <comment>Misc</comment>
   </data>
+  <data name="NoDataOrInternetInfo" xml:space="preserve">
+    <value>There has been troubles with loading the data. There can be only three reasons for this. Firstly, you have no internet connection. Seconds, all servers are down. And last but not least, the earth is attacked by aliens...</value>
+    <comment>CategoryPage</comment>
+  </data>
 </root>

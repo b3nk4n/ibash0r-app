@@ -663,6 +663,15 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die There has been troubles with loading the data. There can be only three reasons for this. Firstly, you have no internet connection. Seconds, all servers are down. And last but not least, the earth is attacked by aliens... ähnelt.
+        /// </summary>
+        public static string NoDataOrInternetInfo {
+            get {
+                return ResourceManager.GetString("NoDataOrInternetInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Page number ähnelt.
         /// </summary>
         public static string PageNumberHint {

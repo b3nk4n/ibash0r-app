@@ -93,7 +93,7 @@
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <Grid Background="{StaticResource ThemeBrushBlue}" toolkit:TurnstileFeatherEffect.FeatheringIndex="0">
-            <TextBlock Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
+            <Image Source="/Assets/Tiles/FlipCycleTileSmall.png" Height="92" Margin="-16" />
         </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
