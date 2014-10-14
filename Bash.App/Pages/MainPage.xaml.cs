@@ -23,8 +23,6 @@ namespace Bash.App.Pages
 {
     public partial class MainPage : PhoneApplicationPage
     {
-        IBashClient _bashClient = new BashClient();
-
         IMainViewModel _mainViewModel;
 
         // Konstruktor

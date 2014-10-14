@@ -16,6 +16,7 @@ using Bash.App.Resources;
 using Microsoft.Phone.Tasks;
 using Bash.Common;
 using PhoneKit.Framework.Storage;
+using Bash.App.Data;
 
 namespace Bash.App.ViewModels
 {
@@ -25,7 +26,7 @@ namespace Bash.App.ViewModels
 
         NavigationService _navigationService;
 
-        private ICachedBashClient _bashClient;
+        private IFullyCachedBashClient _bashClient;
         private IFavoriteManager _favoriteManager;
 
         private BashCollection _bashCollection;
@@ -74,11 +75,11 @@ namespace Bash.App.ViewModels
 
         public CategoryViewModel() {
             InitializeCommands();
-            _bashClient = new CachedBashClient(null);
+            _bashClient = new FullyCachedBashClient(null);
             _favoriteManager = new FavoriteManager();
         } // for sample data
 
-        public CategoryViewModel(ICachedBashClient bashClient, IFavoriteManager favoriteManager)
+        public CategoryViewModel(IFullyCachedBashClient bashClient, IFavoriteManager favoriteManager)
         {
             InitializeCommands();
             _bashClient = bashClient;

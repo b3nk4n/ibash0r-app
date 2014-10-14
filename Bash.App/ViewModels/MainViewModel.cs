@@ -1,17 +1,9 @@
-﻿using Bash.Common.Controls;
-using Bash.Common.Data;
-using PhoneKit.Framework.Core.Graphics;
+﻿using Bash.Common.Data;
 using PhoneKit.Framework.Core.LockScreen;
 using PhoneKit.Framework.Core.MVVM;
-using PhoneKit.Framework.Core.Storage;
-using PhoneKit.Framework.InAppPurchase;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using Ninject;
 using Bash.Common;
@@ -22,6 +14,7 @@ using PhoneKit.Framework.Tile;
 using PhoneKit.Framework.Core.Tile;
 using Microsoft.Phone.Shell;
 using Bash.App.Resources;
+using Bash.App.Data;
 
 namespace Bash.App.ViewModels
 {
@@ -39,7 +32,7 @@ namespace Bash.App.ViewModels
         private DelegateCommand<string> _pinToStartCommand;
         private DelegateCommand<string> _pinToStartProCommand;
 
-        private ICachedBashClient _bashClient;
+        private IBashClient _bashClient;
 
         private bool _isBusy;
 
@@ -50,7 +43,7 @@ namespace Bash.App.ViewModels
         public MainViewModel()
         {
             InitializeCommands();
-            _bashClient = App.Injector.Get<ICachedBashClient>();
+            _bashClient = App.Injector.Get<IFullyCachedBashClient>();
         }
 
         #endregion

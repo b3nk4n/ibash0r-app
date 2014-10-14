@@ -1,4 +1,5 @@
-﻿using Bash.Common.Data;
+﻿using Bash.App.Data;
+using Bash.Common.Data;
 using Bash.Common.Models;
 using PhoneKit.Framework.Core.MVVM;
 using System;
@@ -22,7 +23,7 @@ namespace Bash.App.ViewModels
         #endregion
 
         #region Constructors
-        public CommentsViewModel(ICachedBashClient bashClient)
+        public CommentsViewModel(IFullyCachedBashClient bashClient)
         {
             _bashClient = bashClient;
         }

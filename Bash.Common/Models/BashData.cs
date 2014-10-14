@@ -179,6 +179,7 @@ namespace Bash.Common.Models
                     text.Contains(" is away -")) ||
                 text.Contains(" has quit IRC") ||
                 text.Equals("---- 1 Stunde später ----") ||
+                text.Equals("[2 Tage später]") ||
                 text.Equals("- etwa einen Tag später -"));
         }
 

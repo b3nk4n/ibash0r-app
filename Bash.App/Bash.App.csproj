@@ -108,6 +108,8 @@
       <DependentUpon>ThemedAboutControlBase.xaml</DependentUpon>
     </Compile>
     <Compile Include="Conversion\BooleanToAwesomeEditionImageConverter.cs" />
+    <Compile Include="Data\FullyCachedBashClient.cs" />
+    <Compile Include="Data\IFullyCachedBashClient.cs" />
     <Compile Include="Helpers\LicenceEasterEggHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Modules\MainModule.cs" />

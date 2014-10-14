@@ -11,10 +11,6 @@ namespace Bash.Common.Data
     {
         Task<BashCollection> GetQuotesAsync(string order, int number, int page, double lifeTimeDays, bool forceReload);
 
-        Task<BashComments> GetCommentsAsync(int id, bool foreceReload);
-
-        Task<BashCollection> GetWarteAsync(bool foreceReload);
-
         void UpdateCache(BashCollection data);
     }
 }
