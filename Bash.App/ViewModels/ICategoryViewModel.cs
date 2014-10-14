@@ -9,7 +9,7 @@ using System.Windows.Navigation;
 
 namespace Bash.App.ViewModels
 {
-    public enum CategoryState { New, Best, Search, Random, Favorites, Warte }
+    public enum CategoryState { None, New, Best, Search, Random, Favorites, Warte }
 
     interface ICategoryViewModel
     {

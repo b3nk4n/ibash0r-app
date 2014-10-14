@@ -182,6 +182,7 @@ namespace Bash.App.ViewModels
         
         public void Reset()
         {
+            CategoryState = ViewModels.CategoryState.None;
             ShowLoadingFailedInfo = false;
             CurrentBashDataIndex = 0;
             BashCollection = null;

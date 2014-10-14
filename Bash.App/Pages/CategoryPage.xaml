@@ -351,7 +351,7 @@
             </Grid>
         </StackPanel>
 
-        <Grid x:Name="ShareContainer" Grid.Row="1" Height="124" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="ShareContainer" Grid.Row="1" Height="124" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,72">
         	<Grid.RenderTransform>
         		<CompositeTransform TranslateY="600"/>
         	</Grid.RenderTransform>
@@ -387,7 +387,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="JumpContainer" Grid.Row="1" Height="92" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="JumpContainer" Grid.Row="1" Height="92" Width="480" Background="{StaticResource ThemeBrushGray}" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Margin="0,0,0,72">
             <Grid.RenderTransform>
                 <CompositeTransform TranslateY="600"/>
             </Grid.RenderTransform>
