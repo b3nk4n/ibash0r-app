@@ -449,4 +449,12 @@ Füge die besten Bash-Zitate zu deinen Favoriten hinzu...</value>
     <value>auf startseite</value>
     <comment>MainPage</comment>
   </data>
+  <data name="EasterEggMessage" xml:space="preserve">
+    <value>Du hast ein Easter Egg gefunden. Um dies zu würdigen kannst du ab sofort die Awesome Edition kostenlos genießen! Damit stehen dir nun alle Funktionen der App zur Verfügung...</value>
+    <comment>EasterEgg</comment>
+  </data>
+  <data name="EasterEggTitle" xml:space="preserve">
+    <value>Awesome!</value>
+    <comment>EasterEgg</comment>
+  </data>
 </root>

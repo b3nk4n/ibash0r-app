@@ -398,6 +398,24 @@ namespace Bash.App.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die You just found an Easter Egg. To appreciate this, you can now enjoy the Awesome Edition of this app for free! You can now access all features... ähnelt.
+        /// </summary>
+        public static string EasterEggMessage {
+            get {
+                return ResourceManager.GetString("EasterEggMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Awesome! ähnelt.
+        /// </summary>
+        public static string EasterEggTitle {
+            get {
+                return ResourceManager.GetString("EasterEggTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Look&apos;s empty here, right?
         ///Add your most favorite bash quotes to your favorites... ähnelt.
         /// </summary>

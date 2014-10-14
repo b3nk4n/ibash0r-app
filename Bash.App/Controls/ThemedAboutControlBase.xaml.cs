@@ -12,6 +12,7 @@ using Microsoft.Phone.Tasks;
 using PhoneKit.Framework.Controls;
 using PhoneKit.Framework.OS;
 using System.Windows.Media.Imaging;
+using Bash.App.Helpers;
 
 namespace Bash.App.Controls
 {

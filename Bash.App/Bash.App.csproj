@@ -107,6 +107,7 @@
     <Compile Include="Controls\ThemedAboutControlBase.xaml.cs">
       <DependentUpon>ThemedAboutControlBase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\LicenceEasterEggHelper.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="Modules\MainModule.cs" />
     <Compile Include="Pages\AboutPage.xaml.cs">
@@ -219,6 +220,7 @@
     <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\warte.png" />
     <Content Include="BugSense\BugSense - SDK License Agreement.txt" />
   </ItemGroup>
   <ItemGroup>

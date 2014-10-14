@@ -448,4 +448,12 @@ Add your most favorite bash quotes to your favorites...</value>
     <value>pin to start</value>
     <comment>MainPage</comment>
   </data>
+  <data name="EasterEggMessage" xml:space="preserve">
+    <value>You just found an Easter Egg. To appreciate this, you can now enjoy the Awesome Edition of this app for free! You can now access all features...</value>
+    <comment>EasterEgg</comment>
+  </data>
+  <data name="EasterEggTitle" xml:space="preserve">
+    <value>Awesome!</value>
+    <comment>EasterEgg</comment>
+  </data>
 </root>

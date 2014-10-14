@@ -44,7 +44,8 @@
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
         <Grid Background="{StaticResource ThemeBrushBlue}">
-            <TextBlock Text="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center" />
+            <TextBlock Text="{Binding Path=LocalizedResources.AboutTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"
+                       DoubleTap="EasterEggDoubleTapped"/>
         </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->

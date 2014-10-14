@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using Bash.App.Helpers;
 
 namespace Bash.App.Pages
 {
@@ -15,6 +16,11 @@ namespace Bash.App.Pages
         public AboutPage()
         {
             InitializeComponent();
+        }
+
+        private void EasterEggDoubleTapped(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            LicenceEasterEggHelper.TriggerEasterEggRequested();
         }
     }
 }

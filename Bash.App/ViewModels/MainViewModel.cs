@@ -97,13 +97,11 @@ namespace Bash.App.ViewModels
 
             _setLockScreenCommand = new DelegateCommand(async () =>
             {
-#if !DEBUG
-                if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
+                if (!LicenceEasterEggHelper.IsAwesomeEditionUnlocked())
                 {
                     NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
                 }
                 else
-#endif
                 {
                     if (!LockScreenHelper.HasAccess())
                     {
@@ -125,13 +123,11 @@ namespace Bash.App.ViewModels
 
             _backupCommand = new DelegateCommand(() =>
             {
-#if !DEBUG
-                if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
+                if (!LicenceEasterEggHelper.IsAwesomeEditionUnlocked())
                 {
                     NavigationService.Navigate(new Uri("/Pages/InAppStorePage.xaml", UriKind.Relative));
                 }
                 else
-#endif
                 {
                     NavigationService.Navigate(new Uri("/Pages/BackupPage.xaml", UriKind.Relative));
                 }
