@@ -109,7 +109,14 @@ namespace Bash.Common.Data
                 BASE_URI, PATH_RATE,
                 AppConstants.PARAM_ID, id,
                 AppConstants.PARAM_TYPE, type);
-            var response = await _httpClient.GetAsync(uriString);
+
+            var formData = new FormUrlEncodedContent(new[] 
+            {
+                new KeyValuePair<string, string>(AppConstants.PARAM_ID, id.ToString()),
+                new KeyValuePair<string, string>(AppConstants.PARAM_TYPE, type)
+            });
+
+            var response = await _httpClient.PostAsync(uriString, formData);
 
             if (response.IsSuccessStatusCode)
             {

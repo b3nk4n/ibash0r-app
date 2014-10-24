@@ -21,7 +21,7 @@ namespace Bash.App
         /// <summary>
         /// Setting for the lockscreen background image opacity in isolated storage.
         /// </summary>
-        public static readonly StoredObject<double> LockScreenBackgroundImageOpacity = new StoredObject<double>("lockBackgroundImageOpacity", 0.95);
+        public static readonly StoredObject<double> LockScreenBackgroundImageOpacity = new StoredObject<double>("lockBackgroundImageOpacity", 0.5);
 
         /// <summary>
         /// Settings for the lockscreen background solid color.

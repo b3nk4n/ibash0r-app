@@ -41,7 +41,7 @@ namespace Bash.Common.Data
             BashCollection result = null;
             string cacheFileName = string.Format(BASH_CACHE_FORMAT, order);
             _lastLoadedOrder = order;
-            DateTime deadline = DateTime.MaxValue;
+            DateTime deadline = DateTime.MinValue;
 
             // check deadline/cache lifetime
             if (_quotesCacheDeadlines.Value.ContainsKey(order))
@@ -50,15 +50,13 @@ namespace Bash.Common.Data
             }
 
             // load locally
-            if (!forceReload && StorageHelper.FileExists(cacheFileName))
+            if (!forceReload && StorageHelper.FileExists(cacheFileName) && DateTime.Now < deadline)
             {
                 result = StorageHelper.LoadSerializedFile<BashCollection>(cacheFileName);
             }
 
             // load from web
-            if (result == null ||
-               (result != null && result.Contents.Data.Count < number) || // ensure there is at least 'number' of quotes, which could be lower (50), caused by the lockscreen pre-load.
-               (DateTime.Now < deadline && result.Contents.Data.Count < number))
+            if (result == null || result.Contents.Data.Count < number)
             {
                 result = await _bashClient.GetQuotesAsync(order, number, page);
                 if (result != null)
