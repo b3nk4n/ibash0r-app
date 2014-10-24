@@ -482,4 +482,32 @@ schlange</value>
     <value>Einstellungen</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="SettingsBackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsBackgroundImage" xml:space="preserve">
+    <value>Hintergrundbild</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsBackgroundOpacity" xml:space="preserve">
+    <value>Deckkraft des Hintergrundbilds</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsLockScreen" xml:space="preserve">
+    <value>Sperrbildschirm</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsRemoveImage" xml:space="preserve">
+    <value>Bild entfernen</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsSelectColor" xml:space="preserve">
+    <value>Farbe auswählen...</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsSelectImage" xml:space="preserve">
+    <value>Bild auswählen...</value>
+    <comment>SettingsPage</comment>
+  </data>
 </root>

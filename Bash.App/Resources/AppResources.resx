@@ -481,4 +481,32 @@ queue</value>
     <value>Settings</value>
     <comment>SettingsPage</comment>
   </data>
+  <data name="SettingsBackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsBackgroundImage" xml:space="preserve">
+    <value>Background image</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsBackgroundOpacity" xml:space="preserve">
+    <value>Background image opacity</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsLockScreen" xml:space="preserve">
+    <value>Lock screen</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsRemoveImage" xml:space="preserve">
+    <value>Clear Image</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsSelectColor" xml:space="preserve">
+    <value>Select color...</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsSelectImage" xml:space="preserve">
+    <value>Select image...</value>
+    <comment>SettingsPage</comment>
+  </data>
 </root>

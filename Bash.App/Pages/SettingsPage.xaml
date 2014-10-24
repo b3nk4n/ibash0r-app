@@ -51,68 +51,78 @@
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
 		<Grid x:Name="ContentPanel" Grid.Row="1">
 			<StackPanel>
-                <TextBlock Text="Sperrbildschirm" Style="{StaticResource ThemeTextLargeStyle}" Foreground="{StaticResource ThemeBrushBlue}" HorizontalAlignment="Center" />
-                <TextBlock Text="Hintergrundfarbe" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
-                <Button x:Name="SelectBackgroundColorButton" Content="Farbe auswählen" Style="{StaticResource RoundButtonStyle}">
+                <TextBlock Text="{Binding LocalizedResources.SettingsLockScreen, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextLargeStyle}" Foreground="{StaticResource ThemeBrushBlue}" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding LocalizedResources.SettingsBackgroundColor, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
+                <Button x:Name="SelectBackgroundColorButton" Content="{Binding LocalizedResources.SettingsSelectColor, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RoundButtonStyle}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ec:NavigateToPageAction TargetPage="/Pages/ColorPickerPage.xaml"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <TextBlock Text="Hintergrundbild" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding LocalizedResources.SettingsBackgroundImage, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
                 <StackPanel Orientation="Horizontal">
-                    <Button x:Name="SelectBackgroundImageButton" Width="240" Content="Bild auswählen" Style="{StaticResource RoundButtonStyle}"/>
-                    <Button x:Name="ClearBackgroundImageButton" Width="240" Content="Bild entfernen" Style="{StaticResource RoundButtonStyle}"/>
+                    <Button x:Name="SelectBackgroundImageButton" Width="240" Content="{Binding LocalizedResources.SettingsSelectImage, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RoundButtonStyle}"/>
+                    <Button x:Name="ClearBackgroundImageButton" Width="240" Content="{Binding LocalizedResources.SettingsRemoveImage, Source={StaticResource LocalizedStrings}}" Style="{StaticResource RoundButtonStyle}"/>
                 </StackPanel>
-                <TextBlock Text="Deckkraft des Hintergrundbilds" Style="{StaticResource ThemeTextSubtleStyle}" Margin="16,0,12,-8" HorizontalAlignment="Center" />
-                <Slider x:Name="BackgroundImageOpacitySlider" Background="{StaticResource ThemeBrushGrayDark}" Foreground="{StaticResource ThemeBrushBlue}" Value="1" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1"  Style="{StaticResource RoundSliderStyle}" />
+                <TextBlock Text="{Binding LocalizedResources.SettingsBackgroundOpacity, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextSubtleStyle}" Margin="16,0,12,0" HorizontalAlignment="Center" />
+                <Slider x:Name="BackgroundImageOpacitySlider" Background="{StaticResource ThemeBrushGrayDark}" Foreground="{StaticResource ThemeBrushBlue}" Value="1" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1"
+                        Style="{StaticResource RoundSliderStyle}" Margin="0,-8,0,-24" />
                 
 
 				<StackPanel Margin="12">
 					<TextBlock Text="{Binding LocalizedResources.SettingsPreview, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource ThemeBrushGrayDark}" TextAlignment="Center"
                                Margin="6"/>
-					<Border Padding="1" Background="#555555" Width="136">
-						<Border Padding="6,6,6,24" Width="134" Background="Black">
-							<Border Padding="1" Background="#555555" Width="122">
-								<Grid Height="200" Width="120" Background="Black">
-									<Grid.RowDefinitions>
-										<RowDefinition Height="18*" />
-										<RowDefinition Height="12*" />
-										<RowDefinition Height="1*" />
-									</Grid.RowDefinitions>
-                                    <Rectangle x:Name="PreviewColorBackground" Grid.RowSpan="3" />
-                                    <Image x:Name="PreviewImageBackground" Grid.RowSpan="3" Opacity="{Binding ElementName=BackgroundImageOpacitySlider, Path=Value}"
+					<Border Padding="1" Background="#555555" Width="188">
+                        <Grid>
+                            <Border Padding="8,8,8,32" Width="186" Background="Black">
+                                <Border Padding="1" Background="#555555" Width="170">
+                                    <Grid Height="280" Width="168" Background="Black">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="18*" />
+                                            <RowDefinition Height="12*" />
+                                            <RowDefinition Height="1*" />
+                                        </Grid.RowDefinitions>
+                                        <Rectangle x:Name="PreviewColorBackground" Grid.RowSpan="3" />
+                                        <Image x:Name="PreviewImageBackground" Grid.RowSpan="3" Opacity="{Binding ElementName=BackgroundImageOpacitySlider, Path=Value}"
 										Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                    <StackPanel Grid.Row="0" Margin="0,10,0,0">
-                                        <Border HorizontalAlignment="Left" Margin="0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
-                                                <Border Margin="6,3,6,3" Width="78" Height="30" Background="White"/>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border HorizontalAlignment="Left" Margin="28,0,0,0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Border Margin="6,3,6,3" Width="72" Height="18" Background="White"/>
-                                                <Path Margin="-8,0,4,6" Width="10" Height="10" Stretch="Fill" Data="M 20,20 0,0, 0,20 Z" Fill="White" VerticalAlignment="Bottom"/>
-                                            </StackPanel>
-                                        </Border>
-                                        <Border Margin="2,3,2,3" Width="112" Height="12" Background="{StaticResource ThemeBrushGrayDark}"/>
-                                        <Border HorizontalAlignment="Left" Margin="0">
-                                            <StackPanel Orientation="Horizontal">
-                                                <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
-                                                <Border Margin="6,3,6,3" Width="72" Height="18" Background="White"/>
-                                            </StackPanel>
-                                        </Border>
-                                    </StackPanel>
-                                    <StackPanel Grid.Row="1" Margin="6,0,0,0">
-										<TextBlock  Text="10:36" Foreground="White" FontSize="24" />
-										<TextBlock Text="Montag" Foreground="White" FontSize="16"/>
-                                        <TextBlock Text="16. September" Foreground="White" FontSize="16"/>
-									</StackPanel>
-								</Grid>
-							</Border>
-						</Border>
+                                        <StackPanel Grid.Row="0" Margin="0,10,0,0">
+                                            <Border HorizontalAlignment="Left" Margin="0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                    <Border Margin="6,3,6,3" Width="122" Height="30" Background="White"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border HorizontalAlignment="Left" Margin="28,0,0,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Border Margin="6,3,6,3" Width="122" Height="18" Background="White"/>
+                                                    <Path Margin="-8,0,4,6" Width="10" Height="10" Stretch="Fill" Data="M 20,20 0,0, 0,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border Margin="2,3,2,3" Width="158" Height="12" Background="{StaticResource ThemeBrushGrayDark}"/>
+                                            <Border HorizontalAlignment="Left" Margin="0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                    <Border Margin="6,3,6,3" Width="122" Height="18" Background="White"/>
+                                                </StackPanel>
+                                            </Border>
+                                            <Border HorizontalAlignment="Left" Margin="28,0,0,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Border Margin="6,3,6,3" Width="122" Height="18" Background="White"/>
+                                                    <Path Margin="-8,0,4,6" Width="10" Height="10" Stretch="Fill" Data="M 20,20 0,0, 0,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                </StackPanel>
+                                            </Border>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Margin="6,0,0,0">
+                                            <TextBlock  Text="10:36" Foreground="White" FontSize="34" />
+                                            <TextBlock Text="Montag" Foreground="White" FontSize="20"/>
+                                            <TextBlock Text="16. September" Foreground="White" FontSize="20"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </Border>
+                            <Path Width="16" Height="16" VerticalAlignment="Bottom" Stretch="Fill" Fill="#FFEEEEEE" Margin="8" Data="F1 M 17,23L 34,20.7738L 34,37L 17,37L 17,23 Z M 34,55.2262L 17,53L 17,39L 34,39L 34,55.2262 Z M 59,17.5L 59,37L 36,37L 36,20.5119L 59,17.5 Z M 59,58.5L 36,55.4881L 36,39L 59,39L 59,58.5 Z "/>
+                        </Grid>
 					</Border>
 				</StackPanel>
 
