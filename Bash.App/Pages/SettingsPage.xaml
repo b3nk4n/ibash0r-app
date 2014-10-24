@@ -1,0 +1,123 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Bash.App.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    x:Class="Bash.App.Pages.SettingsPage"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d">
+
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideUpFadeIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:SlideTransition Mode="SlideDownFadeOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+
+    <!--LayoutRoot ist das Stammraster, in dem alle anderen Seiteninhalte platziert werden-->
+	<Grid x:Name="LayoutRoot" Background="{StaticResource ThemeBrushGray}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
+		<Grid Background="{StaticResource ThemeBrushBlue}" Margin="0,0,0,12">
+			<TextBlock Text="{Binding LocalizedResources.SettingsTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center" Margin="0,-2,0,2"/>
+		</Grid>
+
+        <!--ContentPanel - zusätzliche Inhalte hier platzieren-->
+		<Grid x:Name="ContentPanel" Grid.Row="1">
+			<StackPanel>
+                <TextBlock Text="Sperrbildschirm" Style="{StaticResource ThemeTextLargeStyle}" Foreground="{StaticResource ThemeBrushBlue}" HorizontalAlignment="Center" />
+                <TextBlock Text="Hintergrundfarbe" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
+                <Button x:Name="SelectBackgroundColorButton" Content="Farbe auswählen" Style="{StaticResource RoundButtonStyle}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ec:NavigateToPageAction TargetPage="/Pages/ColorPickerPage.xaml"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <TextBlock Text="Hintergrundbild" Style="{StaticResource ThemeTextSubtleStyle}" HorizontalAlignment="Center" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="SelectBackgroundImageButton" Width="240" Content="Bild auswählen" Style="{StaticResource RoundButtonStyle}"/>
+                    <Button x:Name="ClearBackgroundImageButton" Width="240" Content="Bild entfernen" Style="{StaticResource RoundButtonStyle}"/>
+                </StackPanel>
+                <TextBlock Text="Deckkraft des Hintergrundbilds" Style="{StaticResource ThemeTextSubtleStyle}" Margin="16,0,12,-8" HorizontalAlignment="Center" />
+                <Slider x:Name="BackgroundImageOpacitySlider" Background="{StaticResource ThemeBrushGrayDark}" Foreground="{StaticResource ThemeBrushBlue}" Value="1" Minimum="0" Maximum="1" SmallChange="0.01" LargeChange="0.1"  Style="{StaticResource RoundSliderStyle}" />
+                
+
+				<StackPanel Margin="12">
+					<TextBlock Text="{Binding LocalizedResources.SettingsPreview, Source={StaticResource LocalizedStrings}}" Style="{StaticResource PhoneTextNormalStyle}" Foreground="{StaticResource ThemeBrushGrayDark}" TextAlignment="Center"
+                               Margin="6"/>
+					<Border Padding="1" Background="#555555" Width="136">
+						<Border Padding="6,6,6,24" Width="134" Background="Black">
+							<Border Padding="1" Background="#555555" Width="122">
+								<Grid Height="200" Width="120" Background="Black">
+									<Grid.RowDefinitions>
+										<RowDefinition Height="18*" />
+										<RowDefinition Height="12*" />
+										<RowDefinition Height="1*" />
+									</Grid.RowDefinitions>
+                                    <Rectangle x:Name="PreviewColorBackground" Grid.RowSpan="3" />
+                                    <Image x:Name="PreviewImageBackground" Grid.RowSpan="3" Opacity="{Binding ElementName=BackgroundImageOpacitySlider, Path=Value}"
+										Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    <StackPanel Grid.Row="0" Margin="0,10,0,0">
+                                        <Border HorizontalAlignment="Left" Margin="0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                <Border Margin="6,3,6,3" Width="78" Height="30" Background="White"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border HorizontalAlignment="Left" Margin="28,0,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border Margin="6,3,6,3" Width="72" Height="18" Background="White"/>
+                                                <Path Margin="-8,0,4,6" Width="10" Height="10" Stretch="Fill" Data="M 20,20 0,0, 0,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                            </StackPanel>
+                                        </Border>
+                                        <Border Margin="2,3,2,3" Width="112" Height="12" Background="{StaticResource ThemeBrushGrayDark}"/>
+                                        <Border HorizontalAlignment="Left" Margin="0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Path Margin="4,0,-8,6" Width="10" Height="10" Stretch="Fill" Data="M 0,20 20,0, 20,20 Z" Fill="White" VerticalAlignment="Bottom"/>
+                                                <Border Margin="6,3,6,3" Width="72" Height="18" Background="White"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1" Margin="6,0,0,0">
+										<TextBlock  Text="10:36" Foreground="White" FontSize="24" />
+										<TextBlock Text="Montag" Foreground="White" FontSize="16"/>
+                                        <TextBlock Text="16. September" Foreground="White" FontSize="16"/>
+									</StackPanel>
+								</Grid>
+							</Border>
+						</Border>
+					</Border>
+				</StackPanel>
+
+			</StackPanel>
+		</Grid>
+	</Grid>
+
+</phone:PhoneApplicationPage>

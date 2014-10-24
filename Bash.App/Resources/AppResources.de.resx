@@ -470,4 +470,16 @@ schlange</value>
     <value>Leider konnten keine Daten gelanden werden. Das kann nur drei Dinge bedeuten. Entweder hast du keine Internetverbindung, die Server sind offline, oder die Erde wird von Aliens angegriffen...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>einstellungen</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="SettingsPreview" xml:space="preserve">
+    <value>Vorschau</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Einstellungen</value>
+    <comment>SettingsPage</comment>
+  </data>
 </root>

@@ -49,8 +49,8 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel enthält den Namen der Anwendung und den Seitentitel-->
-        <Grid Background="{StaticResource ThemeBrushBlue}">
-            <TextBlock Text="{Binding Path=LocalizedResources.CommentsTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center"/>
+        <Grid Background="{StaticResource ThemeBrushBlue}" Margin="0,0,0,12">
+            <TextBlock Text="{Binding Path=LocalizedResources.CommentsTitle, Source={StaticResource LocalizedStrings}}" Style="{StaticResource ThemeTextTitleStyle}" HorizontalAlignment="Center" Margin="0,-2,0,2"/>
         </Grid>
 
         <!--ContentPanel - zusätzliche Inhalte hier platzieren-->

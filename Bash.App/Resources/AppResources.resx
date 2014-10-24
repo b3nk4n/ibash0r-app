@@ -469,4 +469,16 @@ queue</value>
     <value>There has been troubles with loading the data. There can be only three reasons for this. Firstly, you have no internet connection. Seconds, all servers are down. And last but not least, the earth is attacked by aliens...</value>
     <comment>CategoryPage</comment>
   </data>
+  <data name="AppBarSettings" xml:space="preserve">
+    <value>settings</value>
+    <comment>AppBar</comment>
+  </data>
+  <data name="SettingsPreview" xml:space="preserve">
+    <value>Preview</value>
+    <comment>SettingsPage</comment>
+  </data>
+  <data name="SettingsTitle" xml:space="preserve">
+    <value>Settings</value>
+    <comment>SettingsPage</comment>
+  </data>
 </root>

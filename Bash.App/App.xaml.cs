@@ -14,6 +14,7 @@ using Bash.Common.Data;
 using Bash.App.ViewModels;
 using BugSense;
 using BugSense.Core.Model;
+using Bash.App.Pages;
 
 namespace Bash.App
 {

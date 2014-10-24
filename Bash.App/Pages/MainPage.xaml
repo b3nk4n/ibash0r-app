@@ -207,6 +207,7 @@
                               Opacity="0.99">
             <shell:ApplicationBarIconButton IconUri="/Assets/AppBar/questionmark.png" Text="id_about"/>
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="id_settings"/>
                 <shell:ApplicationBarMenuItem Text="id_lock"/>
                 <shell:ApplicationBarMenuItem Text="id_backup"/>
             </shell:ApplicationBar.MenuItems>
@@ -215,6 +216,7 @@
 
     <i:Interaction.Behaviors>
         <abu:AppBarItemNavigation Type="Button" Id="id_about" Text="{Binding Path=LocalizedResources.AppBarAbout, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/AboutPage.xaml"/>
+        <abu:AppBarItemNavigation Type="MenuItem" Id="id_settings" Text="{Binding Path=LocalizedResources.AppBarSettings, Source={StaticResource LocalizedStrings}}" TargetPage="/Pages/SettingsPage.xaml"/>
         <abu:AppBarItemCommand Type="MenuItem" Id="id_lock" Text="{Binding Path=LocalizedResources.AppBarSetLockScreen, Source={StaticResource LocalizedStrings}}" Command="{Binding SetLockScreenCommand}" />
         <abu:AppBarItemCommand Type="MenuItem" Id="id_backup" Text="{Binding Path=LocalizedResources.AppBarBackup, Source={StaticResource LocalizedStrings}}" Command="{Binding BackupCommand}" />
     </i:Interaction.Behaviors>
