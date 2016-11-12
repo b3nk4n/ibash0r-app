@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Resources;
 using System.Windows;
 using System.Windows.Markup;
 using System.Windows.Navigation;
@@ -10,11 +9,7 @@ using Bash.App.Resources;
 using Ninject;
 using Bash.App.Modules;
 using PhoneKit.Framework.Support;
-using Bash.Common.Data;
 using Bash.App.ViewModels;
-using BugSense;
-using BugSense.Core.Model;
-using Bash.App.Pages;
 
 namespace Bash.App
 {

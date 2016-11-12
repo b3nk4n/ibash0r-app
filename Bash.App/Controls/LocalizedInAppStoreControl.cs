@@ -1,11 +1,5 @@
 ﻿using Bash.App.Resources;
 using Bash.Common;
-using PhoneKit.Framework.Controls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace Bash.App.Controls

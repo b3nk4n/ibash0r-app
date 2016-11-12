@@ -1,23 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
-using Bash.App.Resources;
-using Bash.Common.Data;
-using Bash.Common.Models;
-using Newtonsoft.Json;
 using PhoneKit.Framework.Support;
 using Bash.App.ViewModels;
 using Ninject;
 using System.Windows.Input;
-using System.Windows.Data;
-using PhoneKit.Framework.InAppPurchase;
 using Bash.App.Helpers;
+using PhoneKit.Framework.InAppPurchase;
+using Bash.Common;
 
 namespace Bash.App.Pages
 {
@@ -35,11 +27,13 @@ namespace Bash.App.Pages
             // register startup actions
             StartupActionManager.Instance.Register(10, ActionExecutionRule.Equals, () =>
             {
-                FeedbackManager.Instance.StartFirst();
+                if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
+                    FeedbackManager.Instance.StartFirst();
             });
             StartupActionManager.Instance.Register(20, ActionExecutionRule.Equals, () =>
             {
-                FeedbackManager.Instance.StartSecond();
+                if (!InAppPurchaseHelper.IsProductActive(AppConstants.IAP_AWESOME_EDITION))
+                    FeedbackManager.Instance.StartSecond();
             });
         }
 

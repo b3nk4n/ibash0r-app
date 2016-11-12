@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 using System.Windows.Media;
 using Microsoft.Phone.Tasks;
 using PhoneKit.Framework.Controls;
 using PhoneKit.Framework.OS;
 using System.Windows.Media.Imaging;
-using Bash.App.Helpers;
 
 namespace Bash.App.Controls
 {

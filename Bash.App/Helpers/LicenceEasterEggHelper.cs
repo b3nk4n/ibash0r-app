@@ -2,11 +2,6 @@
 using Bash.Common;
 using PhoneKit.Framework.Core.Storage;
 using PhoneKit.Framework.InAppPurchase;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Bash.App.Helpers

@@ -8,9 +8,7 @@ using Microsoft.Phone.Shell;
 using Bash.App.Resources;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
-using Microsoft.Phone.Tasks;
 using Bash.Common;
-using PhoneKit.Framework.Storage;
 using System.Windows;
 
 namespace Bash.App.Pages

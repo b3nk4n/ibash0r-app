@@ -5,10 +5,6 @@ using PhoneKit.Framework.Core.Graphics;
 using PhoneKit.Framework.Core.LockScreen;
 using PhoneKit.Framework.Core.Storage;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
 namespace Bash.App.Helpers

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.App", "Bash.App\Bash.App.csproj", "{D374E1B7-E31C-4F5C-80D3-23A25166282C}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.Tests", "Bash.Tests\Bash.Tests.csproj", "{FF560B46-97DA-457F-906F-49AFCFBA0335}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bash.BackgroundTask", "Bash.BackgroundTask\Bash.BackgroundTask.csproj", "{B5D3B0E0-DFEE-4DF5-912E-FF426C8400BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{91EC52DC-758B-4321-8E35-91EFCA119CD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,5 +132,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9274ED00-223E-41D1-A1BC-E7CDD8C8D34D} = {91EC52DC-758B-4321-8E35-91EFCA119CD4}
+		{0028AC27-312B-4F73-B8F2-C3B8D9740A86} = {91EC52DC-758B-4321-8E35-91EFCA119CD4}
 	EndGlobalSection
 EndGlobal

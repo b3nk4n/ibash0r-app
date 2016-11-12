@@ -1,11 +1,6 @@
 ﻿using Bash.Common.Data;
 using Bash.App.ViewModels;
 using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Bash.App.Data;
 
 namespace Bash.App.Modules
